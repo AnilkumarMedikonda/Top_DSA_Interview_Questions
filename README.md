@@ -1,29 +1,47 @@
-# Top DSA Interview Questions — Swift
+# 🚀 Top DSA Interview Questions — Swift
 
 A curated collection of **85 interview-focused Data Structures & Algorithms problems** solved in **Swift**, organized by **9 core interview patterns**.
 
-Built for **Senior iOS Engineer interview preparation** — pattern recognition, optimized solutions, interview notes, and mock interview practice.
+This repository is built for **Senior iOS Engineer interview preparation**, focusing on **pattern recognition**, **clean Swift implementations**, **interview explanations**, and **mock interview practice**.
 
-> **Goal:** Learn patterns, not solutions.
+> **Goal:** Learn patterns, explain solutions like an interviewer, and build interview-ready problem-solving skills.
 
-Started August 16, 2026.
+📅 **Started:** August 16, 2026
+
+---
+
+# 🏆 Features
+
+- ✅ 85 carefully selected interview questions
+- ✅ Brute Force → Better → Optimal approach
+- ✅ Pure Swift implementations
+- ✅ Interview-focused explanations
+- ✅ Time & Space Complexity with reasoning
+- ✅ Edge cases covered
+- ✅ Pattern-based learning
+- ✅ Mock interview preparation
+- ✅ Senior iOS Engineer interview focused
 
 ---
 
 # 📊 Progress
 
-**Problems Solved:** **0 / 85**
+**Problems Solved:** **10 / 85**
 
 **Mock Sessions Passed:** **0 / 15**
 
+**Current Focus:** Phase 02 — Two Pointers (Q11–Q19)
+
+**Legend:** ✅ complete (mock passed) · 🔄 in progress · ☐ not started
+
 ---
 
-## 🗺️ Roadmap
+# 🗺️ Roadmap
 
 | Phase | Topic | Questions | Progress | Mock | Status |
 |------|-------|----------:|---------:|------|:------:|
-| 01 | Arrays | Q01–Q10 | 0 / 10 | Mock 01 | ☐ |
-| 02 | Two Pointers | Q11–Q19 | 0 / 9 | Mock 02 | ☐ |
+| 01 | Arrays | Q01–Q10 | **10 / 10** | Mock 01 | 🔄 |
+| 02 | Two Pointers | Q11–Q19 | 0 / 9 | Mock 02 | 🔄 |
 | 03 | Strings & Hashing | Q20–Q29 | 0 / 10 | Mock 04 | ☐ |
 | 04 | Sliding Window | Q30–Q38 | 0 / 9 | Mock 06 | ☐ |
 | 05 | Binary Search | Q39–Q47 | 0 / 9 | Mock 08 | ☐ |
@@ -32,28 +50,54 @@ Started August 16, 2026.
 | 08 | Trees & BST | Q66–Q74 | 0 / 9 | Mock 11 | ☐ |
 | 09 | Advanced Patterns | Q75–Q85 | 0 / 11 | Mock 12 | ☐ |
 
+Phase 01 stays 🔄 until Mock 01 is passed — a phase is not complete before its mock.
+
+---
+
+# 🧠 Patterns Covered
+
+- Arrays
+- Two Pointers
+- Strings & Hashing
+- Sliding Window
+- Binary Search
+- Stack & Queue
+- Linked List
+- Trees & Binary Search Trees
+- Advanced Interview Patterns
+
 ---
 
 # 📌 House Rules
 
-- **Swift only.** No built-in helpers — no `reduce`, no `stride`. Manual loops.
-- **Brute force first, then optimal.** Both kept in the file.
-- **Every file** opens with the problem statement, an example, and constraints.
-- **Complexity stated** — time and space, with the reason, not just the notation.
-- **Traps logged** in each phase's interview notes as they happen, including
-  the ones that cost an hour.
-- **A phase is not done** until its mock is passed.
+- **Swift only.**
+- **No shortcuts while learning.** Manual loops wherever possible:
+  - No `reduce`, `map`, `filter`, `stride`
+  - No `swapAt`, `max()`, `min()`
+  - No nil-coalescing (`?? 0`) — explicit `if let / else`
+  - No force unwraps
+- **Brute Force first, then Optimal.** Both kept in the file.
+- Every solution includes interview discussion.
+- Every problem includes complexity analysis with reasoning.
+- Edge cases are documented.
+- Mistakes and interview traps are recorded.
+- A phase is complete only after passing its mock interview.
 
 ---
 
 # 📚 Learning Approach
 
-1. Understand the problem, then dry run it by hand
-2. Write the brute force
-3. Optimize, and name the pattern that made it possible
-4. State both complexities with the reason
-5. Handle edge cases
-6. Explain it out loud as if in an interview
+For every problem:
+
+1. Read and understand the problem.
+2. Dry run with sample input.
+3. Write the brute-force solution.
+4. Optimize the solution.
+5. Identify the underlying pattern.
+6. Explain Time & Space Complexity.
+7. Handle edge cases.
+8. Name the wrong-tool trap — which pattern *looks* right here but answers a different question.
+9. Explain the solution aloud as if in a real interview.
 
 ---
 
@@ -81,13 +125,23 @@ Top_DSA_Interview_Questions/
 └── Resources/
 ```
 
-## Each Phase Contains
+---
+
+# 📁 Each Phase Contains
 
 ```text
 0X_Phase_Name/
-├── Basics.md            — the pattern written from scratch, before solving
-├── Interview_Notes.md   — what to say out loud, plus traps logged
-└── Problems/            — Q##_LC###_Name.swift
+│
+├── Phase_Prerequisites          — raw mechanics drilled before any pattern
+├── Interview_Notes.md           — what to say out loud, plus traps logged
+│
+├── Patterns/                    — each pattern written from scratch, before solving
+│   ├── 01_Pattern_Name
+│   └── ...
+│
+└── Problems/
+    ├── Q##_LC###_Problem_Name
+    └── ...
 ```
 
 ---
@@ -95,36 +149,84 @@ Top_DSA_Interview_Questions/
 # 📝 Every Problem Includes
 
 - Problem Statement
-- Example
+- Examples
 - Constraints
-- Brute Force
+- Brute Force Solution
+- Better Solution (if applicable)
 - Optimal Solution
-- Time & Space Complexity, with the reason
+- Pattern Used
+- Time Complexity
+- Space Complexity
 - Edge Cases
+- Interview Notes
 
 ---
 
-# 🎯 Mock Sessions
+# 🎯 Mock Interview Plan
 
-Cumulative — later mocks re-test earlier phases blind.
+Each mock is cumulative. New mocks also include questions from previous phases.
 
 | Mock | Covers | Status |
 |------|--------|:------:|
-| Mock 01 | Phase 01 | ☐ |
-| Mock 02 | Phase 02 | ☐ |
-| Mock 03 | Phases 01–02 | ☐ |
-| Mock 04 | Phase 03 | ☐ |
+| Mock 01 | Arrays | ☐ |
+| Mock 02 | Two Pointers | ☐ |
+| Mock 03 | Arrays + Two Pointers | ☐ |
+| Mock 04 | Strings & Hashing | ☐ |
 | Mock 05 | Phases 01–03 | ☐ |
-| Mock 06 | Phase 04 | ☐ |
+| Mock 06 | Sliding Window | ☐ |
 | Mock 07 | Phases 01–04 | ☐ |
-| Mock 08 | Phase 05 | ☐ |
-| Mock 09 | Phase 06 | ☐ |
-| Mock 10 | Phase 07 | ☐ |
-| Mock 11 | Phase 08 | ☐ |
-| Mock 12 | Phase 09 | ☐ |
+| Mock 08 | Binary Search | ☐ |
+| Mock 09 | Stack & Queue | ☐ |
+| Mock 10 | Linked List | ☐ |
+| Mock 11 | Trees & BST | ☐ |
+| Mock 12 | Advanced Patterns | ☐ |
 | Mock 13 | Mixed DSA | ☐ |
 | Mock 14 | Company Style | ☐ |
 | Mock 15 | Final Assessment | ☐ |
+
+---
+
+# 🎯 Current Progress
+
+## 🔄 Phase 01 — Arrays (Problems done, mock pending)
+
+- ✅ Q01 — Two Sum (LC001)
+- ✅ Q02 — Best Time to Buy and Sell Stock (LC121)
+- ✅ Q03 — Contains Duplicate (LC217)
+- ✅ Q04 — Maximum Subarray (LC053)
+- ✅ Q05 — Move Zeroes (LC283)
+- ✅ Q06 — Merge Sorted Array (LC088)
+- ✅ Q07 — Remove Duplicates from Sorted Array (LC026)
+- ✅ Q08 — Majority Element (LC169)
+- ✅ Q09 — Missing Number (LC268)
+- ✅ Q10 — Product of Array Except Self (LC238)
+
+Outstanding: Interview_Notes.md · Revision · Mock 01
+
+## 🔄 Phase 02 — Two Pointers (In Progress)
+
+- ⬜ Q11 — Container With Most Water (LC011)
+- ⬜ Q12 — Three Sum (LC015)
+- ⬜ Q13 — Trapping Rain Water (LC042)
+- ⬜ Q14 — Squares of a Sorted Array (LC977)
+- ⬜ Q15 — Sort Colors (LC075)
+- ⬜ Q16 — Next Permutation (LC031)
+- ⬜ Q17 — Rotate Array (LC189)
+- ⬜ Q18 — Merge Intervals (LC056)
+- ⬜ Q19 — First Missing Positive (LC041)
+
+---
+
+# 💡 Repository Philosophy
+
+This repository focuses on **learning patterns instead of memorizing solutions**.
+
+For every problem:
+
+- Understand **why** the brute-force solution works.
+- Learn the **pattern** that improves it.
+- Implement the **optimal solution** confidently.
+- Practice explaining the solution as you would during an interview.
 
 ---
 
@@ -132,8 +234,8 @@ Cumulative — later mocks re-test earlier phases blind.
 
 | Repository | Description |
 |------------|-------------|
-| **[DSA-Logic-and-Interview-Prep](https://github.com/AnilkumarMedikonda/DSA-Logic-and-Interview-Prep)** | 247 problems across 21 phases — the full learning journey, fundamentals to advanced. |
-| **[iOS-Architecture-Patterns](https://github.com/AnilkumarMedikonda/iOS-Architecture-Patterns)** | iOS architecture patterns implemented in Swift, SwiftUI and UIKit. |
+| **[DSA-Logic-and-Interview-Prep](https://github.com/AnilkumarMedikonda/DSA-Logic-and-Interview-Prep)** | 247 problems across 21 phases covering the complete DSA learning journey. |
+| **[iOS-Architecture-Patterns](https://github.com/AnilkumarMedikonda/iOS-Architecture-Patterns)** | Swift, UIKit, and SwiftUI architecture patterns for iOS development. |
 
 ---
 
@@ -141,16 +243,29 @@ Cumulative — later mocks re-test earlier phases blind.
 
 **Medikonda Anil Kumar**
 
-Senior iOS Engineer • Swift • SwiftUI • UIKit • Objective-C
+Senior iOS Engineer
 
-- [GitHub](https://github.com/AnilkumarMedikonda)
-- [LinkedIn](https://www.linkedin.com/in/anil-kumar-118524283/)
-- anil.medikonda.ios@gmail.com
+### Skills
+
+- Swift
+- UIKit
+- SwiftUI
+- Objective-C
+- iOS Architecture
+- Data Structures & Algorithms
+
+### Connect
+
+- GitHub: https://github.com/AnilkumarMedikonda
+- LinkedIn: https://www.linkedin.com/in/anil-kumar-118524283/
+- Email: anil.medikonda.ios@gmail.com
 
 ---
 
 # 📄 License
 
-MIT. Solutions and explanations are my own.
+MIT License.
 
-Problem statements are paraphrased for educational purposes. Original problems belong to their respective platforms (e.g. LeetCode).
+All solutions and explanations are written by me for educational purposes.
+
+Problem statements are paraphrased. Original problems belong to their respective platforms (e.g., LeetCode).
