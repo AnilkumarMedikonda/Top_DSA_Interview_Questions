@@ -28,19 +28,16 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Problems Solved:** **10 / 85**
 
-**Mock Sessions Passed:** **0 / 15**
+**Mock Sessions Passed:** **1 / 15**
 
 **Current Focus:** Phase 02 — Two Pointers (Q11–Q19)
-
-**Legend:** ✅ complete (mock passed) · 🔄 in progress · ☐ not started
-
 ---
 
 # 🗺️ Roadmap
 
 | Phase | Topic | Questions | Progress | Mock | Status |
 |------|-------|----------:|---------:|------|:------:|
-| 01 | Arrays | Q01–Q10 | **10 / 10** | Mock 01 | 🔄 |
+| 01 | Arrays | Q01–Q10 | **10 / 10** | Mock 01 | ✅ |
 | 02 | Two Pointers | Q11–Q19 | 0 / 9 | Mock 02 | 🔄 |
 | 03 | Strings & Hashing | Q20–Q29 | 0 / 10 | Mock 04 | ☐ |
 | 04 | Sliding Window | Q30–Q38 | 0 / 9 | Mock 06 | ☐ |
@@ -168,7 +165,7 @@ Each mock is cumulative. New mocks also include questions from previous phases.
 
 | Mock | Covers | Status |
 |------|--------|:------:|
-| Mock 01 | Arrays | ☐ |
+| Mock 01 | Arrays | ✅ |
 | Mock 02 | Two Pointers | ☐ |
 | Mock 03 | Arrays + Two Pointers | ☐ |
 | Mock 04 | Strings & Hashing | ☐ |
@@ -188,7 +185,7 @@ Each mock is cumulative. New mocks also include questions from previous phases.
 
 # 🎯 Current Progress
 
-## 🔄 Phase 01 — Arrays (Problems done, mock pending)
+## ✅ Phase 01 — Arrays (Complete)
 
 - ✅ Q01 — Two Sum (LC001)
 - ✅ Q02 — Best Time to Buy and Sell Stock (LC121)
