@@ -39,16 +39,15 @@ Master the Two Pointer technique to solve array and string problems efficiently 
 
 | # | Problem | LC | Pattern | Status |
 |---|---------|----|---------|:-----:|
-| Q11 | Container With Most Water | 011 | Opposite Ends | ⬜ |
-| Q12 | 3Sum | 015 | Opposite Ends + Duplicate Skip | ⬜ |
-| Q13 | Trapping Rain Water | 042 | Opposite Ends | ⬜ |
+| Q11 | Container With Most Water | 011 | Opposite Ends | ✅ |
+| Q12 | 3Sum | 015 | Opposite Ends + Duplicate Skip | ✅ |
+| Q13 | Trapping Rain Water | 042 | Opposite Ends | ✅ |
 | Q14 | Squares of a Sorted Array | 977 | Opposite Ends | ⬜ |
 | Q15 | Sort Colors | 075 | Dutch National Flag | ⬜ |
 | Q16 | Next Permutation | 031 | Right-to-Left + Array Reverse | ⬜ |
 | Q17 | Rotate Array | 189 | Array Reverse | ⬜ |
-| Q18 | Merge Intervals | 056 | Interval Merge | ✅ |
+| Q18 | Merge Intervals | 056 | Interval Merge | ⬜ |
 | Q19 | First Missing Positive | 041 | Cyclic Sort | ⬜ |
-
 ---
 
 ## 📝 Key Takeaways
@@ -60,6 +59,9 @@ Master the Two Pointer technique to solve array and string problems efficiently 
 - **`while`, not `if`, in Cyclic Sort** — after a swap the value that just arrived may also be misplaced, so re-check the same index.
 - **Reduce `k` before rotating** — `k % count` first, and guard the empty array before the modulo.
 - **Merge Intervals is Ω(n log n)** — turning each `x` into `[x, x]` would make interval merging a sort, so the sort is a permanent bottleneck. The merge scan itself is O(n).
+- **Move on the heights, not the maxes** — in Trapping Rain Water the pointer moves on `heights[left] < heights[right]`. When the left bar is shorter, some bar on the right is already at least that tall, so `leftMax` alone decides the water there.
+- **Sort is what buys the dedup in 3Sum** — a hash map finds a pair faster but gives no way to suppress duplicate triplets. Skip at `i`, then at `left` and `right` after every hit.
+- **Ranges that include `i` make the water clamp unnecessary** — `0...i` and `i..<count` both contain `heights[i]`, so the difference can't go negative. Write the ranges as `0..<i` / `i+1..<count` and the clamp comes back.
 
 ---
 
@@ -74,6 +76,7 @@ Master the Two Pointer technique to solve array and string problems efficiently 
 - Naming a function for its side effect instead of its operation
 - Missing T/S header and blank **Edge cases:** line
 - Extra blank lines immediately inside braces
+- Sorting into a copy then indexing the *original* array — shadow with `let nums = nums.sorted()` so only one name exists
 
 ---
 
@@ -81,6 +84,6 @@ Master the Two Pointer technique to solve array and string problems efficiently 
 
 - [x] Prerequisites
 - [x] Patterns (9/9)
-- [ ] Problems (1/9)
+- [ ] Problems (3/9)
 - [ ] Mock Interview 02
 - [ ] Revision
