@@ -26,11 +26,11 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 # 📊 Progress
 
-**Problems Solved:** **10 / 85**
+**Problems Solved:** **19 / 85**
 
 **Mock Sessions Passed:** **1 / 15**
 
-**Current Focus:** Phase 02 — Two Pointers (Q11–Q19)
+**Current Focus:** Phase 02 — Two Pointers (Revision → Mock 02)
 ---
 
 # 🗺️ Roadmap
@@ -38,7 +38,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | Phase | Topic | Questions | Progress | Mock | Status |
 |------|-------|----------:|---------:|------|:------:|
 | 01 | Arrays | Q01–Q10 | **10 / 10** | Mock 01 | ✅ |
-| 02 | Two Pointers | Q11–Q19 | 0 / 9 | Mock 02 | 🔄 |
+| 02 | Two Pointers | Q11–Q19 | **9 / 9** | Mock 02 | 🔄 |
 | 03 | Strings & Hashing | Q20–Q29 | 0 / 10 | Mock 04 | ☐ |
 | 04 | Sliding Window | Q30–Q38 | 0 / 9 | Mock 06 | ☐ |
 | 05 | Binary Search | Q39–Q47 | 0 / 9 | Mock 08 | ☐ |
@@ -47,8 +47,8 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 08 | Trees & BST | Q66–Q74 | 0 / 9 | Mock 11 | ☐ |
 | 09 | Advanced Patterns | Q75–Q85 | 0 / 11 | Mock 12 | ☐ |
 
-Phase 01 stays 🔄 until Mock 01 is passed — a phase is not complete before its mock.
 
+A phase stays 🔄 until its mock is passed — problems solved is not the same as phase complete.
 ---
 
 # 🧠 Patterns Covered
@@ -200,17 +200,19 @@ Each mock is cumulative. New mocks also include questions from previous phases.
 
 Outstanding: Interview_Notes.md · Revision · Mock 01
 
-## 🔄 Phase 02 — Two Pointers (In Progress)
+## 🔄 Phase 02 — Two Pointers (Problems done, revision and mock pending)
 
-- ⬜ Q11 — Container With Most Water (LC011)
-- ⬜ Q12 — Three Sum (LC015)
-- ⬜ Q13 — Trapping Rain Water (LC042)
-- ⬜ Q14 — Squares of a Sorted Array (LC977)
-- ⬜ Q15 — Sort Colors (LC075)
-- ⬜ Q16 — Next Permutation (LC031)
-- ⬜ Q17 — Rotate Array (LC189)
-- ⬜ Q18 — Merge Intervals (LC056)
-- ⬜ Q19 — First Missing Positive (LC041)
+- ✅ Q11 — Container With Most Water (LC011)
+- ✅ Q12 — Three Sum (LC015)
+- ✅ Q13 — Trapping Rain Water (LC042)
+- ✅ Q14 — Squares of a Sorted Array (LC977)
+- ✅ Q15 — Sort Colors (LC075)
+- ✅ Q16 — Next Permutation (LC031)
+- ✅ Q17 — Rotate Array (LC189)
+- ✅ Q18 — Merge Intervals (LC056)
+- ✅ Q19 — First Missing Positive (LC041)
+
+Outstanding: Interview_Notes.md · Revision · Mock 02
 
 ---
 
