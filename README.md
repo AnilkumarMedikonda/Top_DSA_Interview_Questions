@@ -28,9 +28,10 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Problems Solved:** **19 / 85**
 
-**Mock Sessions Passed:** **1 / 15**
+**Mock Sessions Passed:** **2 / 15**
 
-**Current Focus:** Phase 02 — Two Pointers (Revision → Mock 02)
+**Current Focus:** Phase 03 — Strings & Hashing (patterns drilled → problems)
+
 ---
 
 # 🗺️ Roadmap
@@ -38,8 +39,8 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | Phase | Topic | Questions | Progress | Mock | Status |
 |------|-------|----------:|---------:|------|:------:|
 | 01 | Arrays | Q01–Q10 | **10 / 10** | Mock 01 | ✅ |
-| 02 | Two Pointers | Q11–Q19 | **9 / 9** | Mock 02 | 🔄 |
-| 03 | Strings & Hashing | Q20–Q29 | 0 / 10 | Mock 04 | ☐ |
+| 02 | Two Pointers | Q11–Q19 | **9 / 9** | Mock 02 | ✅ |
+| 03 | Strings & Hashing | Q20–Q29 | 0 / 10 | Mock 04 | 🔄 |
 | 04 | Sliding Window | Q30–Q38 | 0 / 9 | Mock 06 | ☐ |
 | 05 | Binary Search | Q39–Q47 | 0 / 9 | Mock 08 | ☐ |
 | 06 | Stack & Queue | Q48–Q56 | 0 / 9 | Mock 09 | ☐ |
@@ -47,8 +48,8 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 08 | Trees & BST | Q66–Q74 | 0 / 9 | Mock 11 | ☐ |
 | 09 | Advanced Patterns | Q75–Q85 | 0 / 11 | Mock 12 | ☐ |
 
-
 A phase stays 🔄 until its mock is passed — problems solved is not the same as phase complete.
+
 ---
 
 # 🧠 Patterns Covered
@@ -69,8 +70,8 @@ A phase stays 🔄 until its mock is passed — problems solved is not the same 
 
 - **Swift only.**
 - **No shortcuts while learning.** Manual loops wherever possible:
-  - No `reduce`, `map`, `filter`, `stride`
-  - No `swapAt`, `max()`, `min()`
+  - No `reduce`, `map`, `filter`, `stride`, `split`, `enumerated`
+  - No `swapAt`, `max()`, `min()`, `sorted()`
   - No nil-coalescing (`?? 0`) — explicit `if let / else`
   - No force unwraps
 - **Brute Force first, then Optimal.** Both kept in the file.
@@ -78,6 +79,7 @@ A phase stays 🔄 until its mock is passed — problems solved is not the same 
 - Every problem includes complexity analysis with reasoning.
 - Edge cases are documented.
 - Mistakes and interview traps are recorded.
+- **No pattern file without a problem behind it.** A pattern that no question in the phase actually needs does not get a file.
 - A phase is complete only after passing its mock interview.
 
 ---
@@ -129,8 +131,8 @@ Top_DSA_Interview_Questions/
 ```text
 0X_Phase_Name/
 │
+├── README.md                    — phase map, problem→pattern table, traps logged
 ├── Phase_Prerequisites          — raw mechanics drilled before any pattern
-├── Interview_Notes.md           — what to say out loud, plus traps logged
 │
 ├── Patterns/                    — each pattern written from scratch, before solving
 │   ├── 01_Pattern_Name
@@ -166,7 +168,7 @@ Each mock is cumulative. New mocks also include questions from previous phases.
 | Mock | Covers | Status |
 |------|--------|:------:|
 | Mock 01 | Arrays | ✅ |
-| Mock 02 | Two Pointers | ☐ |
+| Mock 02 | Two Pointers | ✅ |
 | Mock 03 | Arrays + Two Pointers | ☐ |
 | Mock 04 | Strings & Hashing | ☐ |
 | Mock 05 | Phases 01–03 | ☐ |
@@ -200,7 +202,7 @@ Each mock is cumulative. New mocks also include questions from previous phases.
 
 Outstanding: Interview_Notes.md · Revision · Mock 01
 
-## 🔄 Phase 02 — Two Pointers (Problems done, revision and mock pending)
+## ✅ Phase 02 — Two Pointers (Complete)
 
 - ✅ Q11 — Container With Most Water (LC011)
 - ✅ Q12 — Three Sum (LC015)
@@ -212,7 +214,46 @@ Outstanding: Interview_Notes.md · Revision · Mock 01
 - ✅ Q18 — Merge Intervals (LC056)
 - ✅ Q19 — First Missing Positive (LC041)
 
-Outstanding: Interview_Notes.md · Revision · Mock 02
+Mock 02 passed.
+
+## 🔄 Phase 03 — Strings & Hashing (Patterns complete, problems next)
+
+### Patterns — 9 / 9
+
+- ✅ 01_HashMap — Q21, Q25, Q27, Q28
+- ✅ 02_Character_Frequency — Q20, Q25, Q26, Q29
+- ✅ 03_String_Traversal — foundation for all ten
+- ✅ 04_Two_Pointers_On_Strings — Q22
+- ✅ 05_Word_Splitting — Q24, Q28
+- ✅ 06_Vertical_Scanning — Q23
+- ✅ 07_Frequency_Signature — Q21
+- ✅ 08_Bucket_By_Frequency — Q25
+- ✅ 09_Two_Map_Bijection — Q27, Q28
+
+### Problems — 0 / 10
+
+- ☐ Q20 — Valid Anagram (LC242)
+- ☐ Q21 — Group Anagrams (LC049)
+- ☐ Q22 — Valid Palindrome (LC125)
+- ☐ Q23 — Longest Common Prefix (LC014)
+- ☐ Q24 — Reverse Words in a String (LC151)
+- ☐ Q25 — Top K Frequent Elements (LC347)
+- ☐ Q26 — Ransom Note (LC383)
+- ☐ Q27 — Isomorphic Strings (LC205)
+- ☐ Q28 — Word Pattern (LC290)
+- ☐ Q29 — First Unique Character in a String (LC387)
+
+Outstanding: Q20–Q29 · Revision · Mock 04
+
+**Traps logged this phase:**
+- `index(_:offsetBy:)` inside a loop is O(i) per call — an O(n) scan becomes O(n²). Convert to `[Character]` once.
+- `guard` states what must be **true** to continue, not what to reject.
+- Empty-array guards are usually dead code — `0..<0` is a valid empty range.
+- `left < right` when comparing pairs; `<=` only when the middle element itself matters.
+- Conditional comparison requires conditional advancement — move only the pointer that failed the test.
+- Min-tracking needs a sentinel any real value beats (`Int.max`); max-tracking gets `0` free.
+- Bucket arrays sized `n + 1` — the index *is* the count, so index `n` must exist.
+- Dictionary and Set have no iteration order. Never let output depend on it.
 
 ---
 
