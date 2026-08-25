@@ -28,9 +28,9 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Problems Solved:** **29 / 85**
 
-**Mock Sessions Passed:** **2 / 15**
+**Mock Sessions Passed:** **3 / 15**
 
-**Current Focus:** Phase 03 revision → Mock 04
+**Current Focus:** Phase 04 — Sliding Window (patterns)
 
 ---
 
@@ -40,8 +40,8 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 |------|-------|----------:|---------:|------|:------:|
 | 01 | Arrays | Q01–Q10 | **10 / 10** | Mock 01 | ✅ |
 | 02 | Two Pointers | Q11–Q19 | **9 / 9** | Mock 02 | ✅ |
-| 03 | Strings & Hashing | Q20–Q29 | **10 / 10** | Mock 04 | 🔄 |
-| 04 | Sliding Window | Q30–Q38 | 0 / 9 | Mock 06 | ☐ |
+| 03 | Strings & Hashing | Q20–Q29 | **10 / 10** | Mock 04 | ✅ |
+| 04 | Sliding Window | Q30–Q38 | 0 / 9 | Mock 06 | 🔄 |
 | 05 | Binary Search | Q39–Q47 | 0 / 9 | Mock 08 | ☐ |
 | 06 | Stack & Queue | Q48–Q56 | 0 / 9 | Mock 09 | ☐ |
 | 07 | Linked List | Q57–Q65 | 0 / 9 | Mock 10 | ☐ |
@@ -168,7 +168,7 @@ Each mock is cumulative. New mocks also include questions from previous phases.
 | Mock 01 | Arrays | ✅ |
 | Mock 02 | Two Pointers | ✅ |
 | Mock 03 | Arrays + Two Pointers | ☐ |
-| Mock 04 | Strings & Hashing | ☐ |
+| Mock 04 | Strings & Hashing | ✅ |
 | Mock 05 | Phases 01–03 | ☐ |
 | Mock 06 | Sliding Window | ☐ |
 | Mock 07 | Phases 01–04 | ☐ |
@@ -180,6 +180,8 @@ Each mock is cumulative. New mocks also include questions from previous phases.
 | Mock 13 | Mixed DSA | ☐ |
 | Mock 14 | Company Style | ☐ |
 | Mock 15 | Final Assessment | ☐ |
+
+⚠️ Mock 03 (Q01–Q19 cumulative) was drawn but not run — outstanding out of sequence.
 
 ---
 
@@ -198,7 +200,7 @@ Each mock is cumulative. New mocks also include questions from previous phases.
 - ✅ Q09 — Missing Number (LC268)
 - ✅ Q10 — Product of Array Except Self (LC238)
 
-Outstanding: Interview_Notes.md · Revision · Mock 01
+Mock 01 passed.
 
 ## ✅ Phase 02 — Two Pointers (Complete)
 
@@ -214,7 +216,7 @@ Outstanding: Interview_Notes.md · Revision · Mock 01
 
 Mock 02 passed.
 
-## 🔄 Phase 03 — Strings & Hashing (Problems complete, revision and mock pending)
+## ✅ Phase 03 — Strings & Hashing (Complete)
 
 ### Patterns — 9 / 9
 
@@ -241,7 +243,30 @@ Mock 02 passed.
 - ✅ Q28 — Word Pattern (LC290)
 - ✅ Q29 — First Unique Character in a String (LC387)
 
-Outstanding: Revision · Mock 04
+Revision done. Mock 04 passed.
+
+## 🔄 Phase 04 — Sliding Window (Patterns in progress)
+
+### Patterns — 0 / 6
+
+- ☐ 01_Fixed_Window — Q33, Q34, Q35, Q38
+- ☐ 02_Variable_Window — Q30, Q31, Q36
+- ☐ 03_Shrink_To_Minimum — Q32, Q37
+- ☐ 04_HashMap_Window — Q31, Q32, Q33, Q34, Q36
+- ☐ 05_HashSet_Window — Q30
+- ☐ 06_Monotonic_Deque — Q38
+
+### Problems — 0 / 9
+
+- ☐ Q30 — Longest Substring Without Repeating Characters (LC003)
+- ☐ Q31 — Longest Repeating Character Replacement (LC424)
+- ☐ Q32 — Minimum Window Substring (LC076)
+- ☐ Q33 — Permutation in String (LC567)
+- ☐ Q34 — Find All Anagrams in a String (LC438)
+- ☐ Q35 — Maximum Average Subarray I (LC643)
+- ☐ Q36 — Fruit Into Baskets (LC904)
+- ☐ Q37 — Minimum Size Subarray Sum (LC209)
+- ☐ Q38 — Sliding Window Maximum (LC239)
 
 ---
 
@@ -282,18 +307,4 @@ Senior iOS Engineer
 - iOS Architecture
 - Data Structures & Algorithms
 
-### Connect
-
-- GitHub: https://github.com/AnilkumarMedikonda
-- LinkedIn: https://www.linkedin.com/in/anil-kumar-118524283/
-- Email: anil.medikonda.ios@gmail.com
-
----
-
-# 📄 License
-
-MIT License.
-
-All solutions and explanations are written by me for educational purposes.
-
-Problem statements are paraphrased. Original problems belong to their respective platforms (e.g., LeetCode).
+###

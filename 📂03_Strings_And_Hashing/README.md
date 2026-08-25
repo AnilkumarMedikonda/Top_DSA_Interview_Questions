@@ -109,6 +109,8 @@ S = total characters across all inputs. O(1) space = fixed 26 slots.
 
 ## 📊 Status
 
-Prerequisites ✅ · Patterns 9/9 ✅ · Problems 10/10 ✅ · Revision pending · Mock 04 (`mock_04_phase_03`) pending
+Prerequisites ✅ · Patterns 9/9 ✅ · Problems 10/10 ✅ · Revision ✅ · Mock 04 (`mock_04_phase_03`) ✅
+
+**PHASE 03 COMPLETE** — all six cycle steps done.
 
 ➡️ Next: **Phase 04 — Sliding Window**. The prune-on-decrement idiom from `02_Character_Frequency` is what makes window matching work.
