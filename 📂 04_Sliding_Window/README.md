@@ -109,6 +109,9 @@ k = alphabet or window size, both bounded. O(1) space = fixed 26 slots.
 
 ## 📊 Status
 
-Prerequisites ☐ · Patterns 0/6 ☐ · Problems 0/9 ☐ · Revision ☐ · Mock 06 (`mock_06_phase_04`) ☐
+Prerequisites ✅ · Patterns 4/6 🔄 · Problems 0/9 ☐ · Revision ☐ · Mock 06 (`mock_06_phase_04`) ☐
+
+Patterns done: 01 Fixed Window, 02 Variable Window, 03 Shrink to Minimum, 05 HashSet Window.
+Open: 04 HashMap Window (window frequencies and map comparison written; `matched` counter drill pending) · 06 Monotonic Deque.
 
 ⬅️ Previous: **Phase 03 — Strings & Hashing** ✅. The prune-on-decrement idiom from `02_Character_Frequency` is what makes window matching work.
