@@ -26,11 +26,11 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 # 📊 Progress
 
-**Problems Solved:** **29 / 85**
+**Problems Solved:** **38 / 85**
 
 **Mock Sessions Passed:** **3 / 15**
 
-**Current Focus:** Phase 04 — Sliding Window (patterns)
+**Current Focus:** Phase 04 — Sliding Window (revision → Mock 06)
 
 ---
 
@@ -41,7 +41,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 01 | Arrays | Q01–Q10 | **10 / 10** | Mock 01 | ✅ |
 | 02 | Two Pointers | Q11–Q19 | **9 / 9** | Mock 02 | ✅ |
 | 03 | Strings & Hashing | Q20–Q29 | **10 / 10** | Mock 04 | ✅ |
-| 04 | Sliding Window | Q30–Q38 | 0 / 9 | Mock 06 | 🔄 |
+| 04 | Sliding Window | Q30–Q38 | **9 / 9** | Mock 06 | 🔄 |
 | 05 | Binary Search | Q39–Q47 | 0 / 9 | Mock 08 | ☐ |
 | 06 | Stack & Queue | Q48–Q56 | 0 / 9 | Mock 09 | ☐ |
 | 07 | Linked List | Q57–Q65 | 0 / 9 | Mock 10 | ☐ |
@@ -245,28 +245,34 @@ Mock 02 passed.
 
 Revision done. Mock 04 passed.
 
-## 🔄 Phase 04 — Sliding Window (Patterns in progress)
+## 🔄 Phase 04 — Sliding Window (Revision and mock pending)
 
-### Patterns — 0 / 6
+### Prerequisites — ✅
 
-- ☐ 01_Fixed_Window — Q33, Q34, Q35, Q38
-- ☐ 02_Variable_Window — Q30, Q31, Q36
-- ☐ 03_Shrink_To_Minimum — Q32, Q37
-- ☐ 04_HashMap_Window — Q31, Q32, Q33, Q34, Q36
-- ☐ 05_HashSet_Window — Q30
-- ☐ 06_Monotonic_Deque — Q38
+10 mechanics drills: character conversion, max/min, range sum, window size, increment, decrement with prune-at-zero, frequency map, map equality, distinct count, deque operations.
 
-### Problems — 0 / 9
+### Patterns — 6 / 6
 
-- ☐ Q30 — Longest Substring Without Repeating Characters (LC003)
-- ☐ Q31 — Longest Repeating Character Replacement (LC424)
-- ☐ Q32 — Minimum Window Substring (LC076)
-- ☐ Q33 — Permutation in String (LC567)
-- ☐ Q34 — Find All Anagrams in a String (LC438)
-- ☐ Q35 — Maximum Average Subarray I (LC643)
-- ☐ Q36 — Fruit Into Baskets (LC904)
-- ☐ Q37 — Minimum Size Subarray Sum (LC209)
-- ☐ Q38 — Sliding Window Maximum (LC239)
+- ✅ 01_Fixed_Window — Q33, Q34, Q35, Q38
+- ✅ 02_Variable_Window — Q30, Q31, Q36
+- ✅ 03_Shrink_To_Minimum — Q32, Q37
+- ✅ 04_HashMap_Window — Q31, Q32, Q33, Q34, Q36
+- ✅ 05_HashSet_Window — Q30
+- ✅ 06_Monotonic_Deque — Q38
+
+### Problems — 9 / 9
+
+- ✅ Q30 — Longest Substring Without Repeating Characters (LC003)
+- ✅ Q31 — Longest Repeating Character Replacement (LC424)
+- ✅ Q32 — Minimum Window Substring (LC076)
+- ✅ Q33 — Permutation in String (LC567)
+- ✅ Q34 — Find All Anagrams in a String (LC438)
+- ✅ Q35 — Maximum Average Subarray I (LC643)
+- ✅ Q36 — Fruit Into Baskets (LC904)
+- ✅ Q37 — Minimum Size Subarray Sum (LC209)
+- ✅ Q38 — Sliding Window Maximum (LC239)
+
+Outstanding: Revision · Mock 06
 
 ---
 
@@ -307,4 +313,18 @@ Senior iOS Engineer
 - iOS Architecture
 - Data Structures & Algorithms
 
-###
+### Connect
+
+- GitHub: https://github.com/AnilkumarMedikonda
+- LinkedIn: https://www.linkedin.com/in/anil-kumar-118524283/
+- Email: anil.medikonda.ios@gmail.com
+
+---
+
+# 📄 License
+
+MIT License.
+
+All solutions and explanations are written by me for educational purposes.
+
+Problem statements are paraphrased. Original problems belong to their respective platforms (e.g., LeetCode).

@@ -67,16 +67,16 @@ Three drills that must be explicit, not mentions:
 | # | Problem | LC | Approach | Complexity |
 |---|---------|----|----------|------------|
 | Q30 | Longest Substring Without Repeating | 003 | Last-index map, jump left forward | O(n) / O(k) |
-| Q31 | Longest Repeating Character Replacement | 424 | Freq map + non-decreasing maxCount | O(n) / O(1) |
-| Q32 | Minimum Window Substring | 076 | Need map + matched counter, shrink while valid | O(n+m) / O(k) |
-| Q33 | Permutation in String | 567 | Fixed window of `s1.count`, matched counter | O(n) / O(1) |
-| Q34 | Find All Anagrams | 438 | Same as Q33, record every valid start | O(n) / O(1) |
+| Q31 | Longest Repeating Character Replacement | 424 | Freq map + non-decreasing maxFreq | O(n) / O(k) |
+| Q32 | Minimum Window Substring | 076 | Need map + `formed` counter, shrink while valid | O(n+m) / O(k) |
+| Q33 | Permutation in String | 567 | Fixed window of `s1.count`, map comparison | O(n·k) / O(k) |
+| Q34 | Find All Anagrams | 438 | Same as Q33, record every valid start | O(n·k) / O(k) |
 | Q35 | Max Average Subarray | 643 | Fixed window sum, add-in subtract-out | O(n) / O(1) |
-| Q36 | Fruits Into Baskets | 904 | Variable window, at most 2 distinct keys | O(n) / O(1) |
+| Q36 | Fruits Into Baskets | 904 | Variable window, at most 2 distinct keys | O(n) / O(k) |
 | Q37 | Min Size Subarray Sum | 209 | Running sum, shrink while `sum >= target` | O(n) / O(1) |
 | Q38 | Sliding Window Maximum | 239 | Deque of indices, decreasing values | O(n) / O(k) |
 
-k = alphabet or window size, both bounded. O(1) space = fixed 26 slots.
+k = distinct characters, bounded by the alphabet (≤ 26). O(1) space would need a fixed 26-slot array instead of a dictionary — only Q35 and Q37 avoid maps entirely.
 
 ---
 
@@ -109,9 +109,11 @@ k = alphabet or window size, both bounded. O(1) space = fixed 26 slots.
 
 ## 📊 Status
 
-Prerequisites ✅ · Patterns 4/6 🔄 · Problems 0/9 ☐ · Revision ☐ · Mock 06 (`mock_06_phase_04`) ☐
+Prerequisites ✅ · Patterns 6/6 🔄 · Problems 9/9 ✅ · Revision ☐ · Mock 06 (`mock_06_phase_04`) ☐
+
+Problems Q30–Q38 all solved, brute force + optimal.
 
 Patterns done: 01 Fixed Window, 02 Variable Window, 03 Shrink to Minimum, 05 HashSet Window.
-Open: 04 HashMap Window (window frequencies and map comparison written; `matched` counter drill pending) · 06 Monotonic Deque.
+Open: 04 HashMap Window (`matched` counter drill pending) · 06 Monotonic Deque (steps 4–5 pending — the template is Q38's optimal with a generic name).
 
 ⬅️ Previous: **Phase 03 — Strings & Hashing** ✅. The prune-on-decrement idiom from `02_Character_Frequency` is what makes window matching work.
