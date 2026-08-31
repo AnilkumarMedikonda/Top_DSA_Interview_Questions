@@ -28,9 +28,9 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Problems Solved:** **38 / 85**
 
-**Mock Sessions Passed:** **3 / 15**
+**Mock Sessions Passed:** **4 / 15**
 
-**Current Focus:** Phase 04 — Sliding Window (revision → Mock 06)
+**Current Focus:** Phase 05 — Binary Search (Q39–Q47)
 
 ---
 
@@ -41,8 +41,8 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 01 | Arrays | Q01–Q10 | **10 / 10** | Mock 01 | ✅ |
 | 02 | Two Pointers | Q11–Q19 | **9 / 9** | Mock 02 | ✅ |
 | 03 | Strings & Hashing | Q20–Q29 | **10 / 10** | Mock 04 | ✅ |
-| 04 | Sliding Window | Q30–Q38 | **9 / 9** | Mock 06 | 🔄 |
-| 05 | Binary Search | Q39–Q47 | 0 / 9 | Mock 08 | ☐ |
+| 04 | Sliding Window | Q30–Q38 | **9 / 9** | Mock 06 | ✅ |
+| 05 | Binary Search | Q39–Q47 | 0 / 9 | Mock 08 | 🔄 |
 | 06 | Stack & Queue | Q48–Q56 | 0 / 9 | Mock 09 | ☐ |
 | 07 | Linked List | Q57–Q65 | 0 / 9 | Mock 10 | ☐ |
 | 08 | Trees & BST | Q66–Q74 | 0 / 9 | Mock 11 | ☐ |
@@ -170,7 +170,7 @@ Each mock is cumulative. New mocks also include questions from previous phases.
 | Mock 03 | Arrays + Two Pointers | ☐ |
 | Mock 04 | Strings & Hashing | ✅ |
 | Mock 05 | Phases 01–03 | ☐ |
-| Mock 06 | Sliding Window | ☐ |
+| Mock 06 | Sliding Window | ✅ |
 | Mock 07 | Phases 01–04 | ☐ |
 | Mock 08 | Binary Search | ☐ |
 | Mock 09 | Stack & Queue | ☐ |
@@ -181,7 +181,7 @@ Each mock is cumulative. New mocks also include questions from previous phases.
 | Mock 14 | Company Style | ☐ |
 | Mock 15 | Final Assessment | ☐ |
 
-⚠️ Mock 03 (Q01–Q19 cumulative) was drawn but not run — outstanding out of sequence.
+⚠️ Mock 03 (Q01–Q19 cumulative) drawn but not run. Mock 05 (Phases 01–03) due. Both cumulative — outstanding out of sequence.
 
 ---
 
@@ -245,7 +245,7 @@ Mock 02 passed.
 
 Revision done. Mock 04 passed.
 
-## 🔄 Phase 04 — Sliding Window (Revision and mock pending)
+## ✅ Phase 04 — Sliding Window (Complete)
 
 ### Prerequisites — ✅
 
@@ -272,7 +272,11 @@ Revision done. Mock 04 passed.
 - ✅ Q37 — Minimum Size Subarray Sum (LC209)
 - ✅ Q38 — Sliding Window Maximum (LC239)
 
-Outstanding: Revision · Mock 06
+Revision done — 9 rewritten from memory, 5 clean first pass. Mock 06 passed.
+
+## 🔄 Phase 05 — Binary Search (Not started)
+
+Q39–Q47. Prerequisites, patterns, and problems pending.
 
 ---
 

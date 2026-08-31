@@ -109,11 +109,11 @@ k = distinct characters, bounded by the alphabet (≤ 26). O(1) space would need
 
 ## 📊 Status
 
-Prerequisites ✅ · Patterns 6/6 🔄 · Problems 9/9 ✅ · Revision ☐ · Mock 06 (`mock_06_phase_04`) ☐
+Prerequisites ✅ · Patterns 6/6 ✅ · Problems 9/9 ✅ · Revision ✅ · Mock 06 (`mock_06_phase_04`) ✅
 
-Problems Q30–Q38 all solved, brute force + optimal.
+**PHASE 04 COMPLETE** — all six cycle steps done.
 
-Patterns done: 01 Fixed Window, 02 Variable Window, 03 Shrink to Minimum, 05 HashSet Window.
-Open: 04 HashMap Window (`matched` counter drill pending) · 06 Monotonic Deque (steps 4–5 pending — the template is Q38's optimal with a generic name).
+Revision: 9 rewritten from memory, 5 clean first pass. Four mechanical failures — prune writing 1 instead of nil (Q31), `left += 1` inside the `if let` (Q36), record condition and missing sentinel (Q37), deque eviction order (Q38). Complexity headers wrong on 5 of 9, all understating space where a map was allocated.
 
 ⬅️ Previous: **Phase 03 — Strings & Hashing** ✅. The prune-on-decrement idiom from `02_Character_Frequency` is what makes window matching work.
+➡️ Next: **Phase 05 — Binary Search** (Q39–Q47).
