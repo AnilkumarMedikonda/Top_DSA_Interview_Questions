@@ -274,9 +274,24 @@ Revision done. Mock 04 passed.
 
 Revision done — 9 rewritten from memory, 5 clean first pass. Mock 06 passed.
 
-## 🔄 Phase 05 — Binary Search (Not started)
+## 🔄 Phase 05 — Binary Search (In Progress)
 
-Q39–Q47. Prerequisites, patterns, and problems pending.
+### Prerequisites — 🟡
+
+Mechanics drills D1–D4 done: overflow-safe mid, isSorted, linearSearch (the O(n) baseline), halvingCount (the log n proof). `maxOf` / `sumOf` / `ceilDivide` live inside pattern 03 where the answer-space problems use them.
+
+### Patterns — 6 / 6
+
+- ✅ 01_Classic_Binary_Search — Q39, Q43
+- ✅ 02_Boundary_Search — Q40 (lower/upper bound + first/last occurrence)
+- ✅ 03_Search_On_Answer — Q44, Q46, Q47
+- ✅ 04_Rotated_Array — Q41, Q42 (search + find minimum)
+- ✅ 05_Binary_Search_On_Slope — Q45
+- ✅ 06_Binary_Search_Matrix — Q43
+
+### Problems — 0 / 9
+
+Q39–Q47 pending.
 
 ---
 
