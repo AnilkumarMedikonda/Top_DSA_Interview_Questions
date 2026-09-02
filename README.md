@@ -26,7 +26,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 # 📊 Progress
 
-**Problems Solved:** **38 / 85**
+**Problems Solved:** **47 / 85**
 
 **Mock Sessions Passed:** **4 / 15**
 
@@ -42,7 +42,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 02 | Two Pointers | Q11–Q19 | **9 / 9** | Mock 02 | ✅ |
 | 03 | Strings & Hashing | Q20–Q29 | **10 / 10** | Mock 04 | ✅ |
 | 04 | Sliding Window | Q30–Q38 | **9 / 9** | Mock 06 | ✅ |
-| 05 | Binary Search | Q39–Q47 | 0 / 9 | Mock 08 | 🔄 |
+| 05 | Binary Search | Q39–Q47 | **9 / 9** | Mock 08 | 🔄 |
 | 06 | Stack & Queue | Q48–Q56 | 0 / 9 | Mock 09 | ☐ |
 | 07 | Linked List | Q57–Q65 | 0 / 9 | Mock 10 | ☐ |
 | 08 | Trees & BST | Q66–Q74 | 0 / 9 | Mock 11 | ☐ |
@@ -274,11 +274,11 @@ Revision done. Mock 04 passed.
 
 Revision done — 9 rewritten from memory, 5 clean first pass. Mock 06 passed.
 
-## 🔄 Phase 05 — Binary Search (In Progress)
+## 🔄 Phase 05 — Binary Search (Problems Complete)
 
 ### Prerequisites — 🟡
 
-Mechanics drills D1–D4 done: overflow-safe mid, isSorted, linearSearch (the O(n) baseline), halvingCount (the log n proof). `maxOf` / `sumOf` / `ceilDivide` live inside pattern 03 where the answer-space problems use them.
+Drills D1–D4 done: overflow-safe mid, isSorted, linearSearch (the O(n) baseline), halvingCount (the log n proof). `maxOf` / `sumOf` / `ceilDivide` live inside pattern 03 where the answer-space problems use them.
 
 ### Patterns — 6 / 6
 
@@ -289,9 +289,19 @@ Mechanics drills D1–D4 done: overflow-safe mid, isSorted, linearSearch (the O(
 - ✅ 05_Binary_Search_On_Slope — Q45
 - ✅ 06_Binary_Search_Matrix — Q43
 
-### Problems — 0 / 9
+### Problems — 9 / 9
 
-Q39–Q47 pending.
+- ✅ Q39 — Binary Search (LC704)
+- ✅ Q40 — Search Insert Position (LC035)
+- ✅ Q41 — Search in Rotated Sorted Array (LC033)
+- ✅ Q42 — Find Minimum in Rotated Sorted Array (LC153)
+- ✅ Q43 — Search a 2D Matrix (LC074)
+- ✅ Q44 — Koko Eating Bananas (LC875)
+- ✅ Q45 — Find Peak Element (LC162)
+- ✅ Q46 — Capacity to Ship Packages Within D Days (LC1011)
+- ✅ Q47 — Split Array Largest Sum (LC410)
+
+Revision and Mock 08 pending.
 
 ---
 

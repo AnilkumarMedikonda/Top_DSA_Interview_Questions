@@ -68,33 +68,31 @@ Three drills that must be explicit, not mentions:
 
 | # | Problem | LC | Approach | Complexity |
 |---|---------|----|----------|------------|
-| Q39 | Binary Search | 704 | | |
-| Q40 | Search Insert Position | 035 | | |
-| Q41 | Search In Rotated Sorted Array | 033 | | |
-| Q42 | Find Minimum In Rotated Array | 153 | | |
-| Q43 | Search A 2D Matrix | 074 | | |
-| Q44 | Koko Eating Bananas | 875 | | |
-| Q45 | Find Peak Element | 162 | | |
-| Q46 | Capacity To Ship Packages | 1011 | | |
-| Q47 | Split Array Largest Sum | 410 | | |
+| Q39 | Binary Search | 704 | Closed interval, return index or -1 | O(log n) / O(1) |
+| Q40 | Search Insert Position | 035 | Lower bound, `answer` seeded to `count` | O(log n) / O(1) |
+| Q41 | Search In Rotated Sorted Array | 033 | Find the sorted half, test target inside it | O(log n) / O(1) |
+| Q42 | Find Minimum In Rotated Array | 153 | Compare `nums[mid]` to `nums[high]`, converge | O(log n) / O(1) |
+| Q43 | Search A 2D Matrix | 074 | Virtual 1D, `mid / cols`, `mid % cols` | O(log(m·n)) / O(1) |
+| Q44 | Koko Eating Bananas | 875 | Speed range `1…maxPile`, hours predicate with ceil | O(n log m) / O(1) |
+| Q45 | Find Peak Element | 162 | Slope test `nums[mid] < nums[mid+1]`, walk uphill | O(log n) / O(1) |
+| Q46 | Capacity To Ship Packages | 1011 | Cap range `maxW…sum`, greedy day count | O(n log s) / O(1) |
+| Q47 | Split Array Largest Sum | 410 | Same range as Q46, greedy subarray count | O(n log s) / O(1) |
 
-The three answer-space problems (Q44, Q46, Q47) are O(n log range), not O(log range) — the predicate walks the whole array on every guess. Stating it as O(log range) in an interview is the tell that the pattern was copied without costing it.
+m = max pile, s = sum of the array. The three answer-space problems (Q44, Q46, Q47) are O(n log range), not O(log range) — the predicate walks the whole array on every guess. Stating it as O(log range) in an interview is the tell that the pattern was copied without costing it.
 
 ---
 
 ## ⚠️ Wrong Tool Per Problem
 
-_Fill in as each problem is solved._
-
-* **Q39** —
-* **Q40** —
-* **Q41** —
-* **Q42** —
-* **Q43** —
-* **Q44** —
-* **Q45** —
-* **Q46** —
-* **Q47** —
+* **Q39** — a linear scan. Correct and O(n), which is the baseline binary search exists to beat.
+* **Q40** — a classic search with an if-chain for "not found". Lower bound returns the insertion point for free; the `answer = count` seed handles past-the-end.
+* **Q41** — finding the pivot first, then searching. Two passes; branch on `nums[low] <= nums[mid]` instead. Trap: strict `<` / `>` against `nums[mid]` (already ruled out).
+* **Q42** — comparing `nums[mid]` to `nums[low]`. Breaks on an unrotated array (`[11,13,15,17]` returned 15). Compare to `nums[high]`; use `high = mid`, not `mid - 1`.
+* **Q43** — two searches (rows, then row). Flatten to one virtual index; divide AND mod by `columns`, not `rows` (the shadow bug).
+* **Q44** — linear scan of speeds, or `pile / k` instead of `ceilDivide`. Also the swapped move: feasible → `right = mid - 1`, not `left = mid - 1` (infinite loop).
+* **Q45** — scanning for the global max. O(n); the slope test finds a peak in O(log n).
+* **Q46** — searching capacity from 1. Floor is `max(weights)` — anything smaller can't hold the heaviest package.
+* **Q47** — DP over splits (O(n²·m)). Identical to Q46: binary search the cap, greedy-count parts. Trap: `totalSum += num`, not the running max.
 
 ---
 
@@ -113,9 +111,11 @@ _Fill in as each problem is solved._
 
 ## 📊 Status
 
-Prerequisites 🟡 (D1–D4 done; `safeNext` skipped, `maxOf`/`sumOf`/`ceilDivide` moved into pattern 03) · Patterns 6/6 ✅ · Problems 0/9 ☐ · Revision ☐ · Mock 08 (`mock_08_phase_05`) ☐
+Prerequisites 🟡 (D1–D4 done; `safeNext` skipped, `maxOf`/`sumOf`/`ceilDivide` moved into pattern 03) · Patterns 6/6 ✅ · Problems 9/9 ✅ · Revision ☐ · Mock 08 (`mock_08_phase_05`) ☐
 
-**PHASE 05 IN PROGRESS** — patterns complete, problems next.
+**PHASE 05 IN PROGRESS** — problems complete, revision + mock left.
+
+Recurring bug this phase was mechanical, never conceptual: the swapped binary-search move (Q41, Q44) and the seed/init slips (`Int.min`, `totalSum += maxElement`). The algorithm was right every time; the direction and initialisation were the misses.
 
 ⬅️ Previous: **Phase 04 — Sliding Window** ✅. The shrink-while-valid vs shrink-while-invalid distinction from Q32 is the same discipline as picking your interval here — the loop shape has to match what you're recording.
 ➡️ Next: **Phase 06 — Stack & Queue** (Q48–Q56).
