@@ -111,11 +111,11 @@ m = max pile, s = sum of the array. The three answer-space problems (Q44, Q46, Q
 
 ## 📊 Status
 
-Prerequisites 🟡 (D1–D4 done; `safeNext` skipped, `maxOf`/`sumOf`/`ceilDivide` moved into pattern 03) · Patterns 6/6 ✅ · Problems 9/9 ✅ · Revision ☐ · Mock 08 (`mock_08_phase_05`) ☐
+Prerequisites 🟡 (D1–D4 done; `safeNext` skipped, `maxOf`/`sumOf`/`ceilDivide` moved into pattern 03) · Patterns 6/6 ✅ · Problems 9/9 ✅ · Revision ✅ · Mock 08 (`mock_08_phase_05`) ✅
 
-**PHASE 05 IN PROGRESS** — problems complete, revision + mock left.
+**PHASE 05 COMPLETE** — all six cycle steps done.
 
-Recurring bug this phase was mechanical, never conceptual: the swapped binary-search move (Q41, Q44) and the seed/init slips (`Int.min`, `totalSum += maxElement`). The algorithm was right every time; the direction and initialisation were the misses.
+Revision: all 9 optimals rewritten from memory, 9/9 recalled correct. Mock 08 passed. The one real miss surfaced only in review, not in the traces — Q41's right-sorted branch was written `nums[mid] > target` where it must be `< target`; it passed all four of its own tests, so it was a coverage gap, not a recall gap. `[5,6,7,1,2,3,4]` searching 3 added as a permanent regression test. Everything else this phase was mechanical: swapped binary-search move, `Int.min` seeds, and complexity headers (4 of 9 wrong on the mock — answer-space is always O(n log range), never O(log range)). The algorithm was right every time; direction, initialisation, and header accuracy were the misses.
 
 ⬅️ Previous: **Phase 04 — Sliding Window** ✅. The shrink-while-valid vs shrink-while-invalid distinction from Q32 is the same discipline as picking your interval here — the loop shape has to match what you're recording.
 ➡️ Next: **Phase 06 — Stack & Queue** (Q48–Q56).
