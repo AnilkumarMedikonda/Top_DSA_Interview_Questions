@@ -13,7 +13,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 # 🏆 Features
 
 - ✅ 85 carefully selected interview questions
-- ✅ Brute Force → Optimal, both kept in the file
+- ✅ Brute Force → Optimal, both kept in the file where a brute force exists
 - ✅ Pure Swift implementations
 - ✅ Interview-focused explanations
 - ✅ Time & Space Complexity with reasoning
@@ -26,11 +26,11 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 # 📊 Progress
 
-**Problems Solved:** **47 / 85**
+**Problems Solved:** **56 / 85**
 
 **Mock Sessions Passed:** **5 / 15**
 
-**Current Focus:** Phase 06 — Stack & Queue (Q48–Q56)
+**Current Focus:** Phase 06 — Stack & Queue, revision and Mock 09
 
 ---
 
@@ -43,7 +43,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 03 | Strings & Hashing | Q20–Q29 | **10 / 10** | Mock 04 | ✅ |
 | 04 | Sliding Window | Q30–Q38 | **9 / 9** | Mock 06 | ✅ |
 | 05 | Binary Search | Q39–Q47 | **9 / 9** | Mock 08 | ✅ |
-| 06 | Stack & Queue | Q48–Q56 | 0 / 9 | Mock 09 | ☐ |
+| 06 | Stack & Queue | Q48–Q56 | **9 / 9** | Mock 09 | 🔄 |
 | 07 | Linked List | Q57–Q65 | 0 / 9 | Mock 10 | ☐ |
 | 08 | Trees & BST | Q66–Q74 | 0 / 9 | Mock 11 | ☐ |
 | 09 | Advanced Patterns | Q75–Q85 | 0 / 11 | Mock 12 | ☐ |
@@ -71,10 +71,12 @@ A phase stays 🔄 until its mock is passed — problems solved is not the same 
 - **Swift only.**
 - **No shortcuts while learning.** Manual loops wherever possible:
   - No `reduce`, `map`, `filter`, `stride`, `split`, `reversed`, `enumerated`
-  - No `swapAt`, `max()`, `min()`, `sorted()`
+  - No `swapAt`, `max()`, `min()`, `sorted()`, `abs()`
+  - No `Int(String)`, `Array(String)`, `isNumber`, `wholeNumberValue`
   - No nil-coalescing (`?? 0`) — explicit `if let / else`
   - No force unwraps, no force casts
-- **Brute force + optimal.** Both kept in the file; other approaches get named in the notes, not implemented.
+- **Brute force where one exists naturally.** Both kept in the file; where the optimal structure *is* the algorithm, the file states "none" rather than inventing a contrived baseline. Other approaches get named in the notes, not implemented.
+- Shared helpers live in the phase's `Sources/` folder, never pasted per file.
 - Every solution includes interview discussion.
 - Every problem includes complexity analysis with reasoning.
 - Edge cases are documented.
@@ -131,7 +133,10 @@ Top_DSA_Interview_Questions/
 0X_Phase_Name/
 │
 ├── README.md                    — phase map, pattern table, problem→pattern table
-├── Phase_Prerequisites          — raw mechanics drilled before any pattern
+├── Phase_Name_Prerequisites     — raw mechanics drilled before any pattern
+│
+├── Sources/                     — shared helpers, compiled once per phase
+│   └── Helpers.swift
 │
 ├── Patterns/                    — each pattern written from scratch, before solving
 │   ├── 01_Pattern_Name
@@ -149,7 +154,7 @@ Top_DSA_Interview_Questions/
 - Problem Statement
 - Examples
 - Constraints
-- Brute Force Solution
+- Brute Force Solution (where one exists naturally)
 - Optimal Solution
 - Pattern Used
 - Time Complexity
@@ -302,6 +307,37 @@ Drills D1–D4 done: overflow-safe mid, isSorted, linearSearch (the O(n) baselin
 - ✅ Q47 — Split Array Largest Sum (LC410)
 
 Revision done — all 9 optimals rewritten from memory, 9/9 recalled correct. Mock 08 passed.
+
+## 🔄 Phase 06 — Stack & Queue (Problems complete)
+
+### Prerequisites — ✅
+
+5 mechanics drills: generic Stack, head-index Queue with amortised O(1) dequeue, `charsOf` / `isDigit`, `charToDigit` / `stringToInt` with sign handling, `repeatString`.
+
+### Patterns — 6 / 6
+
+- ✅ 01_Monotonic_Stack — Q50, Q54, Q56
+- ✅ 02_Parentheses_Matching — Q48, Q52
+- ✅ 03_Min_Stack — Q49
+- ✅ 04_Stack_Simulation — Q51, Q52, Q54
+- ✅ 05_Two_Stack_Queue — Q53
+- ✅ 06_HashMap_Doubly_Linked_List — Q55
+
+Cut before writing: `Stack_Basics` and `Queue_Basics` (duplicate Prerequisites), `Previous_Greater_Element` (no problem behind it). `Next_Greater_Element` merged into `01_Monotonic_Stack` — NGE *is* the template. `06` added because Q55 was otherwise uncovered.
+
+### Problems — 9 / 9
+
+- ✅ Q48 — Valid Parentheses (LC020)
+- ✅ Q49 — Min Stack (LC155)
+- ✅ Q50 — Daily Temperatures (LC739)
+- ✅ Q51 — Evaluate Reverse Polish Notation (LC150)
+- ✅ Q52 — Decode String (LC394)
+- ✅ Q53 — Implement Queue Using Stacks (LC232)
+- ✅ Q54 — Asteroid Collision (LC735)
+- ✅ Q55 — LRU Cache (LC146)
+- ✅ Q56 — Next Greater Element I (LC496)
+
+Revision and Mock 09 remaining. Recurring miss this phase: complexity headers understating the work — array-shift cost in `remove(at:)`, and `O(n·k)` written as `O(n)` where a repeat count multiplies the pass.
 
 ---
 
