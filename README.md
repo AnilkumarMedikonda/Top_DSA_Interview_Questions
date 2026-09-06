@@ -28,9 +28,9 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Problems Solved:** **56 / 85**
 
-**Mock Sessions Passed:** **5 / 15**
+**Mock Sessions Passed:** **6 / 15**
 
-**Current Focus:** Mock 09 — Stack & Queue
+**Current Focus:** Phase 07 — Linked List, problems Q57–Q65
 
 ---
 
@@ -44,7 +44,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 04 | Sliding Window | Q30–Q38 | **9 / 9** | Mock 06 | ✅ |
 | 05 | Binary Search | Q39–Q47 | **9 / 9** | Mock 08 | ✅ |
 | 06 | Stack & Queue | Q48–Q56 | **9 / 9** | Mock 09 | ✅ |
-| 07 | Linked List | Q57–Q65 | 0 / 9 | Mock 10 | ☐ |
+| 07 | Linked List | Q57–Q65 | 0 / 9 | Mock 10 | 🔄 |
 | 08 | Trees & BST | Q66–Q74 | 0 / 9 | Mock 11 | ☐ |
 | 09 | Advanced Patterns | Q75–Q85 | 0 / 11 | Mock 12 | ☐ |
 
@@ -348,6 +348,36 @@ passed because the unpopped opener failed the final `isEmpty` check.
 **Q55 LRU Cache is the exception** — written and working, but its revision and
 mock are deferred until after Phase 07. Mock 10 covers it alongside Q57–Q65.
 ---
+
+## 🔄 Phase 07 — Linked List (In Progress)
+
+### Prerequisites — ✅
+
+5 mechanics drills: `ListNode` + create/print, `countNodes` / `nodeAt`,
+insert and delete by position and by node, identity via `===`, split-and-nil.
+
+### Patterns — 7 / 7
+
+- ✅ 01_Reverse_Linked_List — Q57, Q64, Q65
+- ✅ 02_Dummy_Node — Q58, Q61, Q62
+- ✅ 03_Slow_Fast_Pointer — Q59, Q60, Q64
+- ✅ 04_Fixed_Gap_Pointer — Q62
+- ✅ 05_Merge_Two_Lists — Q58, Q61, Q64
+- ✅ 06_K_Group_Reverse — Q65
+- ✅ 07_Random_Pointer_Clone — Q63
+
+Cut before writing: `Linked_List_Basics` (duplicate Prerequisites).
+`Cycle_Detection` merged into `03_Slow_Fast_Pointer` — Floyd's *is* that loop
+with `===` instead of a nil check. `Two_Pointers` renamed `04_Fixed_Gap_Pointer`;
+everything in a linked-list phase is two pointers, the fixed gap is the mechanism.
+
+Problems reordered easy → medium → hard: four easy, four medium, one hard.
+
+### Problems — 0 / 9
+
+Q57–Q60 easy, Q61–Q64 medium, Q65 hard. Not started.
+
+
 
 # 💡 Repository Philosophy
 
