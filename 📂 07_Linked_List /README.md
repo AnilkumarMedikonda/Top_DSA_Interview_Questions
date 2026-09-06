@@ -36,11 +36,11 @@ Template code only — generic skeleton, neutral name, no named LeetCode solutio
 
 | # | Pattern | What it is | Problems | Status |
 |---|---------|------------|----------|:------:|
-| 01 | Reverse_Linked_List | Three-pointer in-place reversal (`previous` / `current` / `next`) | Q57, Q62, Q65 | ☐ |
-| 02 | Dummy_Node | Throwaway head so the real head is never a special case | Q58, Q60, Q64 | ☐ |
-| 03 | Slow_Fast_Pointer | Speed-difference scan — middle, and cycle detection via `===` | Q59, Q61, Q62 | ☐ |
-| 04 | Fixed_Gap_Pointer | Advance one pointer n steps, then move both together | Q60 | ☐ |
-| 05 | Merge_Two_Lists | Pick-smaller-and-append against a dummy tail | Q58, Q62, Q64 | ☐ |
+| 01 | Reverse_Linked_List | Three-pointer in-place reversal (`previous` / `current` / `next`) | Q57, Q64, Q65 | ☐ |
+| 02 | Dummy_Node | Throwaway head so the real head is never a special case | Q58, Q61, Q62 | ☐ |
+| 03 | Slow_Fast_Pointer | Speed-difference scan — middle, and cycle detection via `===` | Q59, Q60, Q64 | ☐ |
+| 04 | Fixed_Gap_Pointer | Advance one pointer n steps, then move both together | Q62 | ☐ |
+| 05 | Merge_Two_Lists | Pick-smaller-and-append against a dummy tail | Q58, Q61, Q64 | ☐ |
 | 06 | K_Group_Reverse | Reverse a window, reconnect to the previous group's tail | Q65 | ☐ |
 | 07 | Random_Pointer_Clone | Clone nodes plus a second pointer (map or interleave) | Q63 | ☐ |
 
@@ -50,21 +50,22 @@ Every pattern has a problem behind it; every problem has a pattern.
 
 ## 📝 Problems
 
-| # | LC | Problem | Pattern | Time | Space | Status |
-|---|-----|---------|---------|------|-------|:------:|
-| Q57 | 206 | Reverse Linked List | 01 | O(n) | O(1) | ☐ |
-| Q58 | 021 | Merge Two Sorted Lists | 02 + 05 | O(n+m) | O(1) | ☐ |
-| Q59 | 141 | Linked List Cycle | 03 | O(n) | O(1) | ☐ |
-| Q60 | 019 | Remove Nth Node From End | 02 + 04 | O(n) | O(1) | ☐ |
-| Q61 | 876 | Middle Of Linked List | 03 | O(n) | O(1) | ☐ |
-| Q62 | 143 | Reorder List | 03 + 01 + 05 | O(n) | O(1) | ☐ |
-| Q63 | 138 | Copy List With Random Pointer | 07 | O(n) | O(n) / O(1) | ☐ |
-| Q64 | 002 | Add Two Numbers | 02 | O(n+m) | O(n) | ☐ |
-| Q65 | 025 | Reverse Nodes In K Group | 06 | O(n) | O(1) | ☐ |
+Ordered easy → medium → hard.
 
-Q63 space is O(n) with the hash map, O(1) with interleaving. Q64 output space is
-O(max(n,m)) — the result list counts.
+| # | LC | Problem | Level | Pattern | Time | Space | Status |
+|---|-----|---------|-------|---------|------|-------|:------:|
+| Q57 | 206 | Reverse Linked List | 🟢 Easy | 01 | O(n) | O(1) | ☐ |
+| Q58 | 021 | Merge Two Sorted Lists | 🟢 Easy | 02 + 05 | O(n+m) | O(1) | ☐ |
+| Q59 | 141 | Linked List Cycle | 🟢 Easy | 03 | O(n) | O(1) | ☐ |
+| Q60 | 876 | Middle Of Linked List | 🟢 Easy | 03 | O(n) | O(1) | ☐ |
+| Q61 | 002 | Add Two Numbers | 🟡 Medium | 02 | O(n+m) | O(n) | ☐ |
+| Q62 | 019 | Remove Nth Node From End | 🟡 Medium | 02 + 04 | O(n) | O(1) | ☐ |
+| Q63 | 138 | Copy List With Random Pointer | 🟡 Medium | 07 | O(n) | O(n) / O(1) | ☐ |
+| Q64 | 143 | Reorder List | 🟡 Medium | 03 + 01 + 05 | O(n) | O(1) | ☐ |
+| Q65 | 025 | Reverse Nodes In K Group | 🔴 Hard | 06 | O(n) | O(1) | ☐ |
 
+Q63 space is O(n) with the hash map, O(1) with interleaving. Q64 is the three core
+patterns composed and is the lead-in to Q65 — it belongs last among the mediums.
 ---
 
 ## ⚠️ Wrong Tool Traps
