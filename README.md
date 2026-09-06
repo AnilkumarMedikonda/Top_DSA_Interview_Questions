@@ -30,7 +30,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Mock Sessions Passed:** **5 / 15**
 
-**Current Focus:** Phase 06 — Stack & Queue, revision and Mock 09
+**Current Focus:** Mock 09 — Stack & Queue
 
 ---
 
@@ -43,7 +43,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 03 | Strings & Hashing | Q20–Q29 | **10 / 10** | Mock 04 | ✅ |
 | 04 | Sliding Window | Q30–Q38 | **9 / 9** | Mock 06 | ✅ |
 | 05 | Binary Search | Q39–Q47 | **9 / 9** | Mock 08 | ✅ |
-| 06 | Stack & Queue | Q48–Q56 | **9 / 9** | Mock 09 | 🔄 |
+| 06 | Stack & Queue | Q48–Q56 | **9 / 9** | Mock 09 | ✅ |
 | 07 | Linked List | Q57–Q65 | 0 / 9 | Mock 10 | ☐ |
 | 08 | Trees & BST | Q66–Q74 | 0 / 9 | Mock 11 | ☐ |
 | 09 | Advanced Patterns | Q75–Q85 | 0 / 11 | Mock 12 | ☐ |
@@ -77,6 +77,7 @@ A phase stays 🔄 until its mock is passed — problems solved is not the same 
   - No force unwraps, no force casts
 - **Brute force where one exists naturally.** Both kept in the file; where the optimal structure *is* the algorithm, the file states "none" rather than inventing a contrived baseline. Other approaches get named in the notes, not implemented.
 - Shared helpers live in the phase's `Sources/` folder, never pasted per file.
+- **Test prints:** `print("\n========== Q## - Problem Name ==========")` per problem, then one print per case with the expected answer as an inline comment.
 - Every solution includes interview discussion.
 - Every problem includes complexity analysis with reasoning.
 - Edge cases are documented.
@@ -134,6 +135,7 @@ Top_DSA_Interview_Questions/
 │
 ├── README.md                    — phase map, pattern table, problem→pattern table
 ├── Phase_Name_Prerequisites     — raw mechanics drilled before any pattern
+├── Phase_0X_Revision            — blind rewrite of every optimal
 │
 ├── Sources/                     — shared helpers, compiled once per phase
 │   └── Helpers.swift
@@ -178,8 +180,8 @@ Each mock is cumulative. New mocks also include questions from previous phases.
 | Mock 06 | Sliding Window | ✅ |
 | Mock 07 | Phases 01–04 | ☐ |
 | Mock 08 | Binary Search | ✅ |
-| Mock 09 | Stack & Queue | ☐ |
-| Mock 10 | Linked List | ☐ |
+| Mock 09 | Stack & Queue — Q48–Q54, Q56 | ✅ |
+| Mock 10 | Linked List + Q55 LRU Cache | ☐ |
 | Mock 11 | Trees & BST | ☐ |
 | Mock 12 | Advanced Patterns | ☐ |
 | Mock 13 | Mixed DSA | ☐ |
@@ -308,7 +310,7 @@ Drills D1–D4 done: overflow-safe mid, isSorted, linearSearch (the O(n) baselin
 
 Revision done — all 9 optimals rewritten from memory, 9/9 recalled correct. Mock 08 passed.
 
-## 🔄 Phase 06 — Stack & Queue (Problems complete)
+## ✅ Phase 06 — Stack & Queue (Complete)
 
 ### Prerequisites — ✅
 
@@ -337,8 +339,14 @@ Cut before writing: `Stack_Basics` and `Queue_Basics` (duplicate Prerequisites),
 - ✅ Q55 — LRU Cache (LC146)
 - ✅ Q56 — Next Greater Element I (LC496)
 
-Revision and Mock 09 remaining. Recurring miss this phase: complexity headers understating the work — array-shift cost in `remove(at:)`, and `O(n·k)` written as `O(n)` where a repeat count multiplies the pass.
+### Revision — ✅ (8 of 9) · Mock 09 — ✅
 
+Covered Q48–Q54 and Q56. 7 of 8 recalled correct on the blind rewrite; the one
+regression was Q48's missing `else` on the mismatch branch — every test still
+passed because the unpopped opener failed the final `isEmpty` check.
+
+**Q55 LRU Cache is the exception** — written and working, but its revision and
+mock are deferred until after Phase 07. Mock 10 covers it alongside Q57–Q65.
 ---
 
 # 💡 Repository Philosophy

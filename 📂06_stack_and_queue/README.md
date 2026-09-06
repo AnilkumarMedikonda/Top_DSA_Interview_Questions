@@ -27,6 +27,7 @@ This is the first phase where the data structure *is* the insight. Arrays and Bi
 │
 ├── README.md
 ├── Stack_And_Queue_Prerequisites
+├── Phase_06_Revision
 │
 ├── Sources
 │   └── Helpers.swift
@@ -105,14 +106,14 @@ Two headers here are wrong in opposite directions if written carelessly. Q53's O
 
 ## ⚠️ Wrong Tool Per Problem
 
-* **Q48** — counting openers and closers instead of stacking them. `"([)]"` has equal counts and is invalid; order is the whole problem. Trap: returning `true` without the final `isEmpty` check, so `"(("` passes.
+* **Q48** — counting openers and closers instead of stacking them. `"([)]"` has equal counts and is invalid; order is the whole problem. Trap: the mismatch branch needs an `else { return false }`. Without it a bad closer silently does nothing, the unpopped opener fails the final `isEmpty`, and almost every test still passes — correct output, wrong logic.
 * **Q49** — one running min variable. It survives pushes but cannot be restored on pop; the min at each depth must be stored with the element.
 * **Q50** — nested loops scanning forward for a warmer day. O(n²). Trap: guarding on `count > 1` and returning `[]`, which breaks the single-element case — `[50]` must return `[0]`.
 * **Q51** — evaluating left to right without a stack. Trap: operand order. The first pop is the **right** operand; `+` and `*` commute, so the bug survives every test built from them and shows only on `-` and `/`.
 * **Q52** — recursion on the bracket structure. Works, and it is a second optimal rather than a brute force. Trap: reading one character as one number, so `100[a]` decodes as three separate counts.
 * **Q53** — a single array with `removeFirst()`. O(n) per dequeue. Trap: draining on every call rather than only when `out` is empty, which destroys the amortised bound.
 * **Q54** — `if` instead of `while` on the collision check. Same shape as the Q19 First Missing Positive bug. Only one of four sign combinations collides: top positive, incoming negative.
-* **Q55** — dictionary with a timestamp, then scanning for the oldest. O(n) per put. Traps: a node without its own `key` field, so eviction cannot clear the map entry; strong `prev`, which makes every adjacent pair a retain cycle.
+* **Q55** — dictionary with a timestamp, then scanning for the oldest. O(n) per put. Traps: a node without its own `key` field, so eviction cannot clear the map entry; strong `prev`, which makes every adjacent pair a retain cycle; `remove` that unlinks the neighbours but leaves the node's own pointers dangling.
 * **Q56** — searching `nums2` for each element of `nums1`. O(n·m). Build the answer map in one monotonic pass over `nums2`, then look up.
 
 ---
@@ -123,6 +124,7 @@ Two headers here are wrong in opposite directions if written carelessly. Q53's O
 * Brute force **only where one exists naturally** (Q49, Q50, Q53, Q55, Q56). State "none" otherwise (Q51, Q52, Q54) rather than inventing a contrived baseline — amended Sep 3, after Q48's pair-stripping cost an O(n³) analysis and taught nothing.
 * Shared helpers live in `Sources/Helpers.swift`. Never pasted per file.
 * Notes are two or three lines — the trap only.
+* Test prints: `print("\n========== Q## - Problem Name ==========")` per problem, then one print per case with the expected answer as an inline comment. Nothing else.
 * No `reduce`, `map`, `filter`, `stride`, `max`, `min`, `sorted`, `enumerated`, `abs`, `isNumber`, `wholeNumberValue`, `Int(String)`, `Array(String)`.
 * No `?? 0` on dictionary access — explicit `if let / else`.
 * No force unwraps, no force casts.
@@ -134,17 +136,19 @@ Two headers here are wrong in opposite directions if written carelessly. Q53's O
 
 ## 📊 Status
 
-Prerequisites ✅ (D1–D5) · Patterns 6/6 ✅ · Problems 9/9 ✅ · Revision ⬜ · Mock 09 (`mock_09_phase_06`) ⬜
+Prerequisites ✅ (D1–D5) · Patterns 6/6 ✅ · Problems 9/9 ✅ · Revision ✅ (8 of 9 — Q55 deferred) · Mock 09 (`mock_09_phase_06`) ⬜
 
-**PHASE 06 — problems complete, two cycle steps remaining.**
+**PHASE 06 — Mock 09 remaining.**
 
-Clean first try: Q54 Asteroid Collision, flagged going in as the highest-risk problem in the phase and returned with the `while` correct and all three outcomes handled. Q50's monotonic loop and Q56's map-then-lookup structure were also right first time.
+**Q55 LRU Cache is deferred to after Phase 07.** It is a linked-list design problem sitting in a stack phase, and the pointer bookkeeping is closer to Q62 and Q65 than to anything here. It gets its own session after Q57–Q65, and Mock 10 covers it alongside the Phase 07 problems. Mock 09 therefore covers **Q48–Q54 and Q56 only**, and its header says so.
 
-The recurring miss is unchanged from Phase 05 and got worse: **complexity headers understate the work**. Six times this phase — `remove(at:)`'s array-shift cost written as O(n²) when it is O(n³), `repeatString` and Q52 written as O(n) when both are O(n·k). The algorithm has been right nearly every time; the costing has not. The rule that catches it: two loops, or a loop plus a length, means two variables in the answer.
+Revision result: 7 of 8 recalled correct on a blind rewrite. The one regression was **Q48** — the mismatch branch lost its `else`, so a bad closer silently did nothing. Every test in the file still returned the right answer because the unpopped opener failed the final `isEmpty` check. Correct output, wrong logic, invisible in review; `"()]"` is the test that exposes it and is now permanent. Complexity headers were all correct on this pass, the first clean sweep of the phase.
+
+The recurring miss through the problem set was the opposite: **complexity headers understated the work** six times — `remove(at:)`'s array-shift cost written as O(n²) when it is O(n³), `repeatString` and Q52 written as O(n) when both are O(n·k). The rule that catches it: two loops, or a loop plus a length, means two variables in the answer.
 
 Second recurring miss: **banned built-ins keep reappearing** — `min`, `abs`, `Array(s)`, `Int(token)`, `isNumber`, `wholeNumberValue`, `keys.sorted()`. Each was written after the manual equivalent already existed in `Sources/`.
 
-One real logic bug: Q51's operand order came out reversed on `-` while `/` was correct in the same block, which means the rule was applied inconsistently rather than not known.
+One real logic bug during the problem set: Q51's operand order came out reversed on `-` while `/` was correct in the same block — the rule was applied inconsistently rather than not known. It was correct on the revision pass.
 
 ⬅️ Previous: **Phase 05 — Binary Search** ✅. Picking your interval there is the same discipline as picking what the stack holds here — the container has to match what you intend to read out of it.
-➡️ Next: **Phase 07 — Linked List** (Q57–Q65). Q55's doubly linked node is the only one in the roadmap; Phase 07 is `next`-only throughout.
+➡️ Next: **Phase 07 — Linked List** (Q57–Q65), then Q55. Phase 07 is `next`-only throughout, so the `prev` wiring stays specific to Q55 — reread `06_HashMap_Doubly_Linked_List` before starting it.
