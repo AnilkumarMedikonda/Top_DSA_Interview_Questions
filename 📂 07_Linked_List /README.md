@@ -54,15 +54,15 @@ Ordered easy → medium → hard.
 
 | # | LC | Problem | Level | Pattern | Time | Space | Status |
 |---|-----|---------|-------|---------|------|-------|:------:|
-| Q57 | 206 | Reverse Linked List | 🟢 Easy | 01 | O(n) | O(1) | ☐ |
-| Q58 | 021 | Merge Two Sorted Lists | 🟢 Easy | 02 + 05 | O(n+m) | O(1) | ☐ |
-| Q59 | 141 | Linked List Cycle | 🟢 Easy | 03 | O(n) | O(1) | ☐ |
-| Q60 | 876 | Middle Of Linked List | 🟢 Easy | 03 | O(n) | O(1) | ☐ |
-| Q61 | 002 | Add Two Numbers | 🟡 Medium | 02 | O(n+m) | O(n) | ☐ |
-| Q62 | 019 | Remove Nth Node From End | 🟡 Medium | 02 + 04 | O(n) | O(1) | ☐ |
-| Q63 | 138 | Copy List With Random Pointer | 🟡 Medium | 07 | O(n) | O(n) / O(1) | ☐ |
-| Q64 | 143 | Reorder List | 🟡 Medium | 03 + 01 + 05 | O(n) | O(1) | ☐ |
-| Q65 | 025 | Reverse Nodes In K Group | 🔴 Hard | 06 | O(n) | O(1) | ☐ |
+| Q57 | 206 | Reverse Linked List | 🟢 Easy | 01 | O(n) | O(1) | ✅ |
+| Q58 | 021 | Merge Two Sorted Lists | 🟢 Easy | 02 + 05 | O(n+m) | O(1) | ✅ |
+| Q59 | 141 | Linked List Cycle | 🟢 Easy | 03 | O(n) | O(1) | ✅ |
+| Q60 | 876 | Middle Of Linked List | 🟢 Easy | 03 | O(n) | O(1) | ✅ |
+| Q61 | 002 | Add Two Numbers | 🟡 Medium | 02 | O(max(n,m)) | O(max(n,m)) | ✅ |
+| Q62 | 019 | Remove Nth Node From End | 🟡 Medium | 02 + 04 | O(n) | O(1) | ✅ |
+| Q63 | 138 | Copy List With Random Pointer | 🟡 Medium | 07 | O(n) | O(n) | ✅ |
+| Q64 | 143 | Reorder List | 🟡 Medium | 03 + 01 + 05 | O(n) | O(1) | ✅ |
+| Q65 | 025 | Reverse Nodes In K Group | 🔴 Hard | 06 | O(n) | O(1) | ✅ |
 
 Two pointer-manipulation facts do most of the work in this phase: **`groupHead`
 becomes the group's tail after a reversal**, and **identity (`===`) not value
@@ -75,7 +75,13 @@ patterns composed and is the lead-in to Q65 — it belongs last among the medium
 
 ## ⚠️ Wrong Tool Traps
 
-Logged per problem as it is solved — real misses only, not anticipated ones.
+| # | The miss | Why it survived testing |
+|---|----------|-------------------------|
+| — | Pointer MOVE written where a list EDIT belonged (`current = node` instead of `current = nextNode`, `node.next = node`) | Hit three times across D2, D3 and a reverse attempt. Produces an infinite loop or a self-cycle, not a wrong answer |
+| Q59 | `==` instead of `===` on nodes | Passes every test until two distinct nodes hold the same value. `[1,1,1,1]` with no cycle is the regression test |
+| Q63 | `node.random?.random` — one dereference too many | Invisible when random points at itself. `p.random = q` with `q.random = nil` is the regression test |
+| Q64 | Second-middle variant where the first is needed | Odd lengths are identical either way. Only even lengths expose it, and the failure is a cycle, not a wrong order |
+| Q62 | Loop that ran out of nodes treated as a loop that arrived | Out-of-range `n` silently deletes the head instead of doing nothing |
 
 ---
 
@@ -85,7 +91,11 @@ Logged per problem as it is solved — real misses only, not anticipated ones.
   Manual loops. Shared helpers live in `Sources/Helpers.swift`, never pasted per file.
 - No force unwraps. No `?? 0` — explicit `if let` / `else`.
 - `final class` for `ListNode`; `let` wherever there is no reassignment.
-- Brute force only where one exists naturally — otherwise the header states **none**.
+- **Brute force:** pointer-based ones get written (two-pass count in Q60, Q62).
+  Array-based ones get named in the header and not implemented — dumping to an
+  array is a different data structure, not a different algorithm, and teaches
+  nothing about pointers. Q61 states **none** for a stronger reason: converting
+  to `Int` overflows at 100 digits, so the naive version is wrong, not slow.
 - Every file opens with the problem statement, an example, and constraints.
 - Time and space stated with the reason, not just the notation.
 - Test prints only, in this format:
@@ -97,8 +107,8 @@ Logged per problem as it is solved — real misses only, not anticipated ones.
 
 ## 📊 Status
 
-Prerequisites ✅ · Patterns 7/7 ✅ · Problems 0/9 ☐ · Revision ☐ · Mock 10 ☐
+Prerequisites ✅ · Patterns 7/7 ✅ · Problems 9/9 ✅ · Revision ☐ · Mock 10 ☐
 
-**PHASE 07 IN PROGRESS** — steps 1 and 2 done, problems next.
+**PHASE 07 IN PROGRESS** — steps 1 to 3 done, revision next.
 
 Mock 10 covers Q57–Q65 **plus Q55 LRU Cache**, carried over from Phase 06.

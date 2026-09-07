@@ -26,11 +26,11 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 # 📊 Progress
 
-**Problems Solved:** **56 / 85**
+**Problems Solved:** **65 / 85**
 
 **Mock Sessions Passed:** **6 / 15**
 
-**Current Focus:** Phase 07 — Linked List, problems Q57–Q65
+**Current Focus:** Phase 07 — Linked List, revision then Mock 10
 
 ---
 
@@ -44,7 +44,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 04 | Sliding Window | Q30–Q38 | **9 / 9** | Mock 06 | ✅ |
 | 05 | Binary Search | Q39–Q47 | **9 / 9** | Mock 08 | ✅ |
 | 06 | Stack & Queue | Q48–Q56 | **9 / 9** | Mock 09 | ✅ |
-| 07 | Linked List | Q57–Q65 | 0 / 9 | Mock 10 | 🔄 |
+| 07 | Linked List | Q57–Q65 | **9 / 9** | Mock 10 | 🔄 |
 | 08 | Trees & BST | Q66–Q74 | 0 / 9 | Mock 11 | ☐ |
 | 09 | Advanced Patterns | Q75–Q85 | 0 / 11 | Mock 12 | ☐ |
 
@@ -75,7 +75,7 @@ A phase stays 🔄 until its mock is passed — problems solved is not the same 
   - No `Int(String)`, `Array(String)`, `isNumber`, `wholeNumberValue`
   - No nil-coalescing (`?? 0`) — explicit `if let / else`
   - No force unwraps, no force casts
-- **Brute force where one exists naturally.** Both kept in the file; where the optimal structure *is* the algorithm, the file states "none" rather than inventing a contrived baseline. Other approaches get named in the notes, not implemented.
+- **Brute force where one exists naturally.** Pointer-based baselines get written (two-pass count in Q60, Q62). Array-based ones get named in the header and not implemented — dumping a list into an array is a different data structure, not a different algorithm. Where the naive approach is *wrong* rather than slow, the file states "none" and says why (Q61: `Int` overflows at 100 digits).
 - Shared helpers live in the phase's `Sources/` folder, never pasted per file.
 - **Test prints:** `print("\n========== Q## - Problem Name ==========")` per problem, then one print per case with the expected answer as an inline comment.
 - Every solution includes interview discussion.
@@ -347,6 +347,7 @@ passed because the unpopped opener failed the final `isEmpty` check.
 
 **Q55 LRU Cache is the exception** — written and working, but its revision and
 mock are deferred until after Phase 07. Mock 10 covers it alongside Q57–Q65.
+
 ---
 
 ## 🔄 Phase 07 — Linked List (In Progress)
@@ -373,11 +374,31 @@ everything in a linked-list phase is two pointers, the fixed gap is the mechanis
 
 Problems reordered easy → medium → hard: four easy, four medium, one hard.
 
-### Problems — 0 / 9
+### Problems — 9 / 9
 
-Q57–Q60 easy, Q61–Q64 medium, Q65 hard. Not started.
+- ✅ Q57 — Reverse Linked List (LC206)
+- ✅ Q58 — Merge Two Sorted Lists (LC021)
+- ✅ Q59 — Linked List Cycle (LC141)
+- ✅ Q60 — Middle Of Linked List (LC876)
+- ✅ Q61 — Add Two Numbers (LC002)
+- ✅ Q62 — Remove Nth Node From End (LC019)
+- ✅ Q63 — Copy List With Random Pointer (LC138)
+- ✅ Q64 — Reorder List (LC143)
+- ✅ Q65 — Reverse Nodes In K Group (LC025)
 
+Recurring miss this phase: writing a pointer MOVE where a list EDIT belonged —
+`current = node` instead of `current = nextNode`, or `node.next = node`. Three
+times across the drills and once in a reverse attempt. It never produces a wrong
+answer; it produces an infinite loop or a self-cycle.
 
+Two silent bugs caught only by identity assertions: `==` instead of `===` in Q59
+(passes until two nodes share a value), and a double dereference `node.random?.random`
+in Q63 (invisible when random points at itself). Both now have permanent regression
+tests — `[1,1,1,1]` with no cycle, and `p.random = q` with `q.random` nil.
+
+Revision and Mock 10 outstanding.
+
+---
 
 # 💡 Repository Philosophy
 
