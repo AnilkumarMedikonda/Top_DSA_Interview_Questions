@@ -64,16 +64,19 @@ Ordered easy → medium → hard.
 | Q64 | 143 | Reorder List | 🟡 Medium | 03 + 01 + 05 | O(n) | O(1) | ✅ |
 | Q65 | 025 | Reverse Nodes In K Group | 🔴 Hard | 06 | O(n) | O(1) | ✅ |
 
-Two pointer-manipulation facts do most of the work in this phase: **`groupHead`
+Two pointer-manipulation facts do most of the work in this phase: **`groupStart`
 becomes the group's tail after a reversal**, and **identity (`===`) not value
 (`==`)** is what makes cycle detection and group boundaries work.
 
-Q63 space is O(n) with the hash map, O(1) with interleaving. Q64 is the three core
-patterns composed and is the lead-in to Q65 — it belongs last among the mediums.
+Q63 is O(n) with the hash map; the O(1) interleave version lives in the pattern
+file, not the solution. Q64 is the three core patterns composed and is the
+lead-in to Q65 — it belongs last among the mediums.
 
 ---
 
 ## ⚠️ Wrong Tool Traps
+
+Found while writing the problems:
 
 | # | The miss | Why it survived testing |
 |---|----------|-------------------------|
@@ -83,6 +86,20 @@ patterns composed and is the lead-in to Q65 — it belongs last among the medium
 | Q64 | Second-middle variant where the first is needed | Odd lengths are identical either way. Only even lengths expose it, and the failure is a cycle, not a wrong order |
 | Q62 | Loop that ran out of nodes treated as a loop that arrived | Out-of-range `n` silently deletes the head instead of doing nothing |
 
+Found on the blind revision pass — all six are **ordering** errors, not
+misremembered algorithms:
+
+| # | The miss |
+|---|----------|
+| Q62 | `slowNode.next = victim` instead of `victim.next` — assigned the victim to itself, list came back unchanged |
+| Q63 | Pass two read `copy.next` / `copy.random` instead of the original's, so it wired nothing |
+| Q64 | Nil-ed `middle.next` before reading it, so the second half was always nil; weave assignments crossed |
+| Q65 | `groupPrev` anchored on `head` instead of `dummy`, leaving the first group unreversed |
+| — | `createCycle` dropped the line saving the cycle node — no test list ever had a cycle, so Q59 was passing against nothing |
+| — | `middleNode` guarded `slow` instead of `fast` |
+
+The question that catches every one: **at the moment I read this pointer, has
+anything already changed it?**
 ---
 
 ## 📏 House Rules
@@ -107,8 +124,12 @@ patterns composed and is the lead-in to Q65 — it belongs last among the medium
 
 ## 📊 Status
 
-Prerequisites ✅ · Patterns 7/7 ✅ · Problems 9/9 ✅ · Revision ☐ · Mock 10 ☐
+Prerequisites ✅ · Patterns 7/7 ✅ · Problems 9/9 ✅ · Revision 🟡 (5 of 9) · Mock 10 ✅
 
-**PHASE 07 IN PROGRESS** — steps 1 to 3 done, revision next.
+**PHASE 07 COMPLETE** — all six cycle steps done, with one carry-over.
 
-Mock 10 covers Q57–Q65 **plus Q55 LRU Cache**, carried over from Phase 06.
+Revision recalled Q57–Q61 clean; Q62–Q65 and two shared helpers regressed, all
+on ordering. Mock 10 covered Q57–Q65.
+
+**Q55 LRU Cache is still outstanding** — deferred from Phase 06, not done here
+either. Now due with Mock 11. Second deferral.

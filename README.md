@@ -28,9 +28,9 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Problems Solved:** **65 / 85**
 
-**Mock Sessions Passed:** **6 / 15**
+**Mock Sessions Passed:** **7 / 15**
 
-**Current Focus:** Phase 07 — Linked List, revision then Mock 10
+**Current Focus:** Phase 08 — Trees & BST, Q66–Q74
 
 ---
 
@@ -44,9 +44,10 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 04 | Sliding Window | Q30–Q38 | **9 / 9** | Mock 06 | ✅ |
 | 05 | Binary Search | Q39–Q47 | **9 / 9** | Mock 08 | ✅ |
 | 06 | Stack & Queue | Q48–Q56 | **9 / 9** | Mock 09 | ✅ |
-| 07 | Linked List | Q57–Q65 | **9 / 9** | Mock 10 | 🔄 |
+| 07 | Linked List | Q57–Q65 | **9 / 9** | Mock 10 | ✅ |
 | 08 | Trees & BST | Q66–Q74 | 0 / 9 | Mock 11 | ☐ |
 | 09 | Advanced Patterns | Q75–Q85 | 0 / 11 | Mock 12 | ☐ |
+
 
 A phase stays 🔄 until its mock is passed — problems solved is not the same as phase complete.
 
@@ -181,8 +182,8 @@ Each mock is cumulative. New mocks also include questions from previous phases.
 | Mock 07 | Phases 01–04 | ☐ |
 | Mock 08 | Binary Search | ✅ |
 | Mock 09 | Stack & Queue — Q48–Q54, Q56 | ✅ |
-| Mock 10 | Linked List + Q55 LRU Cache | ☐ |
-| Mock 11 | Trees & BST | ☐ |
+| Mock 10 | Linked List — Q57–Q65 | ✅ |
+| Mock 11 | Trees & BST + Q55 LRU Cache | ☐ |
 | Mock 12 | Advanced Patterns | ☐ |
 | Mock 13 | Mixed DSA | ☐ |
 | Mock 14 | Company Style | ☐ |
@@ -346,11 +347,11 @@ regression was Q48's missing `else` on the mismatch branch — every test still
 passed because the unpopped opener failed the final `isEmpty` check.
 
 **Q55 LRU Cache is the exception** — written and working, but its revision and
-mock are deferred until after Phase 07. Mock 10 covers it alongside Q57–Q65.
+mock are still outstanding. Deferred past Phase 07; now due with Mock 11.
 
 ---
 
-## 🔄 Phase 07 — Linked List (In Progress)
+## ✅ Phase 07 — Linked List (Complete)
 
 ### Prerequisites — ✅
 
@@ -396,7 +397,34 @@ Two silent bugs caught only by identity assertions: `==` instead of `===` in Q59
 in Q63 (invisible when random points at itself). Both now have permanent regression
 tests — `[1,1,1,1]` with no cycle, and `p.random = q` with `q.random` nil.
 
-Revision and Mock 10 outstanding.
+### Revision — 🟡 (5 of 9) · Mock 10 — ✅
+
+Blind rewrite of all nine. Five recalled clean: Q57, Q58, Q59, Q60, Q61.
+Four regressed, plus two shared helpers — and every miss was an **ordering**
+error, not a misremembered algorithm.
+
+| # | Problem | The miss |
+|---|---------|----------|
+| Q62 | Remove Nth From End | `slowNode.next = victim` instead of `victim.next` — assigned the victim to itself, list came back unchanged |
+| Q63 | Copy Random Pointer | Pass two read `copy.next` / `copy.random` instead of the original's, so it wired nothing |
+| Q64 | Reorder List | Nil-ed `middle.next` before reading it, so the second half was always nil; weave assignments crossed |
+| Q65 | K-Group Reverse | `groupPrev` anchored on `head` instead of `dummy`, leaving the first group unreversed |
+| — | `createCycle` | Dropped the line saving the cycle node — no test list ever had a cycle, so Q59 was passing against nothing |
+| — | `middleNode` | Guarded `slow` instead of `fast` |
+
+The question that catches all six: **at the moment I read this pointer, has
+anything already changed it?**
+
+Mock 10 covered Q57–Q65.
+
+**PHASE 07 COMPLETE** — all six cycle steps done, with one carry-over.
+
+**Q55 LRU Cache is still outstanding.** Its revision and mock were deferred from
+Phase 06 and did not get done here either. It now moves to Mock 11 alongside
+Trees & BST. Second deferral — worth doing on its own before Phase 08's problems
+rather than pushing it a third time.
+
+Found while writing the problems, before the revision pass:
 
 ---
 
