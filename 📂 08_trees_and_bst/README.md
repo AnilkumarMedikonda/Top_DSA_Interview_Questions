@@ -107,10 +107,12 @@ coming back up it?**
   Manual loops. Shared helpers live in `Sources/Helpers.swift`, never pasted per file.
 - No force unwraps. No `?? 0` — explicit `if let` / `else`.
 - `final class` for `TreeNode`; `let` wherever there is no reassignment.
-- **Brute force:** where it's a genuinely different traversal it gets written
-  (Q73's full inorder before the early-stop version). Array-dump variants get named
-  in the header and not implemented. Q72 states **none** — the general LCA is a
-  different problem, not a slower version of this one.
+- **Brute force:** optimal solutions only in this phase. Trees are O(n) at
+  brute force anyway — every node must be visited, so there is no slower
+  version to compare against for Q66–Q69, Q71, Q74. Where a genuine
+  alternative exists (Q70 inorder-into-array, Q72 general LCA, Q73 full
+  inorder) it is named in the header with one line on why it loses, not
+  implemented.
 - Every file opens with the problem statement, an example, and constraints.
 - Time and space stated with the reason, not just the notation. Say the
   balanced-vs-skewed split on `O(h)` unprompted.

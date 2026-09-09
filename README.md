@@ -76,7 +76,13 @@ A phase stays 🔄 until its mock is passed — problems solved is not the same 
   - No `Int(String)`, `Array(String)`, `isNumber`, `wholeNumberValue`
   - No nil-coalescing (`?? 0`) — explicit `if let / else`
   - No force unwraps, no force casts
-- **Brute force where one exists naturally.** Pointer-based baselines get written (two-pass count in Q60, Q62). Array-based ones get named in the header and not implemented — dumping a list into an array is a different data structure, not a different algorithm. Where the naive approach is *wrong* rather than slow, the file states "none" and says why (Q61: `Int` overflows at 100 digits).
+- **Brute force where it teaches something.** Baselines that use the same data
+  structure get written. Ones that convert to a different structure get named in
+  the header and not implemented. Where the naive approach is *wrong* rather than
+  slow, the file states "none" and says why. Phases 08 and 09 are optimal-only:
+  tree traversal is O(n) either way, so a brute force adds nothing — the
+  exception is the exponential naive versions in Phase 09's backtracking and DP
+  problems, where the repeated work is the whole reason memoization exists.
 - Shared helpers live in the phase's `Sources/` folder, never pasted per file.
 - **Test prints:** `print("\n========== Q## - Problem Name ==========")` per problem, then one print per case with the expected answer as an inline comment.
 - Every solution includes interview discussion.
