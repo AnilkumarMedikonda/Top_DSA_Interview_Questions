@@ -428,6 +428,35 @@ Found while writing the problems, before the revision pass:
 
 ---
 
+## 🔄 Phase 08 — Trees & BST (In Progress)
+
+### Prerequisites — ⏳
+5 mechanics drills: TreeNode + build/print, three traversal orders,
+height vs depth, level order with size snapshot, BST search walk.
+
+### Patterns — 0 / 7
+- ⏳ 01_DFS_Preorder — Q67, Q68, Q70
+- ⏳ 02_DFS_Inorder — Q70, Q73
+- ⏳ 03_DFS_Postorder — Q66
+- ⏳ 04_BFS_Level_Order — Q69
+- ⏳ 05_Iterative_DFS — Q73
+- ⏳ 06_BST_Property_Walk — Q70, Q72, Q73
+- ⏳ 07_Tree_DP — Q71, Q74
+
+Cut before writing: `Tree_Basics` (duplicate Prerequisites) and
+`Recursive_DFS` (01–03 *are* the recursive DFS templates).
+
+### Problems — 0 / 9
+- ⏳ Q66 — Maximum Depth Of Binary Tree (LC104)
+- ⏳ Q67 — Same Tree (LC100)
+- ⏳ Q68 — Invert Binary Tree (LC226)
+- ⏳ Q69 — Binary Tree Level Order Traversal (LC102)
+- ⏳ Q70 — Validate Binary Search Tree (LC098)
+- ⏳ Q71 — Diameter Of Binary Tree (LC543)
+- ⏳ Q72 — Lowest Common Ancestor Of A BST (LC235)
+- ⏳ Q73 — Kth Smallest Element In A BST (LC230)
+- ⏳ Q74 — Binary Tree Maximum Path Sum (LC124)
+
 # 💡 Repository Philosophy
 
 This repository focuses on **learning patterns instead of memorizing solutions**.
