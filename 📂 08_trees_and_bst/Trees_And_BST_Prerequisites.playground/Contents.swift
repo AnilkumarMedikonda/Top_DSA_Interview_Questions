@@ -69,9 +69,7 @@ func buildTree(_ values: [Int?]) -> TreeNode? {
 // MARK: - Print Tree
 //==============================================================
 
-func printTree(_ node: TreeNode?,
-               _ prefix: String = "",
-               _ isLeft: Bool = true) {
+func printTree(_ node: TreeNode?, _ prefix: String = "", _ isLeft: Bool = true) {
 
     guard let node = node else {
         print(prefix + (isLeft ? "├── " : "└── ") + ".")
