@@ -20,41 +20,53 @@ preorder, flowing **up** means postorder, sorted order on a BST means inorder.
 
 ---
 
-## 📋 Prerequisites
+## 📋 Prerequisites — ✅
 
-`Trees_And_BST_Prerequisites` — five drills, written before any problem is attempted.
+`Trees_And_BST_Prerequisites` — `TreeNode` + `buildTree` / `printTree`.
 
-| # | Drill | Feeds |
-|---|-------|-------|
-| D1 | `TreeNode` + `buildTree` / `printTree`, ASCII sketch per test tree | every problem |
-| D2 | `preorder` / `inorder` / `postorder` — same walk, three placements | Q66–Q68, Q70, Q73 |
-| D3 | `height` vs `depth` — edges vs nodes, leaf = both children nil | Q66, Q71 |
-| D4 | `levelOrder` — queue with the level-size snapshot | Q69 |
-| D5 | `searchBST` — compare, discard half, O(h) walk | Q70, Q72, Q73 |
+Five drills planned, four cut before writing. D2 (three traversal orders) is
+patterns 01–03. D3 (height vs depth) is Q66 itself. D4 (level order) is
+pattern 04. D5 (BST search walk) is pattern 06. Only the node type and the
+level-order builder weren't covered elsewhere, so only those got written.
+
+`printTree` prints a nil marker rather than returning silently, so a left-only
+node is distinguishable from a right-only one.
 
 ---
 
-## 🧩 Patterns
+## 🧩 Patterns — 7 / 7 ✅
 
 Template code only — generic skeleton, neutral name, no named LeetCode solutions.
 
 | # | Pattern | What it is | Problems | Status |
 |---|---------|------------|----------|:------:|
-| 01 | DFS_Preorder | Work before both calls — state flows down the tree | Q67, Q68, Q70 | ⏳ |
-| 02 | DFS_Inorder | Work between the calls — on a BST, emits sorted ascending | Q70, Q73 | ⏳ |
-| 03 | DFS_Postorder | Work after both calls — results flow up from children | Q66 | ⏳ |
-| 04 | BFS_Level_Order | Queue plus a level-size snapshot taken before draining | Q69 | ⏳ |
-| 05 | Iterative_DFS | Explicit stack instead of the call stack, so traversal can stop mid-way | Q73 | ⏳ |
-| 06 | BST_Property_Walk | Compare and discard half — O(h), no recursion needed | Q70, Q72, Q73 | ⏳ |
-| 07 | Tree_DP | Return one value up while a global tracks a different answer | Q71, Q74 | ⏳ |
+| 01 | DFS_Preorder | Work before both calls — state flows down the tree | Q67, Q68, Q70 | ✅ |
+| 02 | DFS_Inorder | Work between the calls — on a BST, emits sorted ascending | Q70, Q73 | ✅ |
+| 03 | DFS_Postorder | Work after both calls — results flow up from children | Q66 | ✅ |
+| 04 | BFS_Level_Order | Queue plus a level-size snapshot taken before draining | Q69 | ✅ |
+| 05 | Iterative_DFS | Explicit stack instead of the call stack, so traversal can stop mid-way | Q73 | ✅ |
+| 06 | BST_Property_Walk | Compare and discard half — O(h), O(1) space, no recursion | Q70, Q72, Q73 | ✅ |
+| 07 | Tree_DP | Return one value up while a global tracks a different answer | Q71, Q74 | ✅ |
 
 Nine proposed, cut to seven on review. `Tree_Basics` dropped as a duplicate of the
 prerequisites file; `Recursive_DFS` dropped because 01–03 *are* the recursive DFS
 templates. Every pattern has a problem behind it; every problem has a pattern.
 
+Two templates rejected during writing: iterative preorder (kept only for contrast —
+recursion is shorter and does the same job) and a plain-postorder-only Tree DP file
+(without the global it *is* Pattern 03, not a distinct pattern).
+
+The distinction the phase turns on: **preorder pushes constraints down, postorder
+pulls results up.** Patterns 01 and 03 are the same six lines with the work on
+opposite sides of the recursive calls.
+
+Pattern 06 is the one place recursion is the wrong default — every call is a tail
+call, so the loop is O(1) space where the recursion is O(h). That's what makes
+Q72 O(1) rather than O(h).
+
 ---
 
-## 📝 Problems
+## 📝 Problems — 0 / 9
 
 Ordered easy → medium → hard.
 
@@ -107,6 +119,8 @@ coming back up it?**
   Manual loops. Shared helpers live in `Sources/Helpers.swift`, never pasted per file.
 - No force unwraps. No `?? 0` — explicit `if let` / `else`.
 - `final class` for `TreeNode`; `let` wherever there is no reassignment.
+- Node properties are `val` / `left` / `right` — LeetCode's own names, so anything
+  written here pastes straight in.
 - **Brute force:** optimal solutions only in this phase. Trees are O(n) at
   brute force anyway — every node must be visited, so there is no slower
   version to compare against for Q66–Q69, Q71, Q74. Where a genuine
@@ -126,9 +140,10 @@ coming back up it?**
 
 ## 📊 Status
 
-Prerequisites ⏳ · Patterns 0/7 ⏳ · Problems 0/9 ⏳ · Revision ⏳ · Mock 11 ⏳
+Prerequisites ✅ · Patterns 7/7 ✅ · Problems 0/9 ⏳ · Revision ⏳ · Mock 11 ⏳
 
-**PHASE 08 NOT STARTED.**
+**PHASE 08 IN PROGRESS** — scaffolding done, problems next. Q66 first; it's the
+smallest instance of Pattern 03 and confirms the template before the mediums.
 
 **Q55 LRU Cache is on its third deferral** — carried out of Phase 06, then Phase 07,
 now due with Mock 11 alongside this phase's nine. It is not a tree problem and will

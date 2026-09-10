@@ -13,7 +13,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 # 🏆 Features
 
 - ✅ 85 carefully selected interview questions
-- ✅ Brute Force → Optimal, both kept in the file where a brute force exists
+- ✅ Brute force where it teaches something — named in the header otherwise
 - ✅ Pure Swift implementations
 - ✅ Interview-focused explanations
 - ✅ Time & Space Complexity with reasoning
@@ -30,7 +30,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Mock Sessions Passed:** **7 / 15**
 
-**Current Focus:** Phase 08 — Trees & BST, Q66–Q74
+**Current Focus:** Phase 08 — Trees & BST, problems Q66–Q74 (patterns done)
 
 ---
 
@@ -45,7 +45,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 05 | Binary Search | Q39–Q47 | **9 / 9** | Mock 08 | ✅ |
 | 06 | Stack & Queue | Q48–Q56 | **9 / 9** | Mock 09 | ✅ |
 | 07 | Linked List | Q57–Q65 | **9 / 9** | Mock 10 | ✅ |
-| 08 | Trees & BST | Q66–Q74 | 0 / 9 | Mock 11 | ☐ |
+| 08 | Trees & BST | Q66–Q74 | 0 / 9 | Mock 11 | 🔄 |
 | 09 | Advanced Patterns | Q75–Q85 | 0 / 11 | Mock 12 | ☐ |
 
 
@@ -163,7 +163,6 @@ Top_DSA_Interview_Questions/
 - Problem Statement
 - Examples
 - Constraints
-- Brute Force Solution (where one exists naturally)
 - Optimal Solution
 - Pattern Used
 - Time Complexity
@@ -195,7 +194,7 @@ Each mock is cumulative. New mocks also include questions from previous phases.
 | Mock 14 | Company Style | ☐ |
 | Mock 15 | Final Assessment | ☐ |
 
-⚠️ Mock 03 (Q01–Q19 cumulative) drawn but not run. Mock 05 (Phases 01–03) due. Both cumulative — outstanding out of sequence.
+⚠️ Mock 03 (Q01–Q19 cumulative) drawn but not run. Mock 05 (Phases 01–03) due. Q55 LRU Cache revision + mock deferred twice, now due with Mock 11 — schedule it before Phase 08's problems, not after.
 
 ---
 
@@ -430,27 +429,40 @@ Phase 06 and did not get done here either. It now moves to Mock 11 alongside
 Trees & BST. Second deferral — worth doing on its own before Phase 08's problems
 rather than pushing it a third time.
 
-Found while writing the problems, before the revision pass:
-
 ---
 
 ## 🔄 Phase 08 — Trees & BST (In Progress)
 
-### Prerequisites — ⏳
-5 mechanics drills: TreeNode + build/print, three traversal orders,
-height vs depth, level order with size snapshot, BST search walk.
+### Prerequisites — ✅
 
-### Patterns — 0 / 7
-- ⏳ 01_DFS_Preorder — Q67, Q68, Q70
-- ⏳ 02_DFS_Inorder — Q70, Q73
-- ⏳ 03_DFS_Postorder — Q66
-- ⏳ 04_BFS_Level_Order — Q69
-- ⏳ 05_Iterative_DFS — Q73
-- ⏳ 06_BST_Property_Walk — Q70, Q72, Q73
-- ⏳ 07_Tree_DP — Q71, Q74
+`TreeNode` + `buildTree` / `printTree`. the three
+traversal orders are patterns 01–03, height vs depth is Q66 itself, level order
+is pattern 04, and the BST walk is pattern 06. Only the node type and the
+level-order builder were not covered elsewhere.
+
+
+### Patterns — 7 / 7
+
+- ✅ 01_DFS_Preorder — Q67, Q68, Q70
+- ✅ 02_DFS_Inorder — Q70, Q73
+- ✅ 03_DFS_Postorder — Q66
+- ✅ 04_BFS_Level_Order — Q69
+- ✅ 05_Iterative_DFS — Q73
+- ✅ 06_BST_Property_Walk — Q70, Q72, Q73
+- ✅ 07_Tree_DP — Q71, Q74
 
 Cut before writing: `Tree_Basics` (duplicate Prerequisites) and
 `Recursive_DFS` (01–03 *are* the recursive DFS templates).
+
+Two templates rejected during review: iterative preorder (recursion is shorter
+and does the same job) and a plain-postorder-only Tree DP file (without the
+global it is Pattern 03, not a distinct pattern). `printTree` kept the nil
+marker so a left-only node is distinguishable from a right-only one.
+
+The distinction the phase turns on: **preorder pushes constraints down,
+postorder pulls results up.** Patterns 01 and 03 are the same six lines with
+the work on opposite sides of the recursive calls.
+__
 
 ### Problems — 0 / 9
 - ⏳ Q66 — Maximum Depth Of Binary Tree (LC104)
@@ -480,7 +492,7 @@ For every problem:
 
 | Repository | Description |
 |------------|-------------|
-| **[DSA-Logic-and-Interview-Prep](https://github.com/AnilkumarMedikonda/DSA-Logic-and-Interview-Prep)** | 247 problems across 21 phases covering the complete DSA learning journey. |
+|**[DSA-Logic-and-Interview-Prep](https://github.com/AnilkumarMedikonda/DSA-Logic-and-Interview-Prep)** | 246 problems across 21 phases covering the complete DSA learning journey. | |
 | **[iOS-Architecture-Patterns](https://github.com/AnilkumarMedikonda/iOS-Architecture-Patterns)** | Swift, UIKit, and SwiftUI architecture patterns for iOS development. |
 
 ---
