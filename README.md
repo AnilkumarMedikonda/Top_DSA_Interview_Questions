@@ -26,11 +26,11 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 # 📊 Progress
 
-**Problems Solved:** **65 / 85**
+**Problems Solved:** **74 / 85**
 
 **Mock Sessions Passed:** **7 / 15**
 
-**Current Focus:** Phase 08 — Trees & BST, problems Q66–Q74 (patterns done)
+**Current Focus:** Phase 08 — Trees & BST, revision and Mock 11
 
 ---
 
@@ -45,7 +45,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 05 | Binary Search | Q39–Q47 | **9 / 9** | Mock 08 | ✅ |
 | 06 | Stack & Queue | Q48–Q56 | **9 / 9** | Mock 09 | ✅ |
 | 07 | Linked List | Q57–Q65 | **9 / 9** | Mock 10 | ✅ |
-| 08 | Trees & BST | Q66–Q74 | 0 / 9 | Mock 11 | 🔄 |
+| 08 | Trees & BST | Q66–Q74 | **9 / 9** | Mock 11 | 🔄 |
 | 09 | Advanced Patterns | Q75–Q85 | 0 / 11 | Mock 12 | ☐ |
 
 
@@ -194,7 +194,7 @@ Each mock is cumulative. New mocks also include questions from previous phases.
 | Mock 14 | Company Style | ☐ |
 | Mock 15 | Final Assessment | ☐ |
 
-⚠️ Mock 03 (Q01–Q19 cumulative) drawn but not run. Mock 05 (Phases 01–03) due. Q55 LRU Cache revision + mock deferred twice, now due with Mock 11 — schedule it before Phase 08's problems, not after.
+⚠️ Mock 03 (Q01–Q19 cumulative) drawn but not run. Mock 05 (Phases 01–03) due. Q55 LRU Cache revision + mock now due with Mock 11 — third deferral.
 
 ---
 
@@ -435,10 +435,10 @@ rather than pushing it a third time.
 
 ### Prerequisites — ✅
 
-`TreeNode` + `buildTree` / `printTree`. the three
-traversal orders are patterns 01–03, height vs depth is Q66 itself, level order
-is pattern 04, and the BST walk is pattern 06. Only the node type and the
-level-order builder were not covered elsewhere.
+`TreeNode` + `buildTree` / `printTree`. Five drills planned, four cut before
+writing — the three traversal orders are patterns 01–03, height vs depth is Q66
+itself, level order is pattern 04, and the BST walk is pattern 06. Only the node
+type and the level-order builder were not covered elsewhere.
 
 
 ### Patterns — 7 / 7
@@ -464,16 +464,34 @@ postorder pulls results up.** Patterns 01 and 03 are the same six lines with
 the work on opposite sides of the recursive calls.
 __
 
-### Problems — 0 / 9
-- ⏳ Q66 — Maximum Depth Of Binary Tree (LC104)
-- ⏳ Q67 — Same Tree (LC100)
-- ⏳ Q68 — Invert Binary Tree (LC226)
-- ⏳ Q69 — Binary Tree Level Order Traversal (LC102)
-- ⏳ Q70 — Validate Binary Search Tree (LC098)
-- ⏳ Q71 — Diameter Of Binary Tree (LC543)
-- ⏳ Q72 — Lowest Common Ancestor Of A BST (LC235)
-- ⏳ Q73 — Kth Smallest Element In A BST (LC230)
-- ⏳ Q74 — Binary Tree Maximum Path Sum (LC124)
+### Problems — 9 / 9
+
+- ✅ Q66 — Maximum Depth Of Binary Tree (LC104)
+- ✅ Q67 — Same Tree (LC100)
+- ✅ Q68 — Invert Binary Tree (LC226)
+- ✅ Q69 — Binary Tree Level Order Traversal (LC102)
+- ✅ Q70 — Validate Binary Search Tree (LC098)
+- ✅ Q71 — Diameter Of Binary Tree (LC543)
+- ✅ Q72 — Lowest Common Ancestor Of A BST (LC235)
+- ✅ Q73 — Kth Smallest Element In A BST (LC230)
+- ✅ Q74 — Binary Tree Maximum Path Sum (LC124)
+
+### Caught in review
+
+| # | The miss | Why it survived testing |
+|---|----------|-------------------------|
+| Q69 | `queue[head]` read once OUTSIDE the level loop while `head` advanced inside it | Level 1 printed correctly, so small trees looked fine |
+| Q72 | The split branch returned `nil` instead of the node | That branch IS the answer — nil came back for every input |
+| Q73 | `return` after the kth value exits one frame, not the traversal | Every answer was correct; the walk was O(n), not the claimed O(h + k) |
+
+Q69 is Phase 07's recurring miss in a new shape — reading a value before the
+thing that moves it. Q73 is the one to remember: a correct answer with a wrong
+complexity is harder to catch than a wrong answer, because the tests all pass.
+
+Node property naming drifted across files — `root`, `value`, `val` and `valu`
+all appeared. Standardised on `val`.
+
+**Revision and Mock 11 outstanding.**
 
 # 💡 Repository Philosophy
 

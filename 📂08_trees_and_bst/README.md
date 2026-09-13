@@ -66,21 +66,21 @@ Q72 O(1) rather than O(h).
 
 ---
 
-## 📝 Problems — 0 / 9
+## 📝 Problems — 9 / 9 ✅
 
 Ordered easy → medium → hard.
 
 | # | LC | Problem | Level | Pattern | Time | Space | Status |
 |---|-----|---------|-------|---------|------|-------|:------:|
-| Q66 | 104 | Maximum Depth Of Binary Tree | 🟢 Easy | 03 | O(n) | O(h) | ⏳ |
-| Q67 | 100 | Same Tree | 🟢 Easy | 01 | O(n) | O(h) | ⏳ |
-| Q68 | 226 | Invert Binary Tree | 🟢 Easy | 01 | O(n) | O(h) | ⏳ |
-| Q71 | 543 | Diameter Of Binary Tree | 🟢 Easy | 07 | O(n) | O(h) | ⏳ |
-| Q69 | 102 | Binary Tree Level Order Traversal | 🟡 Medium | 04 | O(n) | O(w) | ⏳ |
-| Q70 | 098 | Validate Binary Search Tree | 🟡 Medium | 01 + 06 | O(n) | O(h) | ⏳ |
-| Q72 | 235 | Lowest Common Ancestor Of A BST | 🟡 Medium | 06 | O(h) | O(1) | ⏳ |
-| Q73 | 230 | Kth Smallest Element In A BST | 🟡 Medium | 02 + 05 | O(h+k) | O(h) | ⏳ |
-| Q74 | 124 | Binary Tree Maximum Path Sum | 🔴 Hard | 07 | O(n) | O(h) | ⏳ |
+| Q66 | 104 | Maximum Depth Of Binary Tree | 🟢 Easy | 03 | O(n) | O(h) | ✅ |
+| Q67 | 100 | Same Tree | 🟢 Easy | 01 | O(n) | O(h) | ✅ |
+| Q68 | 226 | Invert Binary Tree | 🟢 Easy | 01 | O(n) | O(h) | ✅ |
+| Q71 | 543 | Diameter Of Binary Tree | 🟢 Easy | 07 | O(n) | O(h) | ✅ |
+| Q69 | 102 | Binary Tree Level Order Traversal | 🟡 Medium | 04 | O(n) | O(w) | ✅ |
+| Q70 | 098 | Validate Binary Search Tree | 🟡 Medium | 01 + 06 | O(n) | O(h) | ✅ |
+| Q72 | 235 | Lowest Common Ancestor Of A BST | 🟡 Medium | 06 | O(h) | O(1) | ✅ |
+| Q73 | 230 | Kth Smallest Element In A BST | 🟡 Medium | 02 + 05 | O(h+k) | O(h) | ✅ |
+| Q74 | 124 | Binary Tree Maximum Path Sum | 🔴 Hard | 07 | O(n) | O(h) | ✅ |
 
 Two facts do most of the work in this phase: **the BST invariant is about entire
 subtrees, not parent/child pairs**, and **Tree DP returns a different value than
@@ -95,8 +95,7 @@ the recursive version works and is worse, because it can't stop at k.
 
 ## ⚠️ Wrong Tool Traps
 
-Anticipated from the problem set — to be replaced with what's actually found while
-writing.
+Found while writing the problems.
 
 | # | Reaches for | Should reach for |
 |---|-------------|------------------|
@@ -111,12 +110,28 @@ writing.
 The question that catches most of these: **is this value going down the tree or
 coming back up it?**
 
+### Caught in review
+
+| # | The miss | Why it survived testing |
+|---|----------|-------------------------|
+| Q69 | `queue[head]` read once OUTSIDE the level loop, then `head` advanced inside it | Every node in a level came back as the first one; level 1 still printed correctly, so small trees looked fine |
+| Q72 | The split branch returned `nil` instead of the node | That branch IS the answer, so the function returned nil for every input |
+| Q73 | `return` after finding the kth value exits one frame, not the traversal | Answers were all correct — but the walk was O(n), not the O(h + k) the header claimed |
+| Q71 | Q66's `maxDepth` labelled Tree DP in the header | Correct code, wrong pattern name. No global means it is Pattern 03 |
+
+Q69 is Phase 07's recurring miss in a new shape: reading a value before the thing
+that moves it. **At the moment I read this, has anything already changed it?**
+
+Q73 is the one worth remembering — a correct answer with a wrong complexity is
+harder to spot than a wrong answer, because the tests all pass.
+
 ---
 
 ## 📏 House Rules
 
 - No built-in helpers — no `reduce`, `map`, `filter`, `stride`, `min`, `max`, `abs`.
-  Manual loops. Shared helpers live in `Sources/Helpers.swift`, never pasted per file.
+  `for _ in 0..<n` is fine for a plain repeat count. Manual loops otherwise.
+  Shared helpers live in `Sources/Helpers.swift`, never pasted per file.
 - No force unwraps. No `?? 0` — explicit `if let` / `else`.
 - `final class` for `TreeNode`; `let` wherever there is no reassignment.
 - Node properties are `val` / `left` / `right` — LeetCode's own names, so anything
@@ -140,10 +155,14 @@ coming back up it?**
 
 ## 📊 Status
 
-Prerequisites ✅ · Patterns 7/7 ✅ · Problems 0/9 ⏳ · Revision ⏳ · Mock 11 ⏳
+Prerequisites ✅ · Patterns 7/7 ✅ · Problems 9/9 ✅ · Revision ⏳ · Mock 11 ⏳
 
-**PHASE 08 IN PROGRESS** — scaffolding done, problems next. Q66 first; it's the
-smallest instance of Pattern 03 and confirms the template before the mediums.
+**PHASE 08 — problems done, revision and mock outstanding.**
+
+Node property naming drifted across files during writing — `root`, `value`, `val`
+and `valu` all appeared. Standardised on `val`. Worth confirming the find-and-replace
+landed everywhere before the blind rewrite, so the revision pass tests algorithms
+rather than names.
 
 **Q55 LRU Cache is on its third deferral** — carried out of Phase 06, then Phase 07,
 now due with Mock 11 alongside this phase's nine. It is not a tree problem and will
