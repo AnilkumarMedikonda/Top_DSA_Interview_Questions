@@ -2,26 +2,30 @@ import Foundation
 
 /*
 ==============================================================
+
 Pattern : DFS Postorder
+
 ==============================================================
 
 Work happens AFTER both recursive calls.
 
 Left → Right → Node
 
-Fires when information flows UP — the node cannot answer until
-it knows what its children returned. A height, a subtree sum,
-a "does this subtree qualify" flag.
+Information flows UP.
 
-This is the mirror of preorder:
-  preorder  pushes constraints DOWN
-  postorder pulls results UP
-Choosing between the two is the main skill in this phase.
+The node cannot calculate its answer until it knows what
+its children returned.
 
-The base case returns the IDENTITY — the value that leaves the
-answer unchanged for an empty subtree. 0 for heights and counts,
-Int.min for a maximum. Getting this wrong is the most common way
-the template breaks.
+This is the mirror of Preorder:
+
+Preorder  → pushes information DOWN
+Postorder → pulls information UP
+
+Typical examples:
+- Height
+- Diameter
+- Maximum Path Sum
+- Subtree calculations
 
 Problems : Q66, Q71, Q74
 
@@ -44,7 +48,6 @@ final class TreeNode {
     init(value: Int,
          left: TreeNode? = nil,
          right: TreeNode? = nil) {
-
         self.val = value
         self.left = left
         self.right = right
@@ -84,7 +87,6 @@ func buildTree(_ values: [Int?]) -> TreeNode? {
 
         // Right Child
         if index < values.count {
-
             if let rightValue = values[index] {
                 let node = TreeNode(value: rightValue)
                 current.right = node
@@ -100,7 +102,8 @@ func buildTree(_ values: [Int?]) -> TreeNode? {
 
 //==============================================================
 // MARK: - Template 1 : Plain Postorder
-// Left -> Right -> Node. Nothing comes back.
+//
+// Left -> Right -> Node
 //==============================================================
 
 func dfsPostorder(_ node: TreeNode?) {
@@ -112,14 +115,15 @@ func dfsPostorder(_ node: TreeNode?) {
     dfsPostorder(node.left)
     dfsPostorder(node.right)
 
-    // process node here — both children are already done
+    // Process Node LAST
     print(node.val, terminator: " ")
 }
 
 //==============================================================
 // MARK: - Template 2 : Postorder With Return Value
-// The parent waits for both children, then computes its answer.
-// This is the form that earns postorder its place.
+//
+// Children return information.
+// Parent uses that information.
 //==============================================================
 
 func treeHeight(_ node: TreeNode?) -> Int {
@@ -131,44 +135,40 @@ func treeHeight(_ node: TreeNode?) -> Int {
     let leftHeight = treeHeight(node.left)
     let rightHeight = treeHeight(node.right)
 
-    if leftHeight > rightHeight {
-        return leftHeight + 1
-    } else {
-        return rightHeight + 1
-    }
+    return max(leftHeight, rightHeight) + 1
 }
 
 //==============================================================
 // MARK: - Trace
 //
-//         10
-//        /  \
-//       5    20
-//      / \   / \
-//     3   7 15  25
+//             10
+//            /  \
+//           5    20
+//          / \   / \
+//         3   7 15  25
 //
-// Template 1 output : 3 7 5 15 25 20 10
+// Postorder:
+// Left → Right → Node
 //
-//   10  → go left, print nothing yet
-//     5  → go left, print nothing yet
-//       3  → both children nil, print 3, return
-//       7  → both children nil, print 7, return
-//     5  → both children done, print 5, return
-//    20  → go left
-//      15  → print 15, return
-//      25  → print 25, return
-//    20  → both children done, print 20, return
-//   10  → both subtrees done, print 10
+// Output:
+// 3 7 5 15 25 20 10
 //
-// The root prints LAST. Every child finishes before its parent
-// is touched — which is exactly why the parent can use what
-// they returned.
+// 10 → go left
+//   5 → go left
+//     3 → print 3
+//     7 → print 7
+//   5 → print 5
 //
-// treeHeight on the same tree returns 3:
+// 10 → go right
+//   20 → go left
+//     15 → print 15
+//     25 → print 25
+//   20 → print 20
 //
-//   3 and 7 and 15 and 25 → return 1 (leaves)
-//   5 and 20              → return 1 + 1 = 2
-//   10                    → return 2 + 1 = 3
+// 10 → both subtrees done
+// 10 → print 10
+//
+// Root prints LAST.
 //
 //==============================================================
 
@@ -182,16 +182,16 @@ let postorderRoot = buildTree([10, 5, 20, 3, 7, 15, 25])
 
 dfsPostorder(postorderRoot)
 print()
-// 3 7 5 15 25 20 10
+// Output: 3 7 5 15 25 20 10
 
 print(treeHeight(postorderRoot))
 // 3
 
 print(treeHeight(buildTree([1])))
-// 1 — single node counts as height 1, not 0
+// 1
 
 print(treeHeight(buildTree([])))
-// 0 — empty tree
+// 0
 
 print(treeHeight(buildTree([1, 2, nil, 3, nil, 4])))
-// 4 — left-skewed stick, every level adds one
+// 4

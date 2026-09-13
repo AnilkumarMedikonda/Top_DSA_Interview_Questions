@@ -2,28 +2,30 @@ import Foundation
 
 /*
 ==============================================================
-Pattern : DFS Inorder
+
+Pattern : DFS Preorder
+
 ==============================================================
 
-Work happens BETWEEN the two recursive calls.
+Work happens BEFORE the two recursive calls.
 
-Left → Node → Right
+Root → Left → Right
 
-On a BST, inorder emits values in SORTED ASCENDING ORDER.
-That single fact is the whole reason this pattern exists —
-it is the solution to Q70 and Q73.
+The current node is processed FIRST.
 
-On a non-BST, inorder is just an arbitrary visit order with no
-special meaning. Reach for it only when the tree is a BST and
-the answer depends on sorted order.
+That is the whole idea of Preorder —
 
-Limitation : recursive inorder always walks the entire tree.
-When you need to STOP partway — the kth value, the first match —
-the recursion cannot be interrupted. See Pattern 05, Iterative DFS.
+1. Process Node
+2. Traverse Left
+3. Traverse Right
 
-Problems : Q70, Q73
+Use this pattern when the current node needs to be handled
+before visiting its children.
+
+Problems : Q67, Q68
 
 Time  : O(n) — every node visited once
+
 Space : O(h) — call stack; O(log n) balanced, O(n) skewed
 
 ==============================================================
@@ -79,7 +81,6 @@ func buildTree(_ values: [Int?]) -> TreeNode? {
 
         // Right Child
         if index < values.count {
-
             if let rightValue = values[index] {
                 let rightNode = TreeNode(value: rightValue)
                 current.right = rightNode
@@ -94,72 +95,61 @@ func buildTree(_ values: [Int?]) -> TreeNode? {
 }
 
 //==============================================================
-// MARK: - Template : DFS Inorder
-// Left -> Node -> Right
+// MARK: - Template : DFS Preorder
+//
+// Root -> Left -> Right
 //==============================================================
 
-func dfsInorder(_ node: TreeNode?) {
+func dfsPreorder(_ node: TreeNode?) {
 
     guard let node = node else {
         return
     }
 
-    dfsInorder(node.left)
-
-    // process node here — on a BST, values arrive sorted
+    // Process node FIRST
     print(node.val, terminator: " ")
 
-    dfsInorder(node.right)
+    dfsPreorder(node.left)
+    dfsPreorder(node.right)
 }
 
 //==============================================================
 // MARK: - Trace
 //
-//         10
-//        /  \
-//       5    20
-//      / \   / \
-//     3   7 15  25
+//             10
+//            /  \
+//           5    20
+//          / \   / \
+//         3   7 15  25
 //
-// Output : 3 5 7 10 15 20 25
+// Output : 10 5 3 7 20 15 25
 //
-// Sorted. That is not a coincidence — it is the BST invariant
-// read out loud. Everything left of a node is smaller, so it
-// all gets printed first; everything right is larger, so it
-// all comes after.
+// Preorder starts at the current node.
 //
-// Descent order — the node is printed on the way BACK UP from
-// its left subtree, not on the way in:
+// 10 → print 10
+//    5 → print 5
+//      3 → print 3
+//      7 → print 7
+//    20 → print 20
+//      15 → print 15
+//      25 → print 25
 //
-//   10  → go left first, print nothing yet
-//     5  → go left first, print nothing yet
-//       3  → left is nil, print 3, right is nil, return
-//     5  → print 5, go right
-//       7  → print 7, return
-//   10  → left subtree done, print 10, go right
-//    20  → go left first
-//      15  → print 15, return
-//    20  → print 20, go right
-//      25  → print 25, return
+// The node is processed BEFORE going to its children.
 //
-// The whole left subtree finishes before the node is touched.
-// That is what "between the calls" means in practice.
+// That is what "before the recursive calls" means in practice.
+//
 //==============================================================
 
 //==============================================================
 // MARK: - Test
 //==============================================================
 
-print("\n========== Pattern 02 - DFS Inorder ==========")
+print("\n========== Pattern 01 - DFS Preorder ==========")
 
-let inorderRoot = buildTree([10, 5, 20, 3, 7, 15, 25])
+let preorderRoot = buildTree([10, 5, 20, 3, 7, 15, 25])
 
-dfsInorder(inorderRoot)
+dfsPreorder(preorderRoot)
+
 print()
-// 3 5 7 10 15 20 25 — sorted, because this tree is a BST
 
-let notABST = buildTree([5, 3, 8, nil, nil, 2, 9])
-
-dfsInorder(notABST)
-print()
-// 3 5 2 8 9 — NOT sorted, and that is exactly how Q70 detects it
+// 10 5 3 7 20 15 25
