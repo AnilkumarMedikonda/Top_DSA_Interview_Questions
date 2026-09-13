@@ -110,7 +110,7 @@ Found while writing the problems.
 The question that catches most of these: **is this value going down the tree or
 coming back up it?**
 
-### Caught in review
+### Caught while writing
 
 | # | The miss | Why it survived testing |
 |---|----------|-------------------------|
@@ -124,6 +124,27 @@ that moves it. **At the moment I read this, has anything already changed it?**
 
 Q73 is the one worth remembering — a correct answer with a wrong complexity is
 harder to spot than a wrong answer, because the tests all pass.
+
+---
+
+## 🔁 Revision — 🟡 (6 of 9)
+
+Blind rewrite of all nine. Six recalled clean: Q66, Q67, Q68, Q69, Q71, Q72.
+Three regressed — and every miss was a **boundary** condition, not a
+misremembered algorithm.
+
+| # | Problem | The miss |
+|---|---------|----------|
+| Q70 | Validate BST | Comparison written from the bound's side (`min > val`) instead of the node's (`val <= min`), dropping the equality — duplicates passed as valid |
+| Q73 | Kth Smallest | No `k > 0` in the guard, so the traversal never stopped. Every answer correct, complexity O(n) not O(h + k) — second time this exact miss |
+| Q74 | Max Path Sum | Seeded at 0 instead of `Int.min`; an all-negative tree returned 0, which is not a path |
+
+The question that catches all three: **what does this need to do at the boundary —
+empty, equal, negative, or already-found?**
+
+Regression tests added for two — `[2, 2, 2]` for Q70, `[-3]` and `[-3, -2, -1]`
+for Q74. Q73's miss has no test that catches it, since the answers stay correct;
+the warning lives in the file header instead.
 
 ---
 
@@ -155,15 +176,16 @@ harder to spot than a wrong answer, because the tests all pass.
 
 ## 📊 Status
 
-Prerequisites ✅ · Patterns 7/7 ✅ · Problems 9/9 ✅ · Revision ⏳ · Mock 11 ⏳
+Prerequisites ✅ · Patterns 7/7 ✅ · Problems 9/9 ✅ · Revision 🟡 (6/9) · Mock 11 ✅
 
-**PHASE 08 — problems done, revision and mock outstanding.**
+**PHASE 08 COMPLETE** — all six cycle steps done, no carry-over.
+
+Mock 11 covered Q66–Q74 and Q55 LRU Cache, clearing the deferral carried out of
+Phase 06 and Phase 07.
 
 Node property naming drifted across files during writing — `root`, `value`, `val`
-and `valu` all appeared. Standardised on `val`. Worth confirming the find-and-replace
-landed everywhere before the blind rewrite, so the revision pass tests algorithms
-rather than names.
+and `valu` all appeared. Standardised on `val`.
 
-**Q55 LRU Cache is on its third deferral** — carried out of Phase 06, then Phase 07,
-now due with Mock 11 alongside this phase's nine. It is not a tree problem and will
-not get absorbed by this phase's work; schedule it explicitly or it slips again.
+Two phases of revision data now point the same way: Phase 07's four misses were all
+**ordering**, Phase 08's three were all **boundary**. Neither was an algorithm.
+Worth watching in Phase 09.

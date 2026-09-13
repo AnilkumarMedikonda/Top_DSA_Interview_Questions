@@ -28,9 +28,9 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Problems Solved:** **74 / 85**
 
-**Mock Sessions Passed:** **7 / 15**
+**Mock Sessions Passed:** **8 / 15**
 
-**Current Focus:** Phase 08 — Trees & BST, revision and Mock 11
+**Current Focus:** Phase 09 — Advanced Patterns, Q75–Q85
 
 ---
 
@@ -45,8 +45,8 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 05 | Binary Search | Q39–Q47 | **9 / 9** | Mock 08 | ✅ |
 | 06 | Stack & Queue | Q48–Q56 | **9 / 9** | Mock 09 | ✅ |
 | 07 | Linked List | Q57–Q65 | **9 / 9** | Mock 10 | ✅ |
-| 08 | Trees & BST | Q66–Q74 | **9 / 9** | Mock 11 | 🔄 |
-| 09 | Advanced Patterns | Q75–Q85 | 0 / 11 | Mock 12 | ☐ |
+| 08 | Trees & BST | Q66–Q74 | **9 / 9** | Mock 11 | ✅ |
+| 09 | Advanced Patterns | Q75–Q85 | 0 / 11 | Mock 12 | 🔄 |
 
 
 A phase stays 🔄 until its mock is passed — problems solved is not the same as phase complete.
@@ -72,6 +72,7 @@ A phase stays 🔄 until its mock is passed — problems solved is not the same 
 - **Swift only.**
 - **No shortcuts while learning.** Manual loops wherever possible:
   - No `reduce`, `map`, `filter`, `stride`, `split`, `reversed`, `enumerated`
+    (`for _ in 0..<n` is fine for a plain repeat count)
   - No `swapAt`, `max()`, `min()`, `sorted()`, `abs()`
   - No `Int(String)`, `Array(String)`, `isNumber`, `wholeNumberValue`
   - No nil-coalescing (`?? 0`) — explicit `if let / else`
@@ -188,13 +189,13 @@ Each mock is cumulative. New mocks also include questions from previous phases.
 | Mock 08 | Binary Search | ✅ |
 | Mock 09 | Stack & Queue — Q48–Q54, Q56 | ✅ |
 | Mock 10 | Linked List — Q57–Q65 | ✅ |
-| Mock 11 | Trees & BST + Q55 LRU Cache | ☐ |
+| Mock 11 | Trees & BST — Q66–Q74 + Q55 LRU Cache | ✅ |
 | Mock 12 | Advanced Patterns | ☐ |
 | Mock 13 | Mixed DSA | ☐ |
 | Mock 14 | Company Style | ☐ |
 | Mock 15 | Final Assessment | ☐ |
 
-⚠️ Mock 03 (Q01–Q19 cumulative) drawn but not run. Mock 05 (Phases 01–03) due. Q55 LRU Cache revision + mock now due with Mock 11 — third deferral.
+⚠️ Mock 03 (Q01–Q19 cumulative) drawn but not run. Mock 05 (Phases 01–03) due. Both cumulative — outstanding out of sequence.
 
 ---
 
@@ -351,8 +352,8 @@ Covered Q48–Q54 and Q56. 7 of 8 recalled correct on the blind rewrite; the one
 regression was Q48's missing `else` on the mismatch branch — every test still
 passed because the unpopped opener failed the final `isEmpty` check.
 
-**Q55 LRU Cache is the exception** — written and working, but its revision and
-mock are still outstanding. Deferred past Phase 07; now due with Mock 11.
+**Q55 LRU Cache was the exception** — written and working, but its revision and
+mock were outstanding. Cleared in Mock 11.
 
 ---
 
@@ -424,14 +425,9 @@ Mock 10 covered Q57–Q65.
 
 **PHASE 07 COMPLETE** — all six cycle steps done, with one carry-over.
 
-**Q55 LRU Cache is still outstanding.** Its revision and mock were deferred from
-Phase 06 and did not get done here either. It now moves to Mock 11 alongside
-Trees & BST. Second deferral — worth doing on its own before Phase 08's problems
-rather than pushing it a third time.
-
 ---
 
-## 🔄 Phase 08 — Trees & BST (In Progress)
+## ✅ Phase 08 — Trees & BST (Complete)
 
 ### Prerequisites — ✅
 
@@ -439,7 +435,6 @@ rather than pushing it a third time.
 writing — the three traversal orders are patterns 01–03, height vs depth is Q66
 itself, level order is pattern 04, and the BST walk is pattern 06. Only the node
 type and the level-order builder were not covered elsewhere.
-
 
 ### Patterns — 7 / 7
 
@@ -462,7 +457,6 @@ marker so a left-only node is distinguishable from a right-only one.
 The distinction the phase turns on: **preorder pushes constraints down,
 postorder pulls results up.** Patterns 01 and 03 are the same six lines with
 the work on opposite sides of the recursive calls.
-__
 
 ### Problems — 9 / 9
 
@@ -491,7 +485,34 @@ complexity is harder to catch than a wrong answer, because the tests all pass.
 Node property naming drifted across files — `root`, `value`, `val` and `valu`
 all appeared. Standardised on `val`.
 
-**Revision and Mock 11 outstanding.**
+### Revision — 🟡 (6 of 9) · Mock 11 — ✅
+
+Blind rewrite of all nine. Six recalled clean: Q66, Q67, Q68, Q69, Q71, Q72.
+Three regressed — and every miss was a **boundary** condition, not a
+misremembered algorithm.
+
+| # | Problem | The miss |
+|---|---------|----------|
+| Q70 | Validate BST | Comparison written from the bound's side (`min > val`) instead of the node's (`val <= min`), dropping the equality — duplicates passed as valid |
+| Q73 | Kth Smallest | No `k > 0` in the guard, so the traversal never stopped. Every answer correct, complexity O(n) not O(h + k) — second time this exact miss |
+| Q74 | Max Path Sum | Seeded at 0 instead of `Int.min`; an all-negative tree returned 0, which is not a path |
+
+The question that catches all three: **what does this need to do at the
+boundary — empty, equal, negative, or already-found?**
+
+Regression tests added for two of them — `[2, 2, 2]` for Q70, `[-3]` and
+`[-3, -2, -1]` for Q74. Q73's miss has no test that catches it, since the
+answers stay correct; the warning lives in the file header instead.
+
+Mock 11 covered Q66–Q74 and Q55.
+
+**PHASE 08 COMPLETE** — all six cycle steps done, no carry-over.
+
+Two phases of revision data now point the same way: Phase 07's four misses
+were all **ordering**, Phase 08's three were all **boundary**. Neither was an
+algorithm. Worth watching in Phase 09.
+
+---
 
 # 💡 Repository Philosophy
 
@@ -510,7 +531,7 @@ For every problem:
 
 | Repository | Description |
 |------------|-------------|
-|**[DSA-Logic-and-Interview-Prep](https://github.com/AnilkumarMedikonda/DSA-Logic-and-Interview-Prep)** | 246 problems across 21 phases covering the complete DSA learning journey. | |
+| **[DSA-Logic-and-Interview-Prep](https://github.com/AnilkumarMedikonda/DSA-Logic-and-Interview-Prep)** | 246 problems across 21 phases covering the complete DSA learning journey. |
 | **[iOS-Architecture-Patterns](https://github.com/AnilkumarMedikonda/iOS-Architecture-Patterns)** | Swift, UIKit, and SwiftUI architecture patterns for iOS development. |
 
 ---
