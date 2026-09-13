@@ -26,25 +26,31 @@ recurse → undo, "best up to i" as a DP transition.
 
 ---
 
-## 📋 Prerequisites — ⏳
+## 📋 Prerequisites — ✅
 
-`Advanced_Patterns_Prerequisites` — five drills, all graph plumbing:
+`Advanced_Patterns_Prerequisites` — five drills, all graph and grid plumbing:
 
 | # | Drill | Feeds |
 |---|-------|-------|
-| D1 | Queue with a head index (no `removeFirst`) | Q78, Q79, Q80 |
+| D1 | BFS queue with a head index (no `removeFirst`) | Q78, Q79, Q80 |
 | D2 | Grid bounds check + four-direction neighbours | Q77, Q78 |
-| D3 | 2D visited array | Q77, Q78 |
-| D4 | Adjacency list from edge pairs | Q79, Q81 |
+| D3 | Visited tracking — `Set` for graphs, 2D `[[Bool]]` for grids | Q77, Q78 |
+| D4 | Adjacency list from edge pairs, directed and undirected | Q79, Q81 |
 | D5 | Indegree array | Q79 |
 
-**Open question before writing:** none of the five covers the heap, and Q75/Q76
-both need one. Either D6 gets added, or the heap lives entirely inside pattern
-01 as template code. Worth deciding first — it changes what 01 has to carry.
+A sixth drill for the heap was proposed and cut — the index arithmetic is used
+nowhere outside the heap itself, so it lives in pattern 01 rather than as a
+standalone drill with no second consumer.
 
 D1 matters more than it looks. `removeFirst` on a Swift array is O(n), so a BFS
 written with it is quietly O(V²) — the answers stay correct and the complexity
 header becomes a lie. Same failure mode as Q73 in Phase 08.
+
+Corrections made on review: three of the five drills were missing on the first
+pass (D2, D3, D5 — the grid and Kahn's plumbing); the adjacency-list builders
+sat at file scope rather than in functions; and space was headed O(V) where the
+function allocates the list itself, which is O(V + E). The understated-complexity
+miss is now four phases old.
 
 ---
 
@@ -54,13 +60,20 @@ Template code only — generic skeleton, neutral name, no named LeetCode solutio
 
 | # | Pattern | What it is | Problems | Status |
 |---|---------|------------|----------|:------:|
-| 01 | Heap | Array + invariant; sift up on insert, sift down on removal | Q75, Q76 | ⏳ |
+| 01 | Heap | Index arithmetic, sift up on insert, sift down on removal | Q75, Q76 | ⏳ |
 | 02 | Graph_DFS | Recurse into all neighbours, mark visited *before* recursing | Q77 | ⏳ |
 | 03 | Graph_BFS | Queue + level-size snapshot when distance matters | Q78, Q80 | ⏳ |
 | 04 | Topological_Sort | Kahn's — indegree queue, short count means cycle | Q79 | ⏳ |
 | 05 | Union_Find | Find with path compression, union by rank | Q81 | ⏳ |
 | 06 | Backtracking | Choose → recurse → undo | Q82, Q83 | ⏳ |
 | 07 | Dynamic_Programming | State as "answer ending at i", then the transition | Q84, Q85 | ⏳ |
+
+
+Parent is `(i - 1) / 2`, children `2i + 1` and `2i + 2`. Pattern 01 carries the
+index arithmetic as well as the type, since the prerequisites file deliberately
+does not. Both sift directions are needed: Q75 removes, Q76 removes and inserts
+on every step. It is the largest template file in the repo and the other six are
+short by comparison.
 
 Ten proposed, cut to seven on review. `Trie`, `Greedy` and
 `Binary_Search_On_Answer` dropped — no Q75–Q85 problem behind any of them.
@@ -190,9 +203,9 @@ heap size.
 
 ## 📊 Status
 
-Prerequisites ⏳ · Patterns 0/7 ⏳ · Problems 0/11 ⏳ · Revision ⏳ · Mock 12 ⏳
+Prerequisites ✅ · Patterns 0/7 ⏳ · Problems 0/11 ⏳ · Revision ⏳ · Mock 12 ⏳
 
-**PHASE 09 NOT STARTED.**
+**PHASE 09 IN PROGRESS** — step 1 of 6 done.
 
 Branch: `phase_09_advanced_patterns`. Mock branch: `mock_12_phase_09`.
 
