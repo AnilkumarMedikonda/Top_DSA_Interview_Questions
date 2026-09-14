@@ -26,11 +26,9 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 # 📊 Progress
 
-**Problems Solved:** **74 / 85**
+**Problems Solved:** **76 / 85**
 
-**Mock Sessions Passed:** **8 / 15**
-
-**Current Focus:** Phase 09 — Advanced Patterns, Q75–Q85
+**Current Focus:** Phase 09 — Advanced Patterns, Q77–Q85
 
 ---
 
@@ -46,8 +44,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 06 | Stack & Queue | Q48–Q56 | **9 / 9** | Mock 09 | ✅ |
 | 07 | Linked List | Q57–Q65 | **9 / 9** | Mock 10 | ✅ |
 | 08 | Trees & BST | Q66–Q74 | **9 / 9** | Mock 11 | ✅ |
-| 09 | Advanced Patterns | Q75–Q85 | 0 / 11 | Mock 12 | 🔄 |
-
+| 09 | Advanced Patterns | Q75–Q85 | 2 / 11 | Mock 12 | 🔄 |
 
 A phase stays 🔄 until its mock is passed — problems solved is not the same as phase complete.
 
@@ -511,6 +508,66 @@ Mock 11 covered Q66–Q74 and Q55.
 Two phases of revision data now point the same way: Phase 07's four misses
 were all **ordering**, Phase 08's three were all **boundary**. Neither was an
 algorithm. Worth watching in Phase 09.
+
+
+---
+
+## 🔄 Phase 09 — Advanced Patterns (In Progress)
+
+### Prerequisites — ✅
+
+5 drills: BFS queue with head index, grid bounds + four-direction neighbours,
+visited tracking (`Set` for graphs, 2D `[[Bool]]` for grids), adjacency list
+from edge pairs, indegree array.
+
+A sixth heap drill was cut — the index arithmetic has no consumer outside the
+heap itself, so it lives in pattern 01.
+
+Three of the five were missing on the first pass (grid bounds, 2D visited,
+indegree) and the adjacency-list space was headed O(V) where the function
+allocates the list. The understated-complexity miss is now four phases old.
+
+### Patterns — 7 / 7
+
+- ✅ 01_Heap — Q75, Q76
+- ✅ 02_Graph_DFS — Q77
+- ✅ 03_Graph_BFS — Q78, Q80
+- ✅ 04_Topological_Sort — Q79
+- ✅ 05_Union_Find — Q81
+- ✅ 06_Backtracking — Q82, Q83
+- ✅ 07_Dynamic_Programming — Q84, Q85
+
+Ten proposed, cut to seven on review: `Trie`, `Greedy` and
+`Binary_Search_On_Answer` dropped — no Q75–Q85 problem behind any of them.
+
+Known gaps carried forward: `05_Union_Find` still holds the LC684 solution and
+debug logging inside it, and `06_Backtracking` prints rather than returning.
+Both work; neither is reusable as a template yet.
+
+### Problems — 2 / 11
+
+- ✅ Q75 — Kth Largest Element In An Array (LC215)
+- ✅ Q76 — Merge K Sorted Lists (LC023)
+- ☐ Q77 — Number Of Islands (LC200)
+- ☐ Q78 — Rotting Oranges (LC994)
+- ☐ Q79 — Course Schedule (LC207)
+- ☐ Q80 — Word Ladder (LC127)
+- ☐ Q81 — Redundant Connection (LC684)
+- ☐ Q82 — Subsets (LC078)
+- ☐ Q83 — Combination Sum (LC039)
+- ☐ Q84 — House Robber (LC198)
+- ☐ Q85 — Longest Increasing Subsequence (LC300)
+
+### Caught in review
+
+| # | The miss | Why it survived testing |
+|---|----------|-------------------------|
+| Q76 | `heapifyUp` broke on `<` instead of `<=` | Equal values kept climbing and swapping — correct output, wasted work |
+| Q76 | Last node kept its original `next` | Nil by luck on these inputs, not by construction |
+
+The heap is now written three times — pattern 01, Q75, and Q76 with a
+`ListNode` payload. The generic version would have prevented that; the two-class
+`Int`-only decision is what cost it.
 
 ---
 
