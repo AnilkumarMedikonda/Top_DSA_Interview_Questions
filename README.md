@@ -26,9 +26,11 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 # 📊 Progress
 
-**Problems Solved:** **76 / 85**
+**Problems Solved:** **85 / 85**
 
-**Current Focus:** Phase 09 — Advanced Patterns, Q77–Q85
+**Mock Sessions Passed:** **8 / 15**
+
+**Current Focus:** Phase 09 — Revision, then Mock 12
 
 ---
 
@@ -44,7 +46,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 06 | Stack & Queue | Q48–Q56 | **9 / 9** | Mock 09 | ✅ |
 | 07 | Linked List | Q57–Q65 | **9 / 9** | Mock 10 | ✅ |
 | 08 | Trees & BST | Q66–Q74 | **9 / 9** | Mock 11 | ✅ |
-| 09 | Advanced Patterns | Q75–Q85 | 2 / 11 | Mock 12 | 🔄 |
+| 09 | Advanced Patterns | Q75–Q85 | **11 / 11** | Mock 12 | 🔄 |
 
 A phase stays 🔄 until its mock is passed — problems solved is not the same as phase complete.
 
@@ -70,7 +72,7 @@ A phase stays 🔄 until its mock is passed — problems solved is not the same 
 - **No shortcuts while learning.** Manual loops wherever possible:
   - No `reduce`, `map`, `filter`, `stride`, `split`, `reversed`, `enumerated`
     (`for _ in 0..<n` is fine for a plain repeat count)
-  - No `swapAt`, `max()`, `min()`, `sorted()`, `abs()`
+      - No `max()`, `min()`, `sorted()`, `abs()` (`swapAt` is accepted)
   - No `Int(String)`, `Array(String)`, `isNumber`, `wholeNumberValue`
   - No nil-coalescing (`?? 0`) — explicit `if let / else`
   - No force unwraps, no force casts
@@ -88,7 +90,6 @@ A phase stays 🔄 until its mock is passed — problems solved is not the same 
 - Edge cases are documented.
 - **No pattern file without a problem behind it.** A pattern that no question in the phase actually needs does not get a file.
 - A phase is complete only after passing its mock interview.
-
 ---
 
 # 📚 Learning Approach
@@ -527,6 +528,7 @@ Three of the five were missing on the first pass (grid bounds, 2D visited,
 indegree) and the adjacency-list space was headed O(V) where the function
 allocates the list. The understated-complexity miss is now four phases old.
 
+
 ### Patterns — 7 / 7
 
 - ✅ 01_Heap — Q75, Q76
@@ -544,30 +546,45 @@ Known gaps carried forward: `05_Union_Find` still holds the LC684 solution and
 debug logging inside it, and `06_Backtracking` prints rather than returning.
 Both work; neither is reusable as a template yet.
 
-### Problems — 2 / 11
+### Problems — 11 / 11
 
 - ✅ Q75 — Kth Largest Element In An Array (LC215)
 - ✅ Q76 — Merge K Sorted Lists (LC023)
-- ☐ Q77 — Number Of Islands (LC200)
-- ☐ Q78 — Rotting Oranges (LC994)
-- ☐ Q79 — Course Schedule (LC207)
-- ☐ Q80 — Word Ladder (LC127)
-- ☐ Q81 — Redundant Connection (LC684)
-- ☐ Q82 — Subsets (LC078)
-- ☐ Q83 — Combination Sum (LC039)
-- ☐ Q84 — House Robber (LC198)
-- ☐ Q85 — Longest Increasing Subsequence (LC300)
+- ✅ Q77 — Number Of Islands (LC200)
+- ✅ Q78 — Rotting Oranges (LC994)
+- ✅ Q79 — Course Schedule (LC207)
+- ✅ Q80 — Word Ladder (LC127)
+- ✅ Q81 — Redundant Connection (LC684)
+- ✅ Q82 — Subsets (LC078)
+- ✅ Q83 — Combination Sum (LC039)
+- ✅ Q84 — House Robber (LC198)
+- ✅ Q85 — Longest Increasing Subsequence (LC300)
 
 ### Caught in review
 
 | # | The miss | Why it survived testing |
 |---|----------|-------------------------|
+| 02 | `explore(node)` instead of `explore(neighbour)` | The visited guard bounced it immediately — no crash, no hang, the traversal silently visited only the start node |
+| 04 | No `result.count != graph.count` check after the drain | A partial cycle returns a non-empty, plausible array with half the graph missing. That comparison IS Q207 |
 | Q76 | `heapifyUp` broke on `<` instead of `<=` | Equal values kept climbing and swapping — correct output, wasted work |
 | Q76 | Last node kept its original `next` | Nil by luck on these inputs, not by construction |
+| Q80 | `characters[i]` never restored after varying position i | Position i+1 was varied against a corrupted word. Every bad candidate just missed the set and was discarded, so all four original tests passed |
+
+
+Q80 is the one to remember, and it is the third instance of the same family: a
+correct answer produced by a broken mechanism. Q73 in Phase 08 was O(n) claiming
+O(h+k); pattern 02 here visited one node and reported success. Regression test
+added — `ladderLength("hit", "hig", ["hig"])` forces the answer through
+position 2, which returns 0 without the restore.
+
+Q79 briefly had a local `createGraph` building a *directed* graph while the
+`Sources/Helpers.swift` function of the same name built an *undirected* one.
+Same name, opposite behaviour, both in scope.
 
 The heap is now written three times — pattern 01, Q75, and Q76 with a
 `ListNode` payload. The generic version would have prevented that; the two-class
-`Int`-only decision is what cost it.
+`Int`-only decision is what cost it.]
+
 
 ---
 

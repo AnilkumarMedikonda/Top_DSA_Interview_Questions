@@ -66,7 +66,7 @@ Template code only — generic skeleton, neutral name, no named LeetCode solutio
 | 04 | Topological_Sort | Kahn's — indegree queue, short count means cycle | Q79 | ✅ |
 | 05 | Union_Find | Find with path compression, union by rank | Q81 | ✅ |
 | 06 | Backtracking | Choose → recurse → undo | Q82, Q83 | ✅ |
-| 07 | Dynamic_Programming | State as "answer ending at i", then the transition | Q84, Q85 | ✅ |
+| 07 | Dynamic_Programming | Cumulative and ending-at skeletons | Q84, Q85 | ✅ |
 
 Ten proposed, cut to seven on review. `Trie`, `Greedy` and
 `Binary_Search_On_Answer` dropped — no Q75–Q85 problem behind any of them.
@@ -93,11 +93,12 @@ rule, but it is the highest write-cost file in the phase for the least reuse.
 **Known gaps carried forward.** `05_Union_Find` still holds the LC684 solution
 and its debug logging inside the pattern file, and `06_Backtracking` prints
 rather than returning a result. Both work; neither is reusable as a template
-yet, which is what the pattern/problem split exists for.
+yet, which is what the pattern/problem split exists for. Q81 was written from
+scratch rather than off the template as a result.
 
 ---
 
-## 📝 Problems — 2 / 11
+## 📝 Problems — 11 / 11 ✅
 
 Kept in pattern order. No easy → medium → hard renumbering this phase; the
 grouping by tool is more useful than the grouping by difficulty when the whole
@@ -107,15 +108,15 @@ point is tool selection.
 |---|-----|---------|-------|---------|------|-------|:------:|
 | Q75 | 215 | Kth Largest Element In An Array | 🟡 Medium | 01 | O(n log k) | O(k) | ✅ |
 | Q76 | 023 | Merge K Sorted Lists | 🔴 Hard | 01 | O(N log k) | O(k) | ✅ |
-| Q77 | 200 | Number Of Islands | 🟡 Medium | 02 | O(m·n) | O(m·n) | ☐ |
-| Q78 | 994 | Rotting Oranges | 🟡 Medium | 03 | O(m·n) | O(m·n) | ☐ |
-| Q79 | 207 | Course Schedule | 🟡 Medium | 04 | O(V+E) | O(V+E) | ☐ |
-| Q80 | 127 | Word Ladder | 🔴 Hard | 03 | O(N·L²) | O(N·L²) | ☐ |
-| Q81 | 684 | Redundant Connection | 🟡 Medium | 05 | O(n·α(n)) | O(n) | ☐ |
-| Q82 | 078 | Subsets | 🟡 Medium | 06 | O(n·2ⁿ) | O(n) | ☐ |
-| Q83 | 039 | Combination Sum | 🟡 Medium | 06 | O(n^(t/m)) | O(t/m) | ☐ |
-| Q84 | 198 | House Robber | 🟡 Medium | 07 | O(n) | O(1) | ☐ |
-| Q85 | 300 | Longest Increasing Subsequence | 🟡 Medium | 07 | O(n²) | O(n) | ☐ |
+| Q77 | 200 | Number Of Islands | 🟡 Medium | 02 | O(m·n) | O(m·n) | ✅ |
+| Q78 | 994 | Rotting Oranges | 🟡 Medium | 03 | O(m·n) | O(m·n) | ✅ |
+| Q79 | 207 | Course Schedule | 🟡 Medium | 04 | O(V+E) | O(V+E) | ✅ |
+| Q80 | 127 | Word Ladder | 🔴 Hard | 03 | O(N·L²) | O(N·L) | ✅ |
+| Q81 | 684 | Redundant Connection | 🟡 Medium | 05 | O(E·H) | O(V) | ✅ |
+| Q82 | 078 | Subsets | 🟡 Medium | 06 | O(n·2ⁿ) | O(n) | ✅ |
+| Q83 | 039 | Combination Sum | 🟡 Medium | 06 | O(n^(t/m)) | O(t/m) | ✅ |
+| Q84 | 198 | House Robber | 🟡 Medium | 07 | O(n) | O(1) | ✅ |
+| Q85 | 300 | Longest Increasing Subsequence | 🟡 Medium | 07 | O(n²) | O(n) | ✅ |
 
 Three facts do most of the work in this phase: **a size-k heap beats a full sort
 whenever k is small**, **BFS counts levels and DFS does not**, and **the DP answer
@@ -127,11 +128,14 @@ here.
 Q76 re-declares `ListNode` locally rather than referencing Phase 07, so the
 playground page compiles standalone.
 
+Q81 uses a plain parent array with neither path compression nor union by rank —
+deliberate, since n ≤ 1000 makes the simple version fast enough, but it means
+the file's O(E·H) degrades to O(E·V) in the worst case where the template's
+would be O(E·α(n)). The trade is documented in the file header.
+
 ---
 
 ## ⚠️ Wrong Tool Traps
-
-Predicted from the problem statements. Confirm or correct after solving.
 
 | # | Reaches for | Should reach for |
 |---|-------------|------------------|
@@ -140,7 +144,7 @@ Predicted from the problem statements. Confirm or correct after solving.
 | Q77 | BFS | DFS — needs no queue, and sinking the cell replaces the visited array |
 | Q78 | DFS from each rotten orange | Multi-source BFS; DFS overwrites shorter distances |
 | Q79 | DFS without on-path state | A revisited node is only a cycle if it is on the *current* path |
-| Q80 | Comparing every word pair to build edges | Wildcard buckets — pairwise is O(N²·L) before BFS starts |
+| Q80 | Comparing every word pair to build edges | Generated neighbours — pairwise is O(N²·L) before BFS starts |
 | Q81 | Re-running DFS after each insert | DSU answers it in one pass |
 | Q82 | Recording only at the leaf | Every node is a subset, not just the bottom row |
 | Q83 | Advancing the index after choosing | Stay on the same index — reuse is allowed |
@@ -163,11 +167,23 @@ in exactly those two lines and nothing else.
 | 04 | No `result.count != graph.count` check after the drain | A partial cycle returns a non-empty, plausible-looking array with half the graph missing. That comparison IS Q207 |
 | Q76 | `heapifyUp` broke on `<` instead of `<=` | Equal values kept climbing and swapping. Output correct, work wasted — and this input has two 1s and two 4s |
 | Q76 | Last merged node kept its original `next` | Nil by luck on these inputs, not by construction |
+| Q80 | `characters[i]` never restored after varying position i | Position i+1 was varied against a corrupted word. Every bad candidate just missed the set and was discarded, so all four original tests passed |
+
+Q80 is the one to remember, and it is the third instance of the same family: a
+correct answer produced by a broken mechanism. Q73 in Phase 08 was O(n) claiming
+O(h+k); pattern 02 here visited one node and reported success. The tests cannot
+see any of them. Regression test added — `ladderLength("hit", "hig", ["hig"])`
+forces the answer through position 2, which returns 0 without the restore.
 
 The heap is now written three times — pattern 01, Q75, and Q76 with a `ListNode`
 payload. A generic `Heap<Element>` with an ordering closure would have collapsed
 all three into one; the two-class `Int`-only decision is what cost it. Worth
 remembering before the next phase that needs a priority queue.
+
+Q79 briefly had a local `createGraph` that built a *directed* graph while the
+`Sources/Helpers.swift` function of the same name built an *undirected* one.
+Same name, opposite behaviour, both in scope. Resolved by deleting the local
+copy and using `createDirectedGraph`.
 
 ---
 
@@ -181,10 +197,13 @@ four misses were all **ordering** — reading or nil-ing a pointer at the wrong
 moment. Phase 08's three were all **boundary** — equality, empty, negative.
 Neither was ever a misremembered algorithm.
 
-Phase 09 has fresh surface for both. Ordering risk: marking visited *after*
-enqueue instead of before, which lets the same cell enter the queue twice.
-Boundary risk: `Int.min` seeds, the empty-grid guard, and `k` vs `k - 1` in the
-heap size.
+Phase 09's writing misses were neither: they were **mechanism** errors, where
+the wrong thing is computed but the right answer comes out anyway. Watch for
+that shape on the rewrite, and check the trace rather than the output.
+
+Specific risks: marking visited *after* enqueue instead of before; the
+`characters[i]` restore in Q80; `Int.min` seeds; the empty-grid guard; and
+`k` vs `k - 1` in the heap size.
 
 ---
 
@@ -196,6 +215,8 @@ heap size.
   repeated work is the whole reason memoization exists.
 - No built-in helpers — no `reduce`, `map`, `filter`, `stride`, `enumerated`,
   `reversed`, `sorted`, `min`, `max`, `removeFirst`. `swapAt` is accepted.
+  `Array(String)` and `String([Character])` are permitted in Q80, where the
+  transformation is character-wise and the lookup is word-wise.
   `for _ in 0..<n` is fine for a plain repeat count. Manual loops otherwise.
   Shared helpers live in `Sources/`, never pasted per file.
 - No force unwraps. No `?? 0` — explicit `if let` / `else`.
@@ -217,9 +238,9 @@ heap size.
 
 ## 📊 Status
 
-Prerequisites ✅ · Patterns 7/7 ✅ · Problems 2/11 🔄 · Revision ⏳ · Mock 12 ⏳
+Prerequisites ✅ · Patterns 7/7 ✅ · Problems 11/11 ✅ · Revision ⏳ · Mock 12 ⏳
 
-**PHASE 09 IN PROGRESS** — steps 1–2 of 6 done, step 3 underway.
+**PHASE 09 IN PROGRESS** — steps 1–3 of 6 done. Revision next.
 
 Branch: `phase_09_advanced_patterns`. Mock branch: `mock_12_phase_09`.
 
