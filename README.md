@@ -28,9 +28,9 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Problems Solved:** **85 / 85**
 
-**Mock Sessions Passed:** **8 / 15**
+**Mock Sessions Passed:** **9 / 12**
 
-**Current Focus:** Phase 09 — Revision, then Mock 12
+**Current Focus:** Full revision pass — Q01 through Q85
 
 ---
 
@@ -40,13 +40,13 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 |------|-------|----------:|---------:|------|:------:|
 | 01 | Arrays | Q01–Q10 | **10 / 10** | Mock 01 | ✅ |
 | 02 | Two Pointers | Q11–Q19 | **9 / 9** | Mock 02 | ✅ |
-| 03 | Strings & Hashing | Q20–Q29 | **10 / 10** | Mock 04 | ✅ |
-| 04 | Sliding Window | Q30–Q38 | **9 / 9** | Mock 06 | ✅ |
-| 05 | Binary Search | Q39–Q47 | **9 / 9** | Mock 08 | ✅ |
-| 06 | Stack & Queue | Q48–Q56 | **9 / 9** | Mock 09 | ✅ |
-| 07 | Linked List | Q57–Q65 | **9 / 9** | Mock 10 | ✅ |
-| 08 | Trees & BST | Q66–Q74 | **9 / 9** | Mock 11 | ✅ |
-| 09 | Advanced Patterns | Q75–Q85 | **11 / 11** | Mock 12 | 🔄 |
+| 03 | Strings & Hashing | Q20–Q29 | **10 / 10** | Mock 03 | ✅ |
+| 04 | Sliding Window | Q30–Q38 | **9 / 9** | Mock 04 | ✅ |
+| 05 | Binary Search | Q39–Q47 | **9 / 9** | Mock 05 | ✅ |
+| 06 | Stack & Queue | Q48–Q56 | **9 / 9** | Mock 06 | ✅ |
+| 07 | Linked List | Q57–Q65 | **9 / 9** | Mock 07 | ✅ |
+| 08 | Trees & BST | Q66–Q74 | **9 / 9** | Mock 08 | ✅ |
+| 09 | Advanced Patterns | Q75–Q85 | **11 / 11** | Mock 09 | ✅ |
 
 A phase stays 🔄 until its mock is passed — problems solved is not the same as phase complete.
 
@@ -72,8 +72,10 @@ A phase stays 🔄 until its mock is passed — problems solved is not the same 
 - **No shortcuts while learning.** Manual loops wherever possible:
   - No `reduce`, `map`, `filter`, `stride`, `split`, `reversed`, `enumerated`
     (`for _ in 0..<n` is fine for a plain repeat count)
-      - No `max()`, `min()`, `sorted()`, `abs()` (`swapAt` is accepted)
-  - No `Int(String)`, `Array(String)`, `isNumber`, `wholeNumberValue`
+  - No `sorted()`, `abs()` — `swapAt`, `min()` and `max()` are accepted
+  - No `Int(String)`, `isNumber`, `wholeNumberValue`
+    (`Array(String)` and `String([Character])` are permitted in Q80, where the
+    transformation is character-wise and the lookup is word-wise)
   - No nil-coalescing (`?? 0`) — explicit `if let / else`
   - No force unwraps, no force casts
 - **Brute force where it teaches something.** Baselines that use the same data
@@ -84,12 +86,15 @@ A phase stays 🔄 until its mock is passed — problems solved is not the same 
   exception is the exponential naive versions in Phase 09's backtracking and DP
   problems, where the repeated work is the whole reason memoization exists.
 - Shared helpers live in the phase's `Sources/` folder, never pasted per file.
+- Never name a local after a function used in the same scope — `maximum`, not `max`.
+- Declare nested helper functions before the loop that calls them.
 - **Test prints:** `print("\n========== Q## - Problem Name ==========")` per problem, then one print per case with the expected answer as an inline comment.
 - Every solution includes interview discussion.
 - Every problem includes complexity analysis with reasoning.
 - Edge cases are documented.
 - **No pattern file without a problem behind it.** A pattern that no question in the phase actually needs does not get a file.
 - A phase is complete only after passing its mock interview.
+
 ---
 
 # 📚 Learning Approach
@@ -173,27 +178,22 @@ Top_DSA_Interview_Questions/
 
 # 🎯 Mock Interview Plan
 
-Each mock is cumulative. New mocks also include questions from previous phases.
+One mock per phase, in phase order, plus three at the end.
 
 | Mock | Covers | Status |
 |------|--------|:------:|
-| Mock 01 | Arrays | ✅ |
-| Mock 02 | Two Pointers | ✅ |
-| Mock 03 | Arrays + Two Pointers | ☐ |
-| Mock 04 | Strings & Hashing | ✅ |
-| Mock 05 | Phases 01–03 | ☐ |
-| Mock 06 | Sliding Window | ✅ |
-| Mock 07 | Phases 01–04 | ☐ |
-| Mock 08 | Binary Search | ✅ |
-| Mock 09 | Stack & Queue — Q48–Q54, Q56 | ✅ |
-| Mock 10 | Linked List — Q57–Q65 | ✅ |
-| Mock 11 | Trees & BST — Q66–Q74 + Q55 LRU Cache | ✅ |
-| Mock 12 | Advanced Patterns | ☐ |
-| Mock 13 | Mixed DSA | ☐ |
-| Mock 14 | Company Style | ☐ |
-| Mock 15 | Final Assessment | ☐ |
-
-⚠️ Mock 03 (Q01–Q19 cumulative) drawn but not run. Mock 05 (Phases 01–03) due. Both cumulative — outstanding out of sequence.
+| Mock 01 | Phase 01 — Arrays, Q01–Q10 | ✅ |
+| Mock 02 | Phase 02 — Two Pointers, Q11–Q19 | ✅ |
+| Mock 03 | Phase 03 — Strings & Hashing, Q20–Q29 | ✅ |
+| Mock 04 | Phase 04 — Sliding Window, Q30–Q38 | ✅ |
+| Mock 05 | Phase 05 — Binary Search, Q39–Q47 | ✅ |
+| Mock 06 | Phase 06 — Stack & Queue, Q48–Q56 | ✅ |
+| Mock 07 | Phase 07 — Linked List, Q57–Q65 | ✅ |
+| Mock 08 | Phase 08 — Trees & BST, Q66–Q74 | ✅ |
+| Mock 09 | Phase 09 — Advanced Patterns, Q75–Q85 | ✅ |
+| Mock 10 | Mixed DSA | ☐ |
+| Mock 11 | Company Style | ☐ |
+| Mock 12 | Final Assessment | ☐ |
 
 ---
 
@@ -255,7 +255,7 @@ Mock 02 passed.
 - ✅ Q28 — Word Pattern (LC290)
 - ✅ Q29 — First Unique Character in a String (LC387)
 
-Revision done. Mock 04 passed.
+Revision done. Mock 03 passed.
 
 ## ✅ Phase 04 — Sliding Window (Complete)
 
@@ -284,13 +284,13 @@ Revision done. Mock 04 passed.
 - ✅ Q37 — Minimum Size Subarray Sum (LC209)
 - ✅ Q38 — Sliding Window Maximum (LC239)
 
-Revision done — 9 rewritten from memory, 5 clean first pass. Mock 06 passed.
+Revision done — all 9 rewritten from memory, all eventually correct. Mock 04 passed.
 
 ## ✅ Phase 05 — Binary Search (Complete)
 
-### Prerequisites — 🟡
+### Prerequisites — ✅
 
-Drills D1–D4 done: overflow-safe mid, isSorted, linearSearch (the O(n) baseline), halvingCount (the log n proof). `maxOf` / `sumOf` / `ceilDivide` live inside pattern 03 where the answer-space problems use them.
+Drills D1–D4: overflow-safe mid, isSorted, linearSearch (the O(n) baseline), halvingCount (the log n proof). `maxOf` / `sumOf` / `ceilDivide` live inside pattern 03 where the answer-space problems use them.
 
 ### Patterns — 6 / 6
 
@@ -313,7 +313,7 @@ Drills D1–D4 done: overflow-safe mid, isSorted, linearSearch (the O(n) baselin
 - ✅ Q46 — Capacity to Ship Packages Within D Days (LC1011)
 - ✅ Q47 — Split Array Largest Sum (LC410)
 
-Revision done — all 9 optimals rewritten from memory, 9/9 recalled correct. Mock 08 passed.
+Revision done — all 9 optimals rewritten from memory, 9/9 recalled correct. Mock 05 passed.
 
 ## ✅ Phase 06 — Stack & Queue (Complete)
 
@@ -330,8 +330,6 @@ Revision done — all 9 optimals rewritten from memory, 9/9 recalled correct. Mo
 - ✅ 05_Two_Stack_Queue — Q53
 - ✅ 06_HashMap_Doubly_Linked_List — Q55
 
-Cut before writing: `Stack_Basics` and `Queue_Basics` (duplicate Prerequisites), `Previous_Greater_Element` (no problem behind it). `Next_Greater_Element` merged into `01_Monotonic_Stack` — NGE *is* the template. `06` added because Q55 was otherwise uncovered.
-
 ### Problems — 9 / 9
 
 - ✅ Q48 — Valid Parentheses (LC020)
@@ -344,14 +342,15 @@ Cut before writing: `Stack_Basics` and `Queue_Basics` (duplicate Prerequisites),
 - ✅ Q55 — LRU Cache (LC146)
 - ✅ Q56 — Next Greater Element I (LC496)
 
-### Revision — ✅ (8 of 9) · Mock 09 — ✅
+### Revision — ✅ (9 of 9) · Mock 06 — ✅
 
-Covered Q48–Q54 and Q56. 7 of 8 recalled correct on the blind rewrite; the one
-regression was Q48's missing `else` on the mismatch branch — every test still
-passed because the unpopped opener failed the final `isEmpty` check.
+All nine rewritten blind, all eventually correct. The one regression was Q48's
+missing `else` on the mismatch branch — every test still passed because the
+unpopped opener failed the final `isEmpty` check.
 
-**Q55 LRU Cache was the exception** — written and working, but its revision and
-mock were outstanding. Cleared in Mock 11.
+**Q55 LRU Cache** — revision done: blind rewrite clean on the first pass,
+HashMap plus doubly linked list, dummy head and tail sentinels, and eviction
+removing from both the list and the dictionary.
 
 ---
 
@@ -372,13 +371,6 @@ insert and delete by position and by node, identity via `===`, split-and-nil.
 - ✅ 06_K_Group_Reverse — Q65
 - ✅ 07_Random_Pointer_Clone — Q63
 
-Cut before writing: `Linked_List_Basics` (duplicate Prerequisites).
-`Cycle_Detection` merged into `03_Slow_Fast_Pointer` — Floyd's *is* that loop
-with `===` instead of a nil check. `Two_Pointers` renamed `04_Fixed_Gap_Pointer`;
-everything in a linked-list phase is two pointers, the fixed gap is the mechanism.
-
-Problems reordered easy → medium → hard: four easy, four medium, one hard.
-
 ### Problems — 9 / 9
 
 - ✅ Q57 — Reverse Linked List (LC206)
@@ -391,21 +383,11 @@ Problems reordered easy → medium → hard: four easy, four medium, one hard.
 - ✅ Q64 — Reorder List (LC143)
 - ✅ Q65 — Reverse Nodes In K Group (LC025)
 
-Recurring miss this phase: writing a pointer MOVE where a list EDIT belonged —
-`current = node` instead of `current = nextNode`, or `node.next = node`. Three
-times across the drills and once in a reverse attempt. It never produces a wrong
-answer; it produces an infinite loop or a self-cycle.
+### Revision — ✅ (9 of 9) · Mock 07 — ✅
 
-Two silent bugs caught only by identity assertions: `==` instead of `===` in Q59
-(passes until two nodes share a value), and a double dereference `node.random?.random`
-in Q63 (invisible when random points at itself). Both now have permanent regression
-tests — `[1,1,1,1]` with no cycle, and `p.random = q` with `q.random` nil.
-
-### Revision — 🟡 (5 of 9) · Mock 10 — ✅
-
-Blind rewrite of all nine. Five recalled clean: Q57, Q58, Q59, Q60, Q61.
-Four regressed, plus two shared helpers — and every miss was an **ordering**
-error, not a misremembered algorithm.
+Blind rewrite of all nine, all eventually correct. Four needed a second pass,
+plus two shared helpers — and every miss was an **ordering** error, not a
+misremembered algorithm.
 
 | # | Problem | The miss |
 |---|---------|----------|
@@ -419,9 +401,9 @@ error, not a misremembered algorithm.
 The question that catches all six: **at the moment I read this pointer, has
 anything already changed it?**
 
-Mock 10 covered Q57–Q65.
+Mock 07 covered Q57–Q65.
 
-**PHASE 07 COMPLETE** — all six cycle steps done, with one carry-over.
+**PHASE 07 COMPLETE** — all six cycle steps done, no carry-over.
 
 ---
 
@@ -429,10 +411,8 @@ Mock 10 covered Q57–Q65.
 
 ### Prerequisites — ✅
 
-`TreeNode` + `buildTree` / `printTree`. Five drills planned, four cut before
-writing — the three traversal orders are patterns 01–03, height vs depth is Q66
-itself, level order is pattern 04, and the BST walk is pattern 06. Only the node
-type and the level-order builder were not covered elsewhere.
+`TreeNode` + `buildTree` / `printTree`. Four of five planned drills cut — each
+was already covered by a pattern file.
 
 ### Patterns — 7 / 7
 
@@ -443,18 +423,6 @@ type and the level-order builder were not covered elsewhere.
 - ✅ 05_Iterative_DFS — Q73
 - ✅ 06_BST_Property_Walk — Q70, Q72, Q73
 - ✅ 07_Tree_DP — Q71, Q74
-
-Cut before writing: `Tree_Basics` (duplicate Prerequisites) and
-`Recursive_DFS` (01–03 *are* the recursive DFS templates).
-
-Two templates rejected during review: iterative preorder (recursion is shorter
-and does the same job) and a plain-postorder-only Tree DP file (without the
-global it is Pattern 03, not a distinct pattern). `printTree` kept the nil
-marker so a left-only node is distinguishable from a right-only one.
-
-The distinction the phase turns on: **preorder pushes constraints down,
-postorder pulls results up.** Patterns 01 and 03 are the same six lines with
-the work on opposite sides of the recursive calls.
 
 ### Problems — 9 / 9
 
@@ -468,26 +436,10 @@ the work on opposite sides of the recursive calls.
 - ✅ Q73 — Kth Smallest Element In A BST (LC230)
 - ✅ Q74 — Binary Tree Maximum Path Sum (LC124)
 
-### Caught in review
+### Revision — ✅ (9 of 9) · Mock 08 — ✅
 
-| # | The miss | Why it survived testing |
-|---|----------|-------------------------|
-| Q69 | `queue[head]` read once OUTSIDE the level loop while `head` advanced inside it | Level 1 printed correctly, so small trees looked fine |
-| Q72 | The split branch returned `nil` instead of the node | That branch IS the answer — nil came back for every input |
-| Q73 | `return` after the kth value exits one frame, not the traversal | Every answer was correct; the walk was O(n), not the claimed O(h + k) |
-
-Q69 is Phase 07's recurring miss in a new shape — reading a value before the
-thing that moves it. Q73 is the one to remember: a correct answer with a wrong
-complexity is harder to catch than a wrong answer, because the tests all pass.
-
-Node property naming drifted across files — `root`, `value`, `val` and `valu`
-all appeared. Standardised on `val`.
-
-### Revision — 🟡 (6 of 9) · Mock 11 — ✅
-
-Blind rewrite of all nine. Six recalled clean: Q66, Q67, Q68, Q69, Q71, Q72.
-Three regressed — and every miss was a **boundary** condition, not a
-misremembered algorithm.
+Blind rewrite of all nine, all eventually correct. Three needed a second pass —
+and every miss was a **boundary** condition, not a misremembered algorithm.
 
 | # | Problem | The miss |
 |---|---------|----------|
@@ -498,36 +450,19 @@ misremembered algorithm.
 The question that catches all three: **what does this need to do at the
 boundary — empty, equal, negative, or already-found?**
 
-Regression tests added for two of them — `[2, 2, 2]` for Q70, `[-3]` and
-`[-3, -2, -1]` for Q74. Q73's miss has no test that catches it, since the
-answers stay correct; the warning lives in the file header instead.
-
-Mock 11 covered Q66–Q74 and Q55.
+Mock 08 covered Q66–Q74.
 
 **PHASE 08 COMPLETE** — all six cycle steps done, no carry-over.
 
-Two phases of revision data now point the same way: Phase 07's four misses
-were all **ordering**, Phase 08's three were all **boundary**. Neither was an
-algorithm. Worth watching in Phase 09.
-
-
 ---
 
-## 🔄 Phase 09 — Advanced Patterns (In Progress)
+## ✅ Phase 09 — Advanced Patterns (Complete)
 
 ### Prerequisites — ✅
 
 5 drills: BFS queue with head index, grid bounds + four-direction neighbours,
 visited tracking (`Set` for graphs, 2D `[[Bool]]` for grids), adjacency list
 from edge pairs, indegree array.
-
-A sixth heap drill was cut — the index arithmetic has no consumer outside the
-heap itself, so it lives in pattern 01.
-
-Three of the five were missing on the first pass (grid bounds, 2D visited,
-indegree) and the adjacency-list space was headed O(V) where the function
-allocates the list. The understated-complexity miss is now four phases old.
-
 
 ### Patterns — 7 / 7
 
@@ -539,12 +474,8 @@ allocates the list. The understated-complexity miss is now four phases old.
 - ✅ 06_Backtracking — Q82, Q83
 - ✅ 07_Dynamic_Programming — Q84, Q85
 
-Ten proposed, cut to seven on review: `Trie`, `Greedy` and
-`Binary_Search_On_Answer` dropped — no Q75–Q85 problem behind any of them.
-
-Known gaps carried forward: `05_Union_Find` still holds the LC684 solution and
-debug logging inside it, and `06_Backtracking` prints rather than returning.
-Both work; neither is reusable as a template yet.
+Ten proposed, cut to seven: `Trie`, `Greedy` and `Binary_Search_On_Answer`
+dropped — no Q75–Q85 problem behind any of them.
 
 ### Problems — 11 / 11
 
@@ -560,31 +491,69 @@ Both work; neither is reusable as a template yet.
 - ✅ Q84 — House Robber (LC198)
 - ✅ Q85 — Longest Increasing Subsequence (LC300)
 
-### Caught in review
+### Revision — ✅ (11 of 11) · Mock 09 — ✅
 
-| # | The miss | Why it survived testing |
-|---|----------|-------------------------|
-| 02 | `explore(node)` instead of `explore(neighbour)` | The visited guard bounced it immediately — no crash, no hang, the traversal silently visited only the start node |
-| 04 | No `result.count != graph.count` check after the drain | A partial cycle returns a non-empty, plausible array with half the graph missing. That comparison IS Q207 |
-| Q76 | `heapifyUp` broke on `<` instead of `<=` | Equal values kept climbing and swapping — correct output, wasted work |
-| Q76 | Last node kept its original `next` | Nil by luck on these inputs, not by construction |
-| Q80 | `characters[i]` never restored after varying position i | Position i+1 was varied against a corrupted word. Every bad candidate just missed the set and was discarded, so all four original tests passed |
+Blind rewrite of all eleven, all eventually correct. Five needed a second pass,
+and none of the five was a forgotten algorithm.
 
+| # | Problem | The miss |
+|---|---------|----------|
+| Q75 | Kth Largest | `remove()` lost its empty guard — traps on `heap[0]`. No test calls it that way |
+| Q80 | Word Ladder | `return steps` instead of `steps + 1` — endWord sits one level deeper than the level being drained |
+| Q82 | Subsets | `dfs` never called, and the loop ran `0..<start` instead of `start..<count` |
+| Q84 | House Robber | `prev1` and `prev2` swapped. The two swaps cancel, so every answer was right while the code said "rob adjacent houses" |
+| Q85 | LIS | `var max` shadowed the `max` function. Compile error |
 
-Q80 is the one to remember, and it is the third instance of the same family: a
-correct answer produced by a broken mechanism. Q73 in Phase 08 was O(n) claiming
-O(h+k); pattern 02 here visited one node and reported success. Regression test
-added — `ladderLength("hit", "hig", ["hig"])` forces the answer through
-position 2, which returns 0 without the restore.
+All five corrected on the same sitting.
 
-Q79 briefly had a local `createGraph` building a *directed* graph while the
-`Sources/Helpers.swift` function of the same name built an *undirected* one.
-Same name, opposite behaviour, both in scope.
+Mock 09 covered Q75–Q85. First attempt 8/11 — Q77 and Q85 did not compile, Q83
+returned duplicate orderings. All three were repeats of misses already caught
+once, and two were compiler errors Xcode flags in under a second. Re-run passed.
 
-The heap is now written three times — pattern 01, Q75, and Q76 with a
-`ListNode` payload. The generic version would have prevented that; the two-class
-`Int`-only decision is what cost it.]
+Across all eleven rewrites, three mechanical habits slipped every time: `var`
+where `let` belongs, method-name typos, and `private` dropped from helpers. The
+algorithms came back; the discipline did not.
 
+**PHASE 09 COMPLETE** — all six cycle steps done.
+
+Three phases of revision data now read: Phase 07 **ordering**, Phase 08
+**boundary**, Phase 09 **mechanism**. None was ever a forgotten algorithm.
+
+---
+
+# 🔜 What Comes Next
+
+In order:
+
+**1. Weak areas.** The problems that regressed on revision or failed a mock,
+practised first while the misses are still fresh.
+
+**2. Full revision pass.** Every problem rewritten blind from an empty file, one
+by one, oldest phase first. Phases 01–03 have not been touched since August and
+are the most decayed.
+
+**3. Every mock re-run, phase by phase.**
+
+**4. Sorting algorithms.** Merge, quick and heap sort — the one area the 85
+never make you write. Assembled from pieces already in the repo.
+
+---
+
+# 🕳️ Known Gaps
+
+Sorting algorithms are the one thing the 85 never make you write. No new
+problems are being added for this — the pieces already exist in the repo and
+just need assembling.
+
+| Algorithm | What it needs | Already in the repo |
+|-----------|---------------|---------------------|
+| **Merge sort** | Divide, recurse, merge two sorted halves | The merge step is Q58 Merge Two Sorted Lists and Q76 Merge K Sorted Lists |
+| **Heap sort** | Build the heap, then extract repeatedly | The heap is Phase 09's pattern 01, written for Q75 and Q76 |
+| **Quick sort** | Lomuto partition, then recurse on both sides | The partition is Q15 Sort Colors — the same three-way swap walk |
+
+Merge sort is the one worth being able to write cold. Quick sort is the one
+worth being able to explain: average O(n log n), worst O(n²), why the pivot
+choice decides which, and why it is in-place but unstable.
 
 ---
 

@@ -1,28 +1,23 @@
 # 📂 Phase 09 — Advanced Patterns (Q75–Q85)
 
 The final phase, and the only one that introduces no new primitive. A heap is an
-array with an ordering invariant maintained on the way in and out. A graph
-traversal is BFS or DFS over neighbours that are computed rather than read.
-Backtracking is DFS with an undo step. DP is recursion with the repeated work
-cached. Eleven problems, seven patterns, every one medium or hard.
+array with an ordering invariant. A graph traversal is BFS or DFS over
+neighbours that are computed rather than read. Backtracking is DFS with an undo
+step. DP is recursion with the repeated work cached.
 
-What makes it hard is not the individual pattern — it is that the problem
-statement no longer names the tool. "Kth largest", "minutes until all rot" and
-"can you finish the courses" are three different phrasings of *heap*, *level-order
-BFS* and *cycle detection*, and none of them says so.
-
-Swift-specific difficulty: there is no built-in priority queue, so pattern 01
-carries a hand-written heap that Q75 and Q76 both depend on. It is the single
-largest piece of template code in the repo.
+What makes it hard is that the problem statement no longer names the tool.
+"Kth largest", "minutes until all rot" and "can you finish the courses" are
+three phrasings of *heap*, *level-order BFS* and *cycle detection*, and none of
+them says so.
 
 ---
 
 ## 🎯 Objective
 
-Reach the point where the pattern is chosen from the *shape of the question*
-rather than its vocabulary — "top k" without sorting, "shortest/fewest" as a
-BFS level count, "prerequisites" as indegree, "all combinations" as choose →
-recurse → undo, "best up to i" as a DP transition.
+Choose the pattern from the *shape of the question* rather than its vocabulary —
+"top k" without sorting, "shortest/fewest" as a BFS level count, "prerequisites"
+as indegree, "all combinations" as choose → recurse → undo, "best up to i" as a
+DP transition.
 
 ---
 
@@ -38,19 +33,12 @@ recurse → undo, "best up to i" as a DP transition.
 | D4 | Adjacency list from edge pairs, directed and undirected | Q79, Q81 |
 | D5 | Indegree array | Q79 |
 
-A sixth drill for the heap was proposed and cut — the index arithmetic is used
-nowhere outside the heap itself, so it lives in pattern 01 rather than as a
-standalone drill with no second consumer.
+The heap drill was cut — the index arithmetic has no consumer outside the heap,
+so it lives in pattern 01.
 
 D1 matters more than it looks. `removeFirst` on a Swift array is O(n), so a BFS
-written with it is quietly O(V²) — the answers stay correct and the complexity
-header becomes a lie. Same failure mode as Q73 in Phase 08.
-
-Corrections made on review: three of the five drills were missing on the first
-pass (D2, D3, D5 — the grid and Kahn's plumbing); the adjacency-list builders
-sat at file scope rather than in functions; and space was headed O(V) where the
-function allocates the list itself, which is O(V + E). The understated-complexity
-miss is now four phases old.
+written with it is quietly O(V²) — answers stay correct, the complexity header
+becomes a lie.
 
 ---
 
@@ -70,39 +58,27 @@ Template code only — generic skeleton, neutral name, no named LeetCode solutio
 
 Ten proposed, cut to seven on review. `Trie`, `Greedy` and
 `Binary_Search_On_Answer` dropped — no Q75–Q85 problem behind any of them.
-DFS is numbered before BFS so the pattern order tracks Q77 → Q78.
+DFS is numbered before BFS so the order tracks Q77 → Q78.
 
-Parent is `(i - 1) / 2`, children `2i + 1` and `2i + 2`. Pattern 01 carries the
-index arithmetic as well as the type, since the prerequisites file deliberately
-does not. Both sift directions are needed: Q75 removes, Q76 removes and inserts
-on every step. It is the largest template file in the phase and the other six
-are short by comparison.
+Pattern 01 carries the index arithmetic as well as the type: parent
+`(i - 1) / 2`, children `2i + 1` and `2i + 2`. Largest template in the phase.
 
-Pattern 03 carries the level-counting shape. The snapshot taken before the drain
-is the whole pattern — read `queue.count` inside the drain instead and every
-level collapses into one.
+Pattern 03's level-size snapshot taken before the drain is the whole pattern —
+read `queue.count` inside the drain instead and every level collapses into one.
 
-Pattern 07 carries two skeletons rather than one, because the two DP problems
-have different shapes: *cumulative* (answer is the last cell) and *ending at*
-(answer is the max of the array). The nested loop in the second is what makes
-Q85 O(n²) where Q84 is O(n).
+Pattern 07 carries two skeletons: *cumulative* (answer is the last cell) and
+*ending at* (answer is the max of the array).
 
-Pattern 05 exists for exactly one problem. That passes the no-unbacked-pattern
-rule, but it is the highest write-cost file in the phase for the least reuse.
-
-**Known gaps carried forward.** `05_Union_Find` still holds the LC684 solution
-and its debug logging inside the pattern file, and `06_Backtracking` prints
-rather than returning a result. Both work; neither is reusable as a template
-yet, which is what the pattern/problem split exists for. Q81 was written from
-scratch rather than off the template as a result.
+**Known gaps.** `05_Union_Find` still holds the LC684 solution and debug logging
+inside the pattern file, and `06_Backtracking` prints rather than returning.
+Q81 was written from scratch rather than off the template as a result.
 
 ---
 
 ## 📝 Problems — 11 / 11 ✅
 
-Kept in pattern order. No easy → medium → hard renumbering this phase; the
-grouping by tool is more useful than the grouping by difficulty when the whole
-point is tool selection.
+Kept in pattern order — grouping by tool is more useful than grouping by
+difficulty when the whole point is tool selection.
 
 | # | LC | Problem | Level | Pattern | Time | Space | Status |
 |---|-----|---------|-------|---------|------|-------|:------:|
@@ -118,20 +94,13 @@ point is tool selection.
 | Q84 | 198 | House Robber | 🟡 Medium | 07 | O(n) | O(1) | ✅ |
 | Q85 | 300 | Longest Increasing Subsequence | 🟡 Medium | 07 | O(n²) | O(n) | ✅ |
 
-Three facts do most of the work in this phase: **a size-k heap beats a full sort
-whenever k is small**, **BFS counts levels and DFS does not**, and **the DP answer
-is sometimes the last cell and sometimes the max of all of them.**
-
-Q84 and Q85 are the two that were left pending out of Strategy 75. They close
-here.
-
-Q76 re-declares `ListNode` locally rather than referencing Phase 07, so the
-playground page compiles standalone.
+Three facts do most of the work: **a size-k heap beats a full sort when k is
+small**, **BFS counts levels and DFS does not**, and **the DP answer is
+sometimes the last cell and sometimes the max of all of them.**
 
 Q81 uses a plain parent array with neither path compression nor union by rank —
-deliberate, since n ≤ 1000 makes the simple version fast enough, but it means
-the file's O(E·H) degrades to O(E·V) in the worst case where the template's
-would be O(E·α(n)). The trade is documented in the file header.
+deliberate at n ≤ 1000, but it means O(E·H) degrades to O(E·V) where the
+template's would be O(E·α(n)).
 
 ---
 
@@ -155,101 +124,80 @@ The question that catches most of these: **does this answer need a distance, or
 just a reachability?** Distance means BFS with levels. Reachability means DFS is
 free to wander.
 
-The second one, for the two backtracking problems: **am I recording at the node
-or at the leaf, and does the next call move the index or not?** Q82 and Q83 differ
-in exactly those two lines and nothing else.
-
-### Caught while writing
-
-| # | The miss | Why it survived testing |
-|---|----------|-------------------------|
-| 02 | `explore(node)` instead of `explore(neighbour)` | No crash, no hang — the visited guard bounced it immediately, so the traversal silently visited only the start node |
-| 04 | No `result.count != graph.count` check after the drain | A partial cycle returns a non-empty, plausible-looking array with half the graph missing. That comparison IS Q207 |
-| Q76 | `heapifyUp` broke on `<` instead of `<=` | Equal values kept climbing and swapping. Output correct, work wasted — and this input has two 1s and two 4s |
-| Q76 | Last merged node kept its original `next` | Nil by luck on these inputs, not by construction |
-| Q80 | `characters[i]` never restored after varying position i | Position i+1 was varied against a corrupted word. Every bad candidate just missed the set and was discarded, so all four original tests passed |
-
-Q80 is the one to remember, and it is the third instance of the same family: a
-correct answer produced by a broken mechanism. Q73 in Phase 08 was O(n) claiming
-O(h+k); pattern 02 here visited one node and reported success. The tests cannot
-see any of them. Regression test added — `ladderLength("hit", "hig", ["hig"])`
-forces the answer through position 2, which returns 0 without the restore.
-
-The heap is now written three times — pattern 01, Q75, and Q76 with a `ListNode`
-payload. A generic `Heap<Element>` with an ordering closure would have collapsed
-all three into one; the two-class `Int`-only decision is what cost it. Worth
-remembering before the next phase that needs a priority queue.
-
-Q79 briefly had a local `createGraph` that built a *directed* graph while the
-`Sources/Helpers.swift` function of the same name built an *undirected* one.
-Same name, opposite behaviour, both in scope. Resolved by deleting the local
-copy and using `createDirectedGraph`.
+For the two backtracking problems: **am I recording at the node or at the leaf,
+and does the next call move the index or not?** Q82 and Q83 differ in exactly
+those two lines.
 
 ---
 
-## 🔁 Revision — ⏳
+## 🔁 Revision — ✅ (11 of 11)
 
-Blind rewrite of all eleven optimals from an empty template, same format as
-Phases 01–08.
+Blind rewrite of all eleven optimals from an empty template, all eventually
+correct. Five needed a second pass — and none of the five was an algorithm.
 
-Two phases of data point the same way and are worth watching here: Phase 07's
-four misses were all **ordering** — reading or nil-ing a pointer at the wrong
-moment. Phase 08's three were all **boundary** — equality, empty, negative.
-Neither was ever a misremembered algorithm.
+| # | Problem | The miss |
+|---|---------|----------|
+| Q75 | Kth Largest | `remove()` lost its empty guard, so an empty heap traps on `heap[0]`. Nothing in the problem calls it that way, so every test passed |
+| Q80 | Word Ladder | `return steps` instead of `steps + 1` — endWord is generated from the level being drained, so it sits one level deeper |
+| Q82 | Subsets | `dfs` never called, and the loop ran `0..<start` instead of `start..<count` |
+| Q84 | House Robber | `prev1` and `prev2` swapped in the transition. The two swaps cancel arithmetically, so every answer was right while the code said "rob adjacent houses" |
+| Q85 | LIS | `var max = Int.min` shadowed the `max` function, breaking the `max()` call above it. Compile error |
 
-Phase 09's writing misses were neither: they were **mechanism** errors, where
-the wrong thing is computed but the right answer comes out anyway. Watch for
-that shape on the rewrite, and check the trace rather than the output.
+Phase 07's misses were all **ordering**, Phase 08's all **boundary**. Phase 09's
+were **mechanism** — the wrong thing computed, the right answer out. Q84 is the
+clearest case.
 
-Specific risks: marking visited *after* enqueue instead of before; the
-`characters[i]` restore in Q80; `Int.min` seeds; the empty-grid guard; and
-`k` vs `k - 1` in the heap size.
+Separately, three mechanical habits slipped on every one of the eleven rewrites:
+`var` where `let` belongs, method-name typos, and `private` dropped from
+helpers. The algorithms came back; the discipline did not.
+
+---
+
+## 🎯 Mock 09 — ✅
+
+Q75–Q85. First attempt: **8 / 11**. Three failures, all repeats of something
+already caught once:
+
+| # | The failure |
+|---|-------------|
+| Q77 | `dfs` declared after the loop that calls it — a nested func capturing mutable locals cannot be used above its own declaration. Compile error, second occurrence |
+| Q83 | `dfs(index, …)` instead of `dfs(i, …)`. Every level restarted from the same position, so `[2,2,3]`, `[2,3,2]` and `[3,2,2]` all appeared |
+| Q85 | `var max` shadowing `max()` again. Compile error, second occurrence |
+
+Two of the three were compiler errors that Xcode flags in under a second. The
+lesson is not more practice — it is **build before calling it done**.
+
+Re-run passed after fixing all three.
 
 ---
 
 ## 📏 House Rules
 
-- **Optimal only.** Brute force is named in the header with one line on why it
-  loses, not implemented — same carve-out as Phase 08. The exception is the
-  exponential naive versions in the backtracking and DP problems, where the
-  repeated work is the whole reason memoization exists.
-- No built-in helpers — no `reduce`, `map`, `filter`, `stride`, `enumerated`,
-  `reversed`, `sorted`, `min`, `max`, `removeFirst`. `swapAt` is accepted.
-  `Array(String)` and `String([Character])` are permitted in Q80, where the
-  transformation is character-wise and the lookup is word-wise.
-  `for _ in 0..<n` is fine for a plain repeat count. Manual loops otherwise.
-  Shared helpers live in `Sources/`, never pasted per file.
-- No force unwraps. No `?? 0` — explicit `if let` / `else`.
-- `final class` for reference types; `let` wherever there is no reassignment.
-- LeetCode's own signatures and property names, so anything written here pastes
-  straight in.
-- Pattern files hold the generic template only. Named LeetCode solutions belong
-  in `Problems/`.
-- Every file opens with the problem statement, an example, and constraints.
-- Time and space stated with the reason, not just the notation. Say what `k`,
-  `V`, `E`, `L` and `α` refer to unprompted.
-- Every test grid or graph carries its ASCII sketch above it.
-- Test prints only, in this format:
-  `print("\n========== Q75 - Kth Largest Element In An Array ==========")`
-  then one print per case with the expected answer as an inline comment.
-  No debug logging inside solutions.
+- **Optimal only.** Brute force named in the header, not implemented.
+- No built-ins — no `reduce`, `map`, `filter`, `stride`, `enumerated`,
+  `reversed`, `sorted`, `removeFirst`. `swapAt`, `min()` and `max()` are fine.
+  `for _ in 0..<n` is fine for a plain repeat count.
+- No force unwraps, no `?? 0` — explicit `if let` / `else`.
+- `let` wherever there is no reassignment.
+- Never name a local after a function used in the same scope — `maximum`, not
+  `max`.
+- Declare nested helpers before the loop that calls them.
+- Every file opens with the problem statement, example, constraints and
+  complexity.
+- Test prints only: section header, then one print per case with the expected
+  answer as an inline comment.
 
 ---
 
 ## 📊 Status
 
-Prerequisites ✅ · Patterns 7/7 ✅ · Problems 11/11 ✅ · Revision ⏳ · Mock 12 ⏳
+Prerequisites ✅ · Patterns 7/7 ✅ · Problems 11/11 ✅ · Revision ✅ 11/11 · Mock 09 ✅
 
-**PHASE 09 IN PROGRESS** — steps 1–3 of 6 done. Revision next.
+**PHASE 09 COMPLETE** — all six cycle steps done, no carry-over.
 
-Branch: `phase_09_advanced_patterns`. Mock branch: `mock_12_phase_09`.
+Branch: `phase_09_advanced_patterns`. Mock branch: `mock_09_phase_09`.
 
 Time budget: patterns 8 hrs, problems 10 hrs, revision + mock 7 hrs — 25 total.
 
-Carry-in: none from Phase 08 — Mock 11 cleared Q55 LRU Cache, so the deferral
-that ran from Phase 06 through Phase 07 is closed. Mocks 03, 05 and 07 (the
-cumulative ones) remain outstanding from the earlier phases and are independent
-of this phase.
-
-After Mock 12 the phase work is done and only Mocks 13–15 remain — mixed DSA,
-company style, and the final assessment.
+Next: weak areas first, then the full Q01–Q85 revision pass, then every mock
+re-run phase by phase, then sorting algorithms.
