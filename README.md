@@ -130,6 +130,7 @@ Top_DSA_Interview_Questions/
 ├── 08_Trees_And_BST/
 ├── 09_Advanced_Patterns/
 │
+├── Sorting_Algorithms/
 ├── Cheat_Sheets/
 ├── Mock_Sessions/
 ├── Company_Wise/
@@ -534,26 +535,31 @@ are the most decayed.
 
 **3. Every mock re-run, phase by phase.**
 
-**4. Sorting algorithms.** Merge, quick and heap sort — the one area the 85
-never make you write. Assembled from pieces already in the repo.
-
 ---
 
-# 🕳️ Known Gaps
+# 🔢 Sorting Algorithms — ✅
 
-Sorting algorithms are the one thing the 85 never make you write. No new
-problems are being added for this — the pieces already exist in the repo and
-just need assembling.
+The one area the 85 never make you write. Six algorithms in
+`Sorting_Algorithms/`, a root-level folder outside the phase sequence.
 
-| Algorithm | What it needs | Already in the repo |
-|-----------|---------------|---------------------|
-| **Merge sort** | Divide, recurse, merge two sorted halves | The merge step is Q58 Merge Two Sorted Lists and Q76 Merge K Sorted Lists |
-| **Heap sort** | Build the heap, then extract repeatedly | The heap is Phase 09's pattern 01, written for Q75 and Q76 |
-| **Quick sort** | Lomuto partition, then recurse on both sides | The partition is Q15 Sort Colors — the same three-way swap walk |
+| # | Algorithm | Time | Space | Stable |
+|---|-----------|------|-------|:------:|
+| 01 | Bubble | O(n²) · O(n) best | O(1) | ✅ |
+| 02 | Selection | O(n²) always | O(1) | ❌ |
+| 03 | Insertion | O(n²) · O(n) best | O(1) | ✅ |
+| 04 | Merge | O(n log n) | O(n) | ✅ |
+| 05 | Quick | O(n log n) avg · O(n²) worst | O(log n) | ❌ |
+| 06 | Heap | O(n log n) | O(1) | ❌ |
 
-Merge sort is the one worth being able to write cold. Quick sort is the one
-worth being able to explain: average O(n log n), worst O(n²), why the pivot
-choice decides which, and why it is in-place but unstable.
+No new problems were added. Every piece already existed: the merge step is Q58
+and Q76, the partition walk is Q15 Sort Colors, the heap is Phase 09's
+pattern 01.
+
+Merge and quick are the two worth writing cold. The heap as a *structure*
+matters more than heap sort does — Q75, Q76 and every top-k problem need it.
+The three O(n²) sorts are context, not practice.
+
+Branch: `sorting_algorithms`.
 
 ---
 
