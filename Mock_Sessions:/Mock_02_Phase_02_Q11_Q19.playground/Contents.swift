@@ -4,11 +4,6 @@ import Foundation
 //
 //  MOCK 02 — PHASE 02 (Two Pointers)
 //
-//  Part 1
-//
-//  Q11 — LC011 Container With Most Water
-//  Q12 — LC015 Three Sum
-//  Q13 — LC042 Trapping Rain Water
 //
 //============================================================
 
