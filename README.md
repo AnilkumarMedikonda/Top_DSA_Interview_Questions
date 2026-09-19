@@ -30,7 +30,9 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Mock Sessions Passed:** **9 / 12**
 
-**Current Focus:** Full revision pass — Q01 through Q85
+**Full Revision:** **19 / 85** rewritten · 13 / 19 clean first pass
+
+**Current Focus:** Full revision pass — Phase 03, Q20–Q29
 
 ---
 
@@ -48,9 +50,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 08 | Trees & BST | Q66–Q74 | **9 / 9** | Mock 08 | ✅ |
 | 09 | Advanced Patterns | Q75–Q85 | **11 / 11** | Mock 09 | ✅ |
 
-A phase stays 🔄 until its mock is passed — problems solved is not the same as phase complete.
-
----
+All nine phases complete. Revision status tracked separately in `Full_Revision/README.md`.---
 
 # 🧠 Patterns Covered
 
@@ -94,6 +94,7 @@ A phase stays 🔄 until its mock is passed — problems solved is not the same 
 - Edge cases are documented.
 - **No pattern file without a problem behind it.** A pattern that no question in the phase actually needs does not get a file.
 - A phase is complete only after passing its mock interview.
+- **Test prints:** `print("\n========== Q## - Problem Name ==========")` per problem, then one print per case with the expected answer as an inline comment. Full_Revision files use the three-line boxed header instead — see that folder's README.
 
 ---
 
@@ -519,25 +520,49 @@ algorithms came back; the discipline did not.
 Three phases of revision data now read: Phase 07 **ordering**, Phase 08
 **boundary**, Phase 09 **mechanism**. None was ever a forgotten algorithm.
 
+
+---
+
+# 🔁 Full Revision — In Progress
+
+Second pass over all 85, rewritten blind from an empty file, oldest phase
+first. One playground per phase, problems stacked as blocks. Full rules and
+per-problem checklist in `Full_Revision/README.md`.
+
+| Phase | Questions | Rewritten | Clean first pass |
+|-------|-----------|----------:|-----------------:|
+| 01 Arrays | Q01–Q10 | 10 / 10 | 8 / 10 |
+| 02 Two Pointers | Q11–Q19 | 9 / 9 | 5 / 9 |
+| 03 Strings & Hashing | Q20–Q29 | — | — |
+
+**19 / 85 · 68% clean**
+
+Every miss so far has been **index mechanics** — Kadane's reset comparison,
+prefix `result[i]` vs `result[i-1]`, swap-before-increment, `k % n` and its
+reverse bounds, `left <= right`, seeding from the unsorted array. The right
+algorithm was picked 19 out of 19 times.
+
+That makes four phases of revision data: Phase 07 **ordering**, Phase 08
+**boundary**, Phase 09 **mechanism**, Full Revision **index**. None was ever a
+forgotten algorithm.
+
+Branch: `full_revision`.
+
 ---
 
 # 🔜 What Comes Next
 
 In order:
 
-**1. Weak areas.** The problems that regressed on revision or failed a mock,
-practised first while the misses are still fresh.
+**1. Full revision pass** — in progress, Phase 03 next. Weak areas from the
+mocks are being caught inside this pass rather than separately.
 
-**2. Full revision pass.** Every problem rewritten blind from an empty file, one
-by one, oldest phase first. Phases 01–03 have not been touched since August and
-are the most decayed.
+**2. Every mock re-run, phase by phase.** `Mock_Reruns/` on branch
+`mock_reruns`.
 
-**3. Every mock re-run, phase by phase.**
-
-**4. Sorting algorithms.** Merge, quick and heap sort — the one area the 85
-never make you write. Assembled from pieces already in the repo.
-
----
+**3. Sorting algorithms.** Merge, quick and heap sort — `Sorting_Algorithms/`
+at the repo root, branch `sorting_algorithms`. Assembled from pieces already in
+the repo.
 
 # 🕳️ Known Gaps
 
@@ -572,9 +597,11 @@ For every problem:
 
 # 🚀 Related Repositories
 
-| Repository | Description |
-|------------|-------------|
-| **[DSA-Logic-and-Interview-Prep](https://github.com/AnilkumarMedikonda/DSA-Logic-and-Interview-Prep)** | 246 problems across 21 phases covering the complete DSA learning journey. |
+├── Full_Revision/
+├── Sorting_Algorithms/
+├── Cheat_Sheets/
+├── Mock_Sessions/
+ **[DSA-Logic-and-Interview-Prep](https://github.com/AnilkumarMedikonda/DSA-Logic-and-Interview-Prep)** | 246 problems across 21 phases covering the complete DSA learning journey. |
 | **[iOS-Architecture-Patterns](https://github.com/AnilkumarMedikonda/iOS-Architecture-Patterns)** | Swift, UIKit, and SwiftUI architecture patterns for iOS development. |
 
 ---

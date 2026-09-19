@@ -16,6 +16,9 @@ were written while the phase was fresh. This one measures what survived.
   compiler errors.
 - **Check the trace, not just the output.** Phase 09's misses were wrong
   computations producing right answers.
+- **Expected answer in the comment, written before the run.** Every test line
+  ends with `// expected`. Phase 01's Q10 bug survived a full pass because the
+  console was bare numbers.
 - `swapAt`, `min()` and `max()` are fine; everything else stays manual. No
   force unwraps, `let` over `var`, complexity stated with the reason.
 
@@ -24,12 +27,59 @@ the optimal is a collapse of it, not a faster alternative.
 
 ---
 
+## 📐 File Format
+
+One playground per phase. Problems stacked as blocks inside the single file,
+in Q order.
+
+```swift
+//==============================================================
+// MARK: - Q01. Two Sum
+// Difficulty: Easy
+// LeetCode: LC001
+//==============================================================
+//
+// Problem:
+// <statement, wrapped>
+//
+// Example:
+// Input: ...
+// Output: ...
+//
+// Time: O(n)
+// Space: O(n)
+//
+//==============================================================
+
+print("\n==============================================================")
+print("Q01 - Two Sum")
+print("==============================================================")
+
+// Solution
+
+// Test cases
+print("Input: ... -> \(call)")  // expected
+
+print()
+```
+
+Shared types (`ListNode`, `TreeNode`, graph builders) go in a
+`// MARK: - Helpers` block at the top of the phase file — Phases 07, 08, 09
+only.
+
+**Test count:** Easy 4 · Medium 4–5 · Hard 5–7. Always 1–2 meaningful edge
+cases. Nothing artificial or repetitive.
+
+---
+
 ## 📊 Progress
+
+Clean first pass = solutions correct before review, counted blind.
 
 | Phase | Questions | Rewritten | Clean first pass | Status |
 |-------|-----------|----------:|-----------------:|:------:|
-| 01 Arrays | Q01–Q10 | 0 / 10 | — | ⏳ |
-| 02 Two Pointers | Q11–Q19 | 0 / 9 | — | ⏳ |
+| 01 Arrays | Q01–Q10 | 10 / 10 | 8 / 10 | ✅ |
+| 02 Two Pointers | Q11–Q19 | 9 / 9 | 5 / 9 | ✅ |
 | 03 Strings & Hashing | Q20–Q29 | 0 / 10 | — | ⏳ |
 | 04 Sliding Window | Q30–Q38 | 0 / 9 | — | ⏳ |
 | 05 Binary Search | Q39–Q47 | 0 / 9 | — | ⏳ |
@@ -38,42 +88,43 @@ the optimal is a collapse of it, not a faster alternative.
 | 08 Trees & BST | Q66–Q74 | 0 / 9 | — | ⏳ |
 | 09 Advanced Patterns | Q75–Q85 | 0 / 11 | — | ⏳ |
 
-**0 / 85**
+**19 / 85 rewritten · 13 / 19 clean first pass (68%)**
 
 ---
+
 
 ## 📋 Question List
 
 ☐ as you rewrite. 🟢 Easy · 🟡 Medium · 🔴 Hard
 
-### 01 Arrays — Q01–Q10
+### 01 Arrays — Q01–Q10 ✅
 
 | File | Level | ☐ |
 |------|-------|:-:|
-| `Q01_LC001_Two_Sum` | 🟢 Easy | ☐ |
-| `Q02_LC121_Best_Time_To_Buy_And_Sell_Stock` | 🟢 Easy | ☐ |
-| `Q03_LC217_Contains_Duplicate` | 🟢 Easy | ☐ |
-| `Q04_LC053_Maximum_Subarray` | 🟡 Medium | ☐ |
-| `Q05_LC283_Move_Zeroes` | 🟢 Easy | ☐ |
-| `Q06_LC088_Merge_Sorted_Array` | 🟢 Easy | ☐ |
-| `Q07_LC026_Remove_Duplicates_From_Sorted_Array` | 🟢 Easy | ☐ |
-| `Q08_LC169_Majority_Element` | 🟢 Easy | ☐ |
-| `Q09_LC268_Missing_Number` | 🟢 Easy | ☐ |
-| `Q10_LC238_Product_Of_Array_Except_Self` | 🟡 Medium | ☐ |
+| `Q01_LC001_Two_Sum` | 🟢 Easy | ☑ |
+| `Q02_LC121_Best_Time_To_Buy_And_Sell_Stock` | 🟢 Easy | ☑ |
+| `Q03_LC217_Contains_Duplicate` | 🟢 Easy | ☑ |
+| `Q04_LC053_Maximum_Subarray` | 🟡 Medium | ☑ |
+| `Q05_LC283_Move_Zeroes` | 🟢 Easy | ☑ |
+| `Q06_LC088_Merge_Sorted_Array` | 🟢 Easy | ☑ |
+| `Q07_LC026_Remove_Duplicates_From_Sorted_Array` | 🟢 Easy | ☑ |
+| `Q08_LC169_Majority_Element` | 🟢 Easy | ☑ |
+| `Q09_LC268_Missing_Number` | 🟢 Easy | ☑ |
+| `Q10_LC238_Product_Of_Array_Except_Self` | 🟡 Medium | ☑ |
 
-### 02 Two Pointers — Q11–Q19
+### 02 Two Pointers — Q11–Q19 ✅
 
 | File | Level | ☐ |
 |------|-------|:-:|
-| `Q11_LC011_Container_With_Most_Water` | 🟡 Medium | ☐ |
-| `Q12_LC015_Three_Sum` | 🟡 Medium | ☐ |
-| `Q13_LC042_Trapping_Rain_Water` | 🔴 Hard | ☐ |
-| `Q14_LC977_Squares_Of_A_Sorted_Array` | 🟢 Easy | ☐ |
-| `Q15_LC075_Sort_Colors` | 🟡 Medium | ☐ |
-| `Q16_LC031_Next_Permutation` | 🟡 Medium | ☐ |
-| `Q17_LC189_Rotate_Array` | 🟡 Medium | ☐ |
-| `Q18_LC056_Merge_Intervals` | 🟡 Medium | ☐ |
-| `Q19_LC041_First_Missing_Positive` | 🔴 Hard | ☐ |
+| `Q11_LC011_Container_With_Most_Water` | 🟡 Medium | ☑ |
+| `Q12_LC015_Three_Sum` | 🟡 Medium | ☑ |
+| `Q13_LC042_Trapping_Rain_Water` | 🔴 Hard | ☑ |
+| `Q14_LC977_Squares_Of_A_Sorted_Array` | 🟢 Easy | ☑ |
+| `Q15_LC075_Sort_Colors` | 🟡 Medium | ☑ |
+| `Q16_LC031_Next_Permutation` | 🟡 Medium | ☑ |
+| `Q17_LC189_Rotate_Array` | 🟡 Medium | ☑ |
+| `Q18_LC056_Merge_Intervals` | 🟡 Medium | ☑ |
+| `Q19_LC041_First_Missing_Positive` | 🔴 Hard | ☑ |
 
 ### 03 Strings & Hashing — Q20–Q29
 
@@ -180,11 +231,14 @@ the optimal is a collapse of it, not a faster alternative.
 
 ---
 
-## 🎯 Start Here
+## 🎯 Next
 
-Phases 01–03 first. They have not been touched since August and carry almost no
-recorded miss data, which makes them the only real unknown in the repo — the
-later phases have three passes of evidence behind them.
+**Phase 03 — Strings & Hashing, Q20–Q29.**
+
+Phases 01–03 were the starting point because they had not been touched since
+August and carried almost no recorded miss data. Two down; 03 is the last
+unknown before the later phases, which have three passes of evidence behind
+them.
 
 ---
 
@@ -195,23 +249,20 @@ Full_Revision/
 │
 ├── README.md
 │
-├── 01_Arrays/
-│   ├── Q01_LC001_Two_Sum
-│   ├── Q02_LC121_Best_Time_To_Buy_And_Sell_Stock
-│   └── ...
-│
-├── 02_Two_Pointers/
-├── 03_Strings_And_Hashing/
-├── 04_Sliding_Window/
-├── 05_Binary_Search/
-├── 06_Stack_And_Queue/
-├── 07_Linked_List/
-├── 08_Trees_And_BST/
-└── 09_Advanced_Patterns/
+├── 01_Arrays_Q01_Q10.playground
+├── 02_Two_Pointers_Q11_Q19.playground
+├── 03_Strings_And_Hashing_Q20_Q29.playground
+├── 04_Sliding_Window_Q30_Q38.playground
+├── 05_Binary_Search_Q39_Q47.playground
+├── 06_Stack_And_Queue_Q48_Q56.playground
+├── 07_Linked_List_Q57_Q65.playground
+├── 08_Trees_And_BST_Q66_Q74.playground
+└── 09_Advanced_Patterns_Q75_Q85.playground
 ```
 
-One file per problem, same names as the originals, so each rewrite sits beside
-the file it is being checked against.
+One playground per phase, Q-range in the name, matching the `Mock_Sessions`
+convention. All problems for a phase live in the single file, so the whole
+phase runs in one go.
 
 No `Patterns/` or `Prerequisites` here — those were learning aids and do not
 get rewritten.
