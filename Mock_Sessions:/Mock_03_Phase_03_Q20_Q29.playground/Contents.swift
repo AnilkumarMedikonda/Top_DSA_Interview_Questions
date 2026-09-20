@@ -282,6 +282,8 @@ func topKFrequent(_ nums: [Int], _ k: Int) -> [Int] {
             hashMap[num] = 1
         }
     }
+    
+    
     var buckets = Array(repeating: [Int](), count: nums.count + 1)
 
     for (value, count) in hashMap {
