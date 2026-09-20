@@ -30,9 +30,9 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Mock Sessions Passed:** **9 / 12**
 
-**Full Revision:** **19 / 85** rewritten · 13 / 19 clean first pass
+**Full Revision:** **29 / 85** rewritten · 21 / 29 clean first pass (72%)
 
-**Current Focus:** Full revision pass — Phase 03, Q20–Q29
+**Current Focus:** Full revision pass — Phase 04, Q30–Q38
 
 ---
 
@@ -50,8 +50,9 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 | 08 | Trees & BST | Q66–Q74 | **9 / 9** | Mock 08 | ✅ |
 | 09 | Advanced Patterns | Q75–Q85 | **11 / 11** | Mock 09 | ✅ |
 
-All nine phases complete. Revision status tracked separately in `Full_Revision/README.md`.---
+All nine phases complete. Revision status tracked separately in `Full_Revision/README.md`.
 
+---
 # 🧠 Patterns Covered
 
 - Arrays
@@ -130,7 +131,10 @@ Top_DSA_Interview_Questions/
 ├── 07_Linked_List/
 ├── 08_Trees_And_BST/
 ├── 09_Advanced_Patterns/
+├── 09_Advanced_Patterns/
 │
+├── Full_Revision/
+├── Sorting_Algorithms/
 ├── Cheat_Sheets/
 ├── Mock_Sessions/
 ├── Company_Wise/
@@ -523,28 +527,26 @@ Three phases of revision data now read: Phase 07 **ordering**, Phase 08
 
 ---
 
-# 🔁 Full Revision — In Progress
-
-Second pass over all 85, rewritten blind from an empty file, oldest phase
-first. One playground per phase, problems stacked as blocks. Full rules and
-per-problem checklist in `Full_Revision/README.md`.
-
 | Phase | Questions | Rewritten | Clean first pass |
 |-------|-----------|----------:|-----------------:|
 | 01 Arrays | Q01–Q10 | 10 / 10 | 8 / 10 |
 | 02 Two Pointers | Q11–Q19 | 9 / 9 | 5 / 9 |
-| 03 Strings & Hashing | Q20–Q29 | — | — |
+| 03 Strings & Hashing | Q20–Q29 | 10 / 10 | 8 / 10 |
+| 04 Sliding Window | Q30–Q38 | in progress | — |
 
-**19 / 85 · 68% clean**
+**29 / 85 · 21 / 29 clean (72%)**
 
-Every miss so far has been **index mechanics** — Kadane's reset comparison,
-prefix `result[i]` vs `result[i-1]`, swap-before-increment, `k % n` and its
-reverse bounds, `left <= right`, seeding from the unsorted array. The right
-algorithm was picked 19 out of 19 times.
+Phases 01–02 missed on **index mechanics** — Kadane's reset comparison, prefix
+`result[i]` vs `result[i-1]`, swap-before-increment, `k % n` and its reverse
+bounds, `left <= right`, seeding from the unsorted array. Phase 03 missed on
+**guard clauses** — an exhausted count that did not return false, and a
+single-element array rejected by a `count > 1` check.
 
-That makes four phases of revision data: Phase 07 **ordering**, Phase 08
-**boundary**, Phase 09 **mechanism**, Full Revision **index**. None was ever a
-forgotten algorithm.
+The right algorithm was picked 29 out of 29 times.
+
+That makes four phases of revision data plus this pass: Phase 07 **ordering**,
+Phase 08 **boundary**, Phase 09 **mechanism**, Full Revision **index and
+guards**. None was ever a forgotten algorithm.
 
 Branch: `full_revision`.
 
@@ -554,8 +556,9 @@ Branch: `full_revision`.
 
 In order:
 
-**1. Full revision pass** — in progress, Phase 03 next. Weak areas from the
+**1. Full revision pass** — in progress, Phase 04 next. Weak areas from the
 mocks are being caught inside this pass rather than separately.
+
 
 **2. Every mock re-run, phase by phase.** `Mock_Reruns/` on branch
 `mock_reruns`.
@@ -597,11 +600,9 @@ For every problem:
 
 # 🚀 Related Repositories
 
-├── Full_Revision/
-├── Sorting_Algorithms/
-├── Cheat_Sheets/
-├── Mock_Sessions/
- **[DSA-Logic-and-Interview-Prep](https://github.com/AnilkumarMedikonda/DSA-Logic-and-Interview-Prep)** | 246 problems across 21 phases covering the complete DSA learning journey. |
+| Repository | Description |
+|------------|-------------|
+| **[DSA-Logic-and-Interview-Prep](https://github.com/AnilkumarMedikonda/DSA-Logic-and-Interview-Prep)** | 246 problems across 21 phases covering the complete DSA learning journey. |
 | **[iOS-Architecture-Patterns](https://github.com/AnilkumarMedikonda/iOS-Architecture-Patterns)** | Swift, UIKit, and SwiftUI architecture patterns for iOS development. |
 
 ---

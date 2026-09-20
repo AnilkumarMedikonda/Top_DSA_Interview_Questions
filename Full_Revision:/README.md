@@ -22,8 +22,9 @@ were written while the phase was fresh. This one measures what survived.
 - `swapAt`, `min()` and `max()` are fine; everything else stays manual. No
   force unwraps, `let` over `var`, complexity stated with the reason.
 
-Exception: **Q82–Q85** and **Q13, Q32** — sketch the naive version first. There
-the optimal is a collapse of it, not a faster alternative.
+Exception: **Q82–Q85** and **Q32** — sketch the naive version first. There the
+optimal is a collapse of it, not a faster alternative. (Q13 done: two-pointer
+written directly, no naive sketch needed.)
 
 ---
 
@@ -63,9 +64,11 @@ print("Input: ... -> \(call)")  // expected
 print()
 ```
 
-Shared types (`ListNode`, `TreeNode`, graph builders) go in a
-`// MARK: - Helpers` block at the top of the phase file — Phases 07, 08, 09
-only.
+Shared types and helpers (`ListNode`, `TreeNode`, frequency maps, graph
+builders) go in a `// MARK: - Helpers` block at the top of the phase file.
+Phase 03 carries `getCharsFrequencyMap`, `getNumbersFrequencyMap`,
+`signature`, `getWords` and `isAlphanumeric`; Phases 07–09 carry the node types
+and builders. Phases 01, 02, 04–06 need none.
 
 **Test count:** Easy 4 · Medium 4–5 · Hard 5–7. Always 1–2 meaningful edge
 cases. Nothing artificial or repetitive.
@@ -80,18 +83,47 @@ Clean first pass = solutions correct before review, counted blind.
 |-------|-----------|----------:|-----------------:|:------:|
 | 01 Arrays | Q01–Q10 | 10 / 10 | 8 / 10 | ✅ |
 | 02 Two Pointers | Q11–Q19 | 9 / 9 | 5 / 9 | ✅ |
-| 03 Strings & Hashing | Q20–Q29 | 0 / 10 | — | ⏳ |
-| 04 Sliding Window | Q30–Q38 | 0 / 9 | — | ⏳ |
+| 03 Strings & Hashing | Q20–Q29 | 10 / 10 | 8 / 10 | ✅ |
+| 04 Sliding Window | Q30–Q38 | 0 / 9 | — | 🔄 |
 | 05 Binary Search | Q39–Q47 | 0 / 9 | — | ⏳ |
 | 06 Stack & Queue | Q48–Q56 | 0 / 9 | — | ⏳ |
 | 07 Linked List | Q57–Q65 | 0 / 9 | — | ⏳ |
 | 08 Trees & BST | Q66–Q74 | 0 / 9 | — | ⏳ |
 | 09 Advanced Patterns | Q75–Q85 | 0 / 11 | — | ⏳ |
 
-**19 / 85 rewritten · 13 / 19 clean first pass (68%)**
+**29 / 85 rewritten · 21 / 29 clean first pass (72%)**
+
+By phase: 80% · 56% · 80%
 
 ---
 
+## 🔍 Misses So Far
+
+Every miss has been mechanical, never a forgotten algorithm. The class shifts
+by phase.
+
+**Phases 01–02 — index mechanics (6)**
+
+| # | Problem | What broke |
+|---|---------|------------|
+| Q04 | Maximum Subarray | Kadane reset compared `nums[i] > currentSum`, not `currentSum + nums[i]` |
+| Q10 | Product Except Self | Prefix loop read `result[i]` instead of `result[i-1]` |
+| Q12 | 3Sum | `left <= right` let one element be used twice |
+| Q15 | Sort Colors | Incremented `low`/`mid` before the swap |
+| Q17 | Rotate Array | `count / k` instead of `k % count`; then off-by-one reverse bounds |
+| Q18 | Merge Intervals | Seeded `result` from the unsorted array |
+
+**Phase 03 — guard clauses (2)**
+
+| # | Problem | What broke |
+|---|---------|------------|
+| Q26 | Ransom Note | Exhausted count nil-ed the entry instead of returning false |
+| Q23 | Longest Common Prefix | `words.count > 1` returned `""` for a single-word array |
+
+Both Phase 03 misses were on the two easiest problems in the set. Q21, Q25,
+Q27 and Q28 — the four with real structure — came back clean.
+
+---
 
 ## 📋 Question List
 
@@ -126,22 +158,22 @@ Clean first pass = solutions correct before review, counted blind.
 | `Q18_LC056_Merge_Intervals` | 🟡 Medium | ☑ |
 | `Q19_LC041_First_Missing_Positive` | 🔴 Hard | ☑ |
 
-### 03 Strings & Hashing — Q20–Q29
+### 03 Strings & Hashing — Q20–Q29 ✅
 
 | File | Level | ☐ |
 |------|-------|:-:|
-| `Q20_LC242_Valid_Anagram` | 🟢 Easy | ☐ |
-| `Q21_LC049_Group_Anagrams` | 🟡 Medium | ☐ |
-| `Q22_LC125_Valid_Palindrome` | 🟢 Easy | ☐ |
-| `Q23_LC014_Longest_Common_Prefix` | 🟢 Easy | ☐ |
-| `Q24_LC151_Reverse_Words_In_A_String` | 🟡 Medium | ☐ |
-| `Q25_LC347_Top_K_Frequent_Elements` | 🟡 Medium | ☐ |
-| `Q26_LC383_Ransom_Note` | 🟢 Easy | ☐ |
-| `Q27_LC205_Isomorphic_Strings` | 🟢 Easy | ☐ |
-| `Q28_LC290_Word_Pattern` | 🟢 Easy | ☐ |
-| `Q29_LC387_First_Unique_Character_In_A_String` | 🟢 Easy | ☐ |
+| `Q20_LC242_Valid_Anagram` | 🟢 Easy | ☑ |
+| `Q21_LC049_Group_Anagrams` | 🟡 Medium | ☑ |
+| `Q22_LC125_Valid_Palindrome` | 🟢 Easy | ☑ |
+| `Q23_LC014_Longest_Common_Prefix` | 🟢 Easy | ☑ |
+| `Q24_LC151_Reverse_Words_In_A_String` | 🟡 Medium | ☑ |
+| `Q25_LC347_Top_K_Frequent_Elements` | 🟡 Medium | ☑ |
+| `Q26_LC383_Ransom_Note` | 🟢 Easy | ☑ |
+| `Q27_LC205_Isomorphic_Strings` | 🟢 Easy | ☑ |
+| `Q28_LC290_Word_Pattern` | 🟢 Easy | ☑ |
+| `Q29_LC387_First_Unique_Character_In_A_String` | 🟢 Easy | ☑ |
 
-### 04 Sliding Window — Q30–Q38
+### 04 Sliding Window — Q30–Q38 🔄
 
 | File | Level | ☐ |
 |------|-------|:-:|
@@ -233,12 +265,15 @@ Clean first pass = solutions correct before review, counted blind.
 
 ## 🎯 Next
 
-**Phase 03 — Strings & Hashing, Q20–Q29.**
+**Phase 04 — Sliding Window, Q30–Q38. In progress.**
 
 Phases 01–03 were the starting point because they had not been touched since
-August and carried almost no recorded miss data. Two down; 03 is the last
-unknown before the later phases, which have three passes of evidence behind
-them.
+August and carried almost no recorded miss data. All three done. From here the
+phases have three passes of evidence behind them, so the clean-first-pass rate
+should climb — if it does not, the decay is worse than the records suggest.
+
+Two hards in Phase 04: Q32 Minimum Window Substring and Q38 Sliding Window
+Maximum. Q32 is on the sketch-the-naive-first list.
 
 ---
 
