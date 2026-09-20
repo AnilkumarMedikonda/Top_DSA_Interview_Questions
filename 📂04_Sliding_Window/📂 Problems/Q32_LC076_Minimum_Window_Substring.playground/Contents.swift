@@ -135,15 +135,17 @@ func optmisedMinimWinwo(_ s: String, _ t: String) -> String {
             }
 
             let leftChar = words[left]
-            if let count = sMap[leftChar] {
-                sMap[leftChar] = count - 1
-            } else {
-                sMap[leftChar] = -1
-            }
+            
+            if let count = sMap[leftChar],
+               let tCount = tMap[leftChar] {
 
-            if let scount = sMap[leftChar], let tcount = tMap[leftChar], scount < tcount {
-                formed -= 1
+                if count == tCount {
+                    formed -= 1
+                }
+
+                sMap[leftChar] = count - 1
             }
+            
             left += 1
         }
     }
