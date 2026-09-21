@@ -85,15 +85,15 @@ Clean first pass = solutions correct before review, counted blind.
 | 02 Two Pointers | Q11–Q19 | 9 / 9 | 5 / 9 | ✅ |
 | 03 Strings & Hashing | Q20–Q29 | 10 / 10 | 8 / 10 | ✅ |
 | 04 Sliding Window | Q30–Q38 | 9 / 9 | 6 / 9 | ✅ |
-| 05 Binary Search | Q39–Q47 | 0 / 9 | — | 🔄 |
-| 06 Stack & Queue | Q48–Q56 | 0 / 9 | — | ⏳ |
+| 05 Binary Search | Q39–Q47 | 9 / 9 | 9 / 9 | ✅ |
+| 06 Stack & Queue | Q48–Q56 | 0 / 9 | — | 🔄 |
 | 07 Linked List | Q57–Q65 | 0 / 9 | — | ⏳ |
 | 08 Trees & BST | Q66–Q74 | 0 / 9 | — | ⏳ |
 | 09 Advanced Patterns | Q75–Q85 | 0 / 11 | — | ⏳ |
 
-**38 / 85 rewritten · 27 / 38 clean first pass (71%)**
+**47 / 85 rewritten · 36 / 47 clean first pass (77%)**
 
-By phase: 80% · 56% · 80% · 67%
+By phase: 80% · 56% · 80% · 67% · 100%
 
 ---
 
@@ -134,6 +134,13 @@ Q27 and Q28 — the four with real structure — came back clean.
 Q36 is the same shape as Q26 in Phase 03 — a counter changed on the wrong side
 of the zero-check. Twice across two phases: worth one extra glance at every
 decrement-and-prune. Both hards, Q32 and Q38, came back clean.
+
+**Phase 05 — none**
+
+All nine correct on the first attempt, including the Hard. The review caught
+only hygiene: Q43's loop locals shadowing the outer `row`/`colum`, and
+complexity headers on the answer-space problems stating the log over n instead
+of over the search range.
 
 ---
 
@@ -199,21 +206,21 @@ decrement-and-prune. Both hards, Q32 and Q38, came back clean.
 | `Q37_LC209_Minimum_Size_Subarray_Sum` | 🟡 Medium | ☑ |
 | `Q38_LC239_Sliding_Window_Maximum` | 🔴 Hard | ☑ |
 
-### 05 Binary Search — Q39–Q47 🔄
+### 05 Binary Search — Q39–Q47 ✅
 
 | File | Level | ☐ |
 |------|-------|:-:|
-| `Q39_LC704_Binary_Search` | 🟢 Easy | ☐ |
-| `Q40_LC035_Search_Insert_Position` | 🟢 Easy | ☐ |
-| `Q41_LC033_Search_In_Rotated_Sorted_Array` | 🟡 Medium | ☐ |
-| `Q42_LC153_Find_Minimum_In_Rotated_Sorted_Array` | 🟡 Medium | ☐ |
-| `Q43_LC074_Search_A_2D_Matrix` | 🟡 Medium | ☐ |
-| `Q44_LC875_Koko_Eating_Bananas` | 🟡 Medium | ☐ |
-| `Q45_LC162_Find_Peak_Element` | 🟡 Medium | ☐ |
-| `Q46_LC1011_Capacity_To_Ship_Packages_Within_D_Days` | 🟡 Medium | ☐ |
-| `Q47_LC410_Split_Array_Largest_Sum` | 🔴 Hard | ☐ |
+| `Q39_LC704_Binary_Search` | 🟢 Easy | ☑ |
+| `Q40_LC035_Search_Insert_Position` | 🟢 Easy | ☑ |
+| `Q41_LC033_Search_In_Rotated_Sorted_Array` | 🟡 Medium | ☑ |
+| `Q42_LC153_Find_Minimum_In_Rotated_Sorted_Array` | 🟡 Medium | ☑ |
+| `Q43_LC074_Search_A_2D_Matrix` | 🟡 Medium | ☑ |
+| `Q44_LC875_Koko_Eating_Bananas` | 🟡 Medium | ☑ |
+| `Q45_LC162_Find_Peak_Element` | 🟡 Medium | ☑ |
+| `Q46_LC1011_Capacity_To_Ship_Packages_Within_D_Days` | 🟡 Medium | ☑ |
+| `Q47_LC410_Split_Array_Largest_Sum` | 🔴 Hard | ☑ |
 
-### 06 Stack & Queue — Q48–Q56
+### 06 Stack & Queue — Q48–Q56 🔄
 
 | File | Level | ☐ |
 |------|-------|:-:|
@@ -277,16 +284,18 @@ decrement-and-prune. Both hards, Q32 and Q38, came back clean.
 
 ## 🎯 Next
 
-**Phase 05 — Binary Search, Q39–Q47. In progress.**
+**Phase 06 — Stack & Queue, Q48–Q56. In progress.**
 
-Phase 04 was the first phase with three prior passes of evidence behind it, and
-the clean rate did not climb — 67%, below Phases 01 and 03. The algorithms
-held; the counters and sentinels around them did not. So the "later phases will
-be cleaner" assumption is not confirmed yet.
+Phase 05 answered the question Phase 04 left open. Phase 04 dipped to 67% and
+raised the worry that decay was across the board; Phase 05 came back 9/9. The
+patterns drilled hardest held completely. The misses cluster in counters,
+guards and index arithmetic around the core loop — not in any one phase.
 
-Phase 05 was 9/9 on its original revision — the cleanest phase in the repo. If
-it drops here, the decay is real across the board. One hard: Q47 Split Array
-Largest Sum.
+Phase 06 has no Hard, but Q55 LRU Cache is the longest implementation in the
+set: HashMap plus doubly linked list, sentinels at both ends, and eviction
+from both structures. It was clean on the original revision. Q48's missing
+`else` on the mismatch branch was the one regression last time — worth a
+trace, since every test passed with it wrong.
 
 ---
 

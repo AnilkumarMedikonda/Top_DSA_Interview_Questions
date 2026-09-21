@@ -30,9 +30,9 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Mock Sessions Passed:** **9 / 12**
 
-**Full Revision:** **38 / 85** rewritten · 27 / 38 clean first pass (71%)
+**Full Revision:** **47 / 85** rewritten · 36 / 47 clean first pass (77%)
 
-**Current Focus:** Full revision pass — Phase 05, Q39–Q47
+**Current Focus:** Full revision pass — Phase 06, Q48–Q56
 
 ---
 
@@ -537,9 +537,10 @@ per-problem checklist in `Full_Revision/README.md`.
 | 02 Two Pointers | Q11–Q19 | 9 / 9 | 5 / 9 |
 | 03 Strings & Hashing | Q20–Q29 | 10 / 10 | 8 / 10 |
 | 04 Sliding Window | Q30–Q38 | 9 / 9 | 6 / 9 |
-| 05 Binary Search | Q39–Q47 | in progress | — |
+| 05 Binary Search | Q39–Q47 | 9 / 9 | 9 / 9 |
+| 06 Stack & Queue | Q48–Q56 | in progress | — |
 
-**38 / 85 · 27 / 38 clean (71%)**
+**47 / 85 · 36 / 47 clean (77%)**
 
 Phases 01–02 missed on **index mechanics** — Kadane's reset comparison, prefix
 `result[i]` vs `result[i-1]`, swap-before-increment, `k % n` and its reverse
@@ -548,7 +549,10 @@ bounds, `left <= right`, seeding from the unsorted array. Phase 03 missed on
 single-element array rejected by a `count > 1` check. Phase 04 missed on
 **counters and sentinels** — an `Int.min` seed returning -1 on empty input, a
 window sized by distinct count instead of length, and a type counter
-decremented on every shrink instead of only at zero.
+decremented on every shrink instead of only at zero. Phase 05 missed on
+**nothing** — 9/9 on the first attempt, including the Hard.
+
+The right algorithm was picked 47 out of 47 times.
 
 The right algorithm was picked 38 out of 38 times.
 
@@ -564,7 +568,7 @@ Branch: `full_revision`.
 
 In order:
 
-**1. Full revision pass** — in progress, Phase 05 next. Weak areas from the
+**1. Full revision pass** — in progress, Phase 06 next. Weak areas from the
 mocks are being caught inside this pass rather than separately.
 
 **2. Every mock re-run, phase by phase.** `Mock_Reruns/` on branch
