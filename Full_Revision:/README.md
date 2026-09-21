@@ -22,9 +22,9 @@ were written while the phase was fresh. This one measures what survived.
 - `swapAt`, `min()` and `max()` are fine; everything else stays manual. No
   force unwraps, `let` over `var`, complexity stated with the reason.
 
-Exception: **Q82–Q85** and **Q32** — sketch the naive version first. There the
-optimal is a collapse of it, not a faster alternative. (Q13 done: two-pointer
-written directly, no naive sketch needed.)
+Exception: **Q82–Q85** — sketch the naive version first. There the optimal is a
+collapse of it, not a faster alternative. (Q13 and Q32 done: both written
+directly, no naive sketch needed.)
 
 ---
 
@@ -84,16 +84,16 @@ Clean first pass = solutions correct before review, counted blind.
 | 01 Arrays | Q01–Q10 | 10 / 10 | 8 / 10 | ✅ |
 | 02 Two Pointers | Q11–Q19 | 9 / 9 | 5 / 9 | ✅ |
 | 03 Strings & Hashing | Q20–Q29 | 10 / 10 | 8 / 10 | ✅ |
-| 04 Sliding Window | Q30–Q38 | 0 / 9 | — | 🔄 |
-| 05 Binary Search | Q39–Q47 | 0 / 9 | — | ⏳ |
+| 04 Sliding Window | Q30–Q38 | 9 / 9 | 6 / 9 | ✅ |
+| 05 Binary Search | Q39–Q47 | 0 / 9 | — | 🔄 |
 | 06 Stack & Queue | Q48–Q56 | 0 / 9 | — | ⏳ |
 | 07 Linked List | Q57–Q65 | 0 / 9 | — | ⏳ |
 | 08 Trees & BST | Q66–Q74 | 0 / 9 | — | ⏳ |
 | 09 Advanced Patterns | Q75–Q85 | 0 / 11 | — | ⏳ |
 
-**29 / 85 rewritten · 21 / 29 clean first pass (72%)**
+**38 / 85 rewritten · 27 / 38 clean first pass (71%)**
 
-By phase: 80% · 56% · 80%
+By phase: 80% · 56% · 80% · 67%
 
 ---
 
@@ -122,6 +122,18 @@ by phase.
 
 Both Phase 03 misses were on the two easiest problems in the set. Q21, Q25,
 Q27 and Q28 — the four with real structure — came back clean.
+
+**Phase 04 — counters and sentinels (3)**
+
+| # | Problem | What broke |
+|---|---------|------------|
+| Q30 | Longest Substring | `Int.min` sentinel returned -1 on empty input |
+| Q34 | Find All Anagrams | Window sized by `patternMap.count` (distinct) instead of `p.count` (length) |
+| Q36 | Fruit Into Baskets | `uniquTypes -= 1` on every shrink step, not only when a type hit zero |
+
+Q36 is the same shape as Q26 in Phase 03 — a counter changed on the wrong side
+of the zero-check. Twice across two phases: worth one extra glance at every
+decrement-and-prune. Both hards, Q32 and Q38, came back clean.
 
 ---
 
@@ -173,21 +185,21 @@ Q27 and Q28 — the four with real structure — came back clean.
 | `Q28_LC290_Word_Pattern` | 🟢 Easy | ☑ |
 | `Q29_LC387_First_Unique_Character_In_A_String` | 🟢 Easy | ☑ |
 
-### 04 Sliding Window — Q30–Q38 🔄
+### 04 Sliding Window — Q30–Q38 ✅
 
 | File | Level | ☐ |
 |------|-------|:-:|
-| `Q30_LC003_Longest_Substring_Without_Repeating_Characters` | 🟡 Medium | ☐ |
-| `Q31_LC424_Longest_Repeating_Character_Replacement` | 🟡 Medium | ☐ |
-| `Q32_LC076_Minimum_Window_Substring` | 🔴 Hard | ☐ |
-| `Q33_LC567_Permutation_In_String` | 🟡 Medium | ☐ |
-| `Q34_LC438_Find_All_Anagrams_In_A_String` | 🟡 Medium | ☐ |
-| `Q35_LC643_Maximum_Average_Subarray_I` | 🟢 Easy | ☐ |
-| `Q36_LC904_Fruit_Into_Baskets` | 🟡 Medium | ☐ |
-| `Q37_LC209_Minimum_Size_Subarray_Sum` | 🟡 Medium | ☐ |
-| `Q38_LC239_Sliding_Window_Maximum` | 🔴 Hard | ☐ |
+| `Q30_LC003_Longest_Substring_Without_Repeating_Characters` | 🟡 Medium | ☑ |
+| `Q31_LC424_Longest_Repeating_Character_Replacement` | 🟡 Medium | ☑ |
+| `Q32_LC076_Minimum_Window_Substring` | 🔴 Hard | ☑ |
+| `Q33_LC567_Permutation_In_String` | 🟡 Medium | ☑ |
+| `Q34_LC438_Find_All_Anagrams_In_A_String` | 🟡 Medium | ☑ |
+| `Q35_LC643_Maximum_Average_Subarray_I` | 🟢 Easy | ☑ |
+| `Q36_LC904_Fruit_Into_Baskets` | 🟡 Medium | ☑ |
+| `Q37_LC209_Minimum_Size_Subarray_Sum` | 🟡 Medium | ☑ |
+| `Q38_LC239_Sliding_Window_Maximum` | 🔴 Hard | ☑ |
 
-### 05 Binary Search — Q39–Q47
+### 05 Binary Search — Q39–Q47 🔄
 
 | File | Level | ☐ |
 |------|-------|:-:|
@@ -265,15 +277,16 @@ Q27 and Q28 — the four with real structure — came back clean.
 
 ## 🎯 Next
 
-**Phase 04 — Sliding Window, Q30–Q38. In progress.**
+**Phase 05 — Binary Search, Q39–Q47. In progress.**
 
-Phases 01–03 were the starting point because they had not been touched since
-August and carried almost no recorded miss data. All three done. From here the
-phases have three passes of evidence behind them, so the clean-first-pass rate
-should climb — if it does not, the decay is worse than the records suggest.
+Phase 04 was the first phase with three prior passes of evidence behind it, and
+the clean rate did not climb — 67%, below Phases 01 and 03. The algorithms
+held; the counters and sentinels around them did not. So the "later phases will
+be cleaner" assumption is not confirmed yet.
 
-Two hards in Phase 04: Q32 Minimum Window Substring and Q38 Sliding Window
-Maximum. Q32 is on the sketch-the-naive-first list.
+Phase 05 was 9/9 on its original revision — the cleanest phase in the repo. If
+it drops here, the decay is real across the board. One hard: Q47 Split Array
+Largest Sum.
 
 ---
 

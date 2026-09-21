@@ -30,9 +30,9 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Mock Sessions Passed:** **9 / 12**
 
-**Full Revision:** **29 / 85** rewritten · 21 / 29 clean first pass (72%)
+**Full Revision:** **38 / 85** rewritten · 27 / 38 clean first pass (71%)
 
-**Current Focus:** Full revision pass — Phase 04, Q30–Q38
+**Current Focus:** Full revision pass — Phase 05, Q39–Q47
 
 ---
 
@@ -53,6 +53,7 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 All nine phases complete. Revision status tracked separately in `Full_Revision/README.md`.
 
 ---
+
 # 🧠 Patterns Covered
 
 - Arrays
@@ -89,13 +90,12 @@ All nine phases complete. Revision status tracked separately in `Full_Revision/R
 - Shared helpers live in the phase's `Sources/` folder, never pasted per file.
 - Never name a local after a function used in the same scope — `maximum`, not `max`.
 - Declare nested helper functions before the loop that calls them.
-- **Test prints:** `print("\n========== Q## - Problem Name ==========")` per problem, then one print per case with the expected answer as an inline comment.
+- **Test prints:** `print("\n========== Q## - Problem Name ==========")` per problem, then one print per case with the expected answer as an inline comment. Full_Revision files use the three-line boxed header instead — see that folder's README.
 - Every solution includes interview discussion.
 - Every problem includes complexity analysis with reasoning.
 - Edge cases are documented.
 - **No pattern file without a problem behind it.** A pattern that no question in the phase actually needs does not get a file.
 - A phase is complete only after passing its mock interview.
-- **Test prints:** `print("\n========== Q## - Problem Name ==========")` per problem, then one print per case with the expected answer as an inline comment. Full_Revision files use the three-line boxed header instead — see that folder's README.
 
 ---
 
@@ -130,7 +130,6 @@ Top_DSA_Interview_Questions/
 ├── 06_Stack_And_Queue/
 ├── 07_Linked_List/
 ├── 08_Trees_And_BST/
-├── 09_Advanced_Patterns/
 ├── 09_Advanced_Patterns/
 │
 ├── Full_Revision/
@@ -524,29 +523,38 @@ algorithms came back; the discipline did not.
 Three phases of revision data now read: Phase 07 **ordering**, Phase 08
 **boundary**, Phase 09 **mechanism**. None was ever a forgotten algorithm.
 
-
 ---
+
+# 🔁 Full Revision — In Progress
+
+Second pass over all 85, rewritten blind from an empty file, oldest phase
+first. One playground per phase, problems stacked as blocks. Full rules and
+per-problem checklist in `Full_Revision/README.md`.
 
 | Phase | Questions | Rewritten | Clean first pass |
 |-------|-----------|----------:|-----------------:|
 | 01 Arrays | Q01–Q10 | 10 / 10 | 8 / 10 |
 | 02 Two Pointers | Q11–Q19 | 9 / 9 | 5 / 9 |
 | 03 Strings & Hashing | Q20–Q29 | 10 / 10 | 8 / 10 |
-| 04 Sliding Window | Q30–Q38 | in progress | — |
+| 04 Sliding Window | Q30–Q38 | 9 / 9 | 6 / 9 |
+| 05 Binary Search | Q39–Q47 | in progress | — |
 
-**29 / 85 · 21 / 29 clean (72%)**
+**38 / 85 · 27 / 38 clean (71%)**
 
 Phases 01–02 missed on **index mechanics** — Kadane's reset comparison, prefix
 `result[i]` vs `result[i-1]`, swap-before-increment, `k % n` and its reverse
 bounds, `left <= right`, seeding from the unsorted array. Phase 03 missed on
 **guard clauses** — an exhausted count that did not return false, and a
-single-element array rejected by a `count > 1` check.
+single-element array rejected by a `count > 1` check. Phase 04 missed on
+**counters and sentinels** — an `Int.min` seed returning -1 on empty input, a
+window sized by distinct count instead of length, and a type counter
+decremented on every shrink instead of only at zero.
 
-The right algorithm was picked 29 out of 29 times.
+The right algorithm was picked 38 out of 38 times.
 
 That makes four phases of revision data plus this pass: Phase 07 **ordering**,
-Phase 08 **boundary**, Phase 09 **mechanism**, Full Revision **index and
-guards**. None was ever a forgotten algorithm.
+Phase 08 **boundary**, Phase 09 **mechanism**, Full Revision **index, guards
+and counters**. None was ever a forgotten algorithm.
 
 Branch: `full_revision`.
 
@@ -556,9 +564,8 @@ Branch: `full_revision`.
 
 In order:
 
-**1. Full revision pass** — in progress, Phase 04 next. Weak areas from the
+**1. Full revision pass** — in progress, Phase 05 next. Weak areas from the
 mocks are being caught inside this pass rather than separately.
-
 
 **2. Every mock re-run, phase by phase.** `Mock_Reruns/` on branch
 `mock_reruns`.
@@ -566,6 +573,8 @@ mocks are being caught inside this pass rather than separately.
 **3. Sorting algorithms.** Merge, quick and heap sort — `Sorting_Algorithms/`
 at the repo root, branch `sorting_algorithms`. Assembled from pieces already in
 the repo.
+
+---
 
 # 🕳️ Known Gaps
 
