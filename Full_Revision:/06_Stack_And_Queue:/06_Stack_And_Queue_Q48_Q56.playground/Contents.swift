@@ -590,12 +590,48 @@ print(quue.isEmpty)               // Expected: true                // fixed
 // Input: asteroids = [5,10,-5]
 // Output: [5,10]
 //
-// Time:
-// Space:
+// Time: O(n)
+// Space: O(n)
 //
 //--------------------------------------------------------------
 // MARK: Solution
 //--------------------------------------------------------------
+
+func asteroidCollision(_ asteroids: [Int]) -> [Int] {
+    
+    var stack = [Int]()
+    
+    for asteroid in asteroids {
+        
+        var isDestroyed = false
+        let current = asteroid
+        
+        while let last = stack.last , last > 0, current < 0  {
+            
+            let currentSize = -current
+            
+            if currentSize > last {
+                stack.removeLast()
+            } else if currentSize == last {
+                stack.removeLast()
+                isDestroyed = true
+                break
+            } else  {
+                isDestroyed = true
+                break
+            }
+            
+        }
+        
+        if !isDestroyed {
+            stack.append(current)
+        }
+        
+    }
+    
+    
+    return stack
+}
 
 
 //==============================================================
@@ -604,21 +640,20 @@ print(quue.isEmpty)               // Expected: true                // fixed
 
 print("========== Q54: Asteroid Collision ==========")
 
-// Uncomment once asteroidCollision is written                     // fixed
-// print(asteroidCollision([5,10,-5]))
-// // Expected: [5,10]
-//
-// print(asteroidCollision([8,-8]))
-// // Expected: []
-//
-// print(asteroidCollision([10,2,-5]))
-// // Expected: [10]
-//
-// print(asteroidCollision([-2,-1,1,2]))
-// // Expected: [-2,-1,1,2]
-//
-// print(asteroidCollision([1,-1]))
-// // Expected: []
+print(asteroidCollision([5,10,-5]))
+// Expected: [5,10]
+
+print(asteroidCollision([8,-8]))
+// Expected: []
+
+print(asteroidCollision([10,2,-5]))
+// Expected: [10]
+
+print(asteroidCollision([-2,-1,1,2]))
+// Expected: [-2,-1,1,2]
+
+print(asteroidCollision([1,-1]))
+// Expected: []
 
 
 
@@ -655,12 +690,108 @@ print("========== Q54: Asteroid Collision ==========")
 // 1
 // -1
 //
-// Time:
-// Space:
+// Time: O(1) per operation
+// Space: O(capacity)
 //
 //--------------------------------------------------------------
 // MARK: Solution
 //--------------------------------------------------------------
+
+
+final class Node {
+    var key: Int
+    var value: Int
+    weak var prev: Node? = nil
+    var next: Node? = nil
+    
+    init(key: Int, value: Int) {
+        self.key = key
+        self.value = value
+    }
+}
+
+
+final class LRUCache {
+    
+    private let capacity: Int
+    private var cache : [Int: Node] = [:]
+    private let head = Node(key: 0, value: 0)
+    private let tail = Node(key: 0, value: 0)
+    
+    init(capacity: Int) {
+        self.capacity = capacity
+        self.head.next = tail
+        self.tail.prev = head
+    }
+    
+    // Add Node
+    
+    private func addToMRU(_ node: Node) {
+        let prevNode = tail.prev
+        prevNode?.next = node
+        node.prev = prevNode
+        
+        node.next = tail
+        tail.prev = node
+        
+    }
+    
+    // Remove Node
+    
+    private func removeNode(_ node: Node) {
+        let prev = node.prev
+        let next = node.next
+        
+        prev?.next = next
+        next?.prev = prev
+        
+    }
+    
+    // Get Node
+    
+    func getNodeValue(_ key: Int) -> Int {
+        
+        guard let node = cache[key] else {
+            return -1
+        }
+        
+        removeNode(node)
+        addToMRU(node)
+        
+        return node.value
+        
+    }
+    
+    // Put Node
+
+    func put(_ key: Int, _ value: Int) {
+        
+        if let existingNode = cache[key] {
+            existingNode.value = value
+            removeNode(existingNode)
+            addToMRU(existingNode)
+            return
+            
+        }
+        
+        let newNode = Node(key: key, value: value)
+        cache[key] = newNode
+        addToMRU(newNode)
+        
+        if cache.count >  capacity {
+            
+            if let lruNode = head.next {
+                removeNode(lruNode)
+                cache.removeValue(forKey: lruNode.key)
+            }
+        }
+        
+        
+    }
+    
+    
+}
+ 
 
 
 //==============================================================
@@ -669,33 +800,32 @@ print("========== Q54: Asteroid Collision ==========")
 
 print("========== Q55: LRU Cache ==========")
 
-// Test Case 1
-// capacity = 2
-// put(1,1)
-// put(2,2)
-// get(1)
-// Expected: 1
+let lruCache = LRUCache(capacity: 2)
+lruCache.put(1, 1)
+lruCache.put(2, 2)
 
-// Test Case 2
-// put(3,3)
-// get(2)
-// Expected: -1
+print(lruCache.getNodeValue(1))   // Expected: 1
 
-// Test Case 3
-// put(4,4)
-// get(1)
-// Expected: -1
+lruCache.put(3, 3)
 
-// Test Case 4
-// get(3), get(4)
-// Expected: 3, 4
+print(lruCache.getNodeValue(2))   // Expected: -1
 
-// Test Case 5
-// capacity = 1
-// put(1,1)
-// put(2,2)
-// get(1)
-// Expected: -1
+lruCache.put(4, 4)
+
+print(lruCache.getNodeValue(1))   // Expected: -1
+
+print(lruCache.getNodeValue(3))   // Expected: 3
+print(lruCache.getNodeValue(4))   // Expected: 4
+
+lruCache.put(3, 30)
+print(lruCache.getNodeValue(3))   // Expected: 30
+
+let singleCache = LRUCache(capacity: 1)
+singleCache.put(1, 1)
+singleCache.put(2, 2)
+
+print(singleCache.getNodeValue(1))   // Expected: -1
+print(singleCache.getNodeValue(2))   // Expected: 2
 
 
 
@@ -724,12 +854,41 @@ print("========== Q55: LRU Cache ==========")
 // Output:
 // [-1,3,-1]
 //
-// Time:
-// Space:
+// Time: O(n + m)
+// Space: O(m)
 //
 //--------------------------------------------------------------
 // MARK: Solution
 //--------------------------------------------------------------
+
+func nextGreaterElement(_ nums1: [Int], _ nums2: [Int]) -> [Int] {
+    
+    var result = [Int]()
+    var stack = [Int]()
+    var answer = [Int: Int]()
+    
+    for num in nums2 {
+        
+        while let last = stack.last ,  num > last {
+            stack.removeLast()
+            answer[last]  = num
+        }
+        
+        stack.append(num)
+        
+    }
+    
+    for num in nums1 {
+        
+        if let value = answer[num] {
+            result.append(value)
+        } else {
+            result.append(-1)
+        }
+    }
+    
+    return result
+}
 
 
 //==============================================================
@@ -738,21 +897,20 @@ print("========== Q55: LRU Cache ==========")
 
 print("========== Q56: Next Greater Element I ==========")
 
-// Uncomment once nextGreaterElement is written                    // fixed
-// print(nextGreaterElement([4,1,2], [1,3,4,2]))
-// // Expected: [-1,3,-1]
-//
-// print(nextGreaterElement([2,4], [1,2,3,4]))
-// // Expected: [3,-1]
-//
-// print(nextGreaterElement([1], [1]))
-// // Expected: [-1]
-//
-// print(nextGreaterElement([3,1], [2,3,1]))
-// // Expected: [-1,-1]
-//
-// print(nextGreaterElement([1,3,5], [1,2,3,4,5]))
-// // Expected: [2,4,-1]
+print(nextGreaterElement([4,1,2], [1,3,4,2]))
+// Expected: [-1,3,-1]
+
+print(nextGreaterElement([2,4], [1,2,3,4]))
+// Expected: [3,-1]
+
+print(nextGreaterElement([1], [1]))
+// Expected: [-1]
+
+print(nextGreaterElement([3,1], [2,3,1]))
+// Expected: [-1,-1]
+
+print(nextGreaterElement([1,3,5], [1,2,3,4,5]))
+// Expected: [2,4,-1]
 
 
 
