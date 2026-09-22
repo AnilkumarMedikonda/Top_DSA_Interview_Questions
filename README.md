@@ -30,9 +30,9 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Mock Sessions Passed:** **9 / 12**
 
-**Full Revision:** **47 / 85** rewritten · 36 / 47 clean first pass (77%)
+**Full Revision:** **56 / 85** rewritten · 45 / 56 clean first pass (80%)
 
-**Current Focus:** Full revision pass — Phase 06, Q48–Q56
+**Current Focus:** Full revision pass — Phase 07, Q57–Q65
 
 ---
 
@@ -538,9 +538,10 @@ per-problem checklist in `Full_Revision/README.md`.
 | 03 Strings & Hashing | Q20–Q29 | 10 / 10 | 8 / 10 |
 | 04 Sliding Window | Q30–Q38 | 9 / 9 | 6 / 9 |
 | 05 Binary Search | Q39–Q47 | 9 / 9 | 9 / 9 |
-| 06 Stack & Queue | Q48–Q56 | in progress | — |
+| 06 Stack & Queue | Q48–Q56 | 9 / 9 | 9 / 9 |
+| 07 Linked List | Q57–Q65 | in progress | — |
 
-**47 / 85 · 36 / 47 clean (77%)**
+**56 / 85 · 45 / 56 clean (80%)**
 
 Phases 01–02 missed on **index mechanics** — Kadane's reset comparison, prefix
 `result[i]` vs `result[i-1]`, swap-before-increment, `k % n` and its reverse
@@ -549,12 +550,14 @@ bounds, `left <= right`, seeding from the unsorted array. Phase 03 missed on
 single-element array rejected by a `count > 1` check. Phase 04 missed on
 **counters and sentinels** — an `Int.min` seed returning -1 on empty input, a
 window sized by distinct count instead of length, and a type counter
-decremented on every shrink instead of only at zero. Phase 05 missed on
-**nothing** — 9/9 on the first attempt, including the Hard.
+decremented on every shrink instead of only at zero. Phases 05 and 06 missed on
+**nothing** — eighteen in a row clean on the first attempt.
 
-The right algorithm was picked 47 out of 47 times.
+Phase 06's review did catch one iOS-specific issue: Q55 LRU Cache held both
+`prev` and `next` strongly, so neighbouring nodes retained each other and the
+list leaked on deallocation. `weak var prev` fixes it.
 
-The right algorithm was picked 38 out of 38 times.
+The right algorithm was picked 56 out of 56 times.
 
 That makes four phases of revision data plus this pass: Phase 07 **ordering**,
 Phase 08 **boundary**, Phase 09 **mechanism**, Full Revision **index, guards
@@ -568,7 +571,7 @@ Branch: `full_revision`.
 
 In order:
 
-**1. Full revision pass** — in progress, Phase 06 next. Weak areas from the
+**1. Full revision pass** — in progress, Phase 07 next. Weak areas from the
 mocks are being caught inside this pass rather than separately.
 
 **2. Every mock re-run, phase by phase.** `Mock_Reruns/` on branch

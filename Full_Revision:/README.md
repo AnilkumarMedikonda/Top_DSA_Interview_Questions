@@ -86,14 +86,14 @@ Clean first pass = solutions correct before review, counted blind.
 | 03 Strings & Hashing | Q20–Q29 | 10 / 10 | 8 / 10 | ✅ |
 | 04 Sliding Window | Q30–Q38 | 9 / 9 | 6 / 9 | ✅ |
 | 05 Binary Search | Q39–Q47 | 9 / 9 | 9 / 9 | ✅ |
-| 06 Stack & Queue | Q48–Q56 | 6 / 9 | 6 / 6 | 🔄 |
-| 07 Linked List | Q57–Q65 | 0 / 9 | — | ⏳ |
+| 06 Stack & Queue | Q48–Q56 | 9 / 9 | 9 / 9 | ✅ |
+| 07 Linked List | Q57–Q65 | 0 / 9 | — | 🔄 |
 | 08 Trees & BST | Q66–Q74 | 0 / 9 | — | ⏳ |
 | 09 Advanced Patterns | Q75–Q85 | 0 / 11 | — | ⏳ |
 
-**53 / 85 rewritten · 42 / 53 clean first pass (79%)**
+**56 / 85 rewritten · 45 / 56 clean first pass (80%)**
 
-By phase: 80% · 56% · 80% · 67% · 100% · 100% so far
+By phase: 80% · 56% · 80% · 67% · 100% · 100%
 
 ---
 
@@ -142,13 +142,17 @@ only hygiene: Q43's loop locals shadowing the outer `row`/`colum`, and
 complexity headers on the answer-space problems stating the log over n instead
 of over the search range.
 
-**Phase 06 — none so far (Q48–Q53)**
+**Phase 06 — none**
 
-Six of nine written, all six correct on the first attempt. Q48's missing `else`
-from the original revision did not come back. The review caught one bug outside
-LeetCode's required API — Q53's `count` added `inputStack` to itself instead of
-`outPutStack` — plus a missing expected value in Q52's longest test. Q54–Q56 to
-come.
+All nine correct on the first attempt. Q48's missing `else` from the original
+revision did not come back, and Q55 LRU Cache — the longest implementation in
+the set — evicted from both the list and the dictionary on the first pass.
+
+The review caught one bug outside LeetCode's required API — Q53's `count`
+added `inputStack` to itself instead of `outPutStack` — and one iOS-specific
+issue in Q55: `prev` and `next` were both strong, so adjacent nodes retained
+each other and the list leaked on deallocation. `weak var prev` fixes it.
+LeetCode never sees that; a senior iOS interviewer will ask.
 
 ---
 
@@ -228,7 +232,7 @@ come.
 | `Q46_LC1011_Capacity_To_Ship_Packages_Within_D_Days` | 🟡 Medium | ✅ |
 | `Q47_LC410_Split_Array_Largest_Sum` | 🔴 Hard | ✅ |
 
-### 06 Stack & Queue — Q48–Q56 🔄
+### 06 Stack & Queue — Q48–Q56 ✅
 
 | File | Level | Done |
 |------|-------|:----:|
@@ -238,11 +242,11 @@ come.
 | `Q51_LC150_Evaluate_Reverse_Polish_Notation` | 🟡 Medium | ✅ |
 | `Q52_LC394_Decode_String` | 🟡 Medium | ✅ |
 | `Q53_LC232_Implement_Queue_Using_Stacks` | 🟢 Easy | ✅ |
-| `Q54_LC735_Asteroid_Collision` | 🟡 Medium | ⬜ |
-| `Q55_LC146_LRU_Cache` | 🟡 Medium | ⬜ |
-| `Q56_LC496_Next_Greater_Element_I` | 🟢 Easy | ⬜ |
+| `Q54_LC735_Asteroid_Collision` | 🟡 Medium | ✅ |
+| `Q55_LC146_LRU_Cache` | 🟡 Medium | ✅ |
+| `Q56_LC496_Next_Greater_Element_I` | 🟢 Easy | ✅ |
 
-### 07 Linked List — Q57–Q65
+### 07 Linked List — Q57–Q65 🔄
 
 | File | Level | Done |
 |------|-------|:----:|
@@ -292,19 +296,23 @@ come.
 
 ## 🎯 Next
 
-**Phase 06 — Stack & Queue, Q48–Q56. 6 of 9 done.**
+**Phase 07 — Linked List, Q57–Q65. In progress.**
 
-Phase 05 answered the question Phase 04 left open. Phase 04 dipped to 67% and
-raised the worry that decay was across the board; Phase 05 came back 9/9. The
-patterns drilled hardest held completely. The misses cluster in counters,
-guards and index arithmetic around the core loop — not in any one phase.
+Two perfect phases in a row. The clean rate has climbed from 68% after
+Phase 02 to 80% now, and the last eighteen problems came back with no
+algorithmic misses at all. The early misses were concentrated in the phases
+that had gone longest without practice.
 
-Q48–Q53 came back clean. Remaining: Q54 Asteroid Collision, Q55 LRU Cache and
-Q56 Next Greater Element I. Q55 is the longest implementation in the set —
-HashMap plus doubly linked list, sentinels at both ends, and eviction from both
-structures. Q54's collision loop is the one to trace: the incoming asteroid can
-destroy several on the stack, survive, or die, and each exit needs its own
-branch.
+Phase 07 is the real test of that. On the original revision it had the most
+second passes of any phase — four problems plus two helpers — and every one
+was an **ordering** error: reading a pointer after something had already
+changed it. Q62 Remove Nth From End, Q63 Copy Random Pointer, Q64 Reorder List
+and Q65 K-Group Reverse all missed that way last time. The question to ask at
+every assignment: *has anything already changed this pointer?*
+
+The phase file needs a Helpers block — `ListNode`, a list builder and a list
+printer — and `createCycle` for Q59, which last time silently dropped the
+cycle node so the test passed against nothing.
 
 ---
 
@@ -335,4 +343,4 @@ get rewritten.
 
 Branch: `full_revision`.
 
-Mock re-runs live in `Mock_Reruns/` on branch `mock_reruns`.
+Mock re-runs live in `Mock_Reruns/` on branch `mock_reruns`.c
