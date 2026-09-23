@@ -30,9 +30,9 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Mock Sessions Passed:** **9 / 12**
 
-**Full Revision:** **56 / 85** rewritten · 45 / 56 clean first pass (80%)
+**Full Revision:** **65 / 85** rewritten · 50 / 65 clean first pass (77%)
 
-**Current Focus:** Full revision pass — Phase 07, Q57–Q65
+**Current Focus:** Full revision pass — Phase 08, Q66–Q74
 
 ---
 
@@ -539,9 +539,10 @@ per-problem checklist in `Full_Revision/README.md`.
 | 04 Sliding Window | Q30–Q38 | 9 / 9 | 6 / 9 |
 | 05 Binary Search | Q39–Q47 | 9 / 9 | 9 / 9 |
 | 06 Stack & Queue | Q48–Q56 | 9 / 9 | 9 / 9 |
-| 07 Linked List | Q57–Q65 | in progress | — |
+| 07 Linked List | Q57–Q65 | 9 / 9 | 5 / 9 |
+| 08 Trees & BST | Q66–Q74 | in progress | — |
 
-**56 / 85 · 45 / 56 clean (80%)**
+**65 / 85 · 50 / 65 clean (77%)**
 
 Phases 01–02 missed on **index mechanics** — Kadane's reset comparison, prefix
 `result[i]` vs `result[i-1]`, swap-before-increment, `k % n` and its reverse
@@ -553,15 +554,21 @@ window sized by distinct count instead of length, and a type counter
 decremented on every shrink instead of only at zero. Phases 05 and 06 missed on
 **nothing** — eighteen in a row clean on the first attempt.
 
-Phase 06's review did catch one iOS-specific issue: Q55 LRU Cache held both
+Phase 07 broke that streak at 56%, on **ordering** — the same class this phase
+logged in its original revision, and Q64 Reorder List failed on the identical
+line both times. Three helper bugs on top of the four problems, including a
+`createCycleList` that could not build an acyclic list, so Q59 was passing
+against a test that could not fail.
+
+Phase 06's review also caught one iOS-specific issue: Q55 LRU Cache held both
 `prev` and `next` strongly, so neighbouring nodes retained each other and the
 list leaked on deallocation. `weak var prev` fixes it.
 
-The right algorithm was picked 56 out of 56 times.
+The right algorithm was picked 65 out of 65 times.
 
-That makes four phases of revision data plus this pass: Phase 07 **ordering**,
-Phase 08 **boundary**, Phase 09 **mechanism**, Full Revision **index, guards
-and counters**. None was ever a forgotten algorithm.
+Five phases of algorithmic recall are solid. Pointer work is not — twice now on
+the same material. Phase 07 is the one to come back to before the mock re-runs,
+rather than waiting for Mock 07 to surface it a third time.
 
 Branch: `full_revision`.
 
@@ -571,7 +578,7 @@ Branch: `full_revision`.
 
 In order:
 
-**1. Full revision pass** — in progress, Phase 07 next. Weak areas from the
+**1. Full revision pass** — in progress, Phase 08 next. Weak areas from the
 mocks are being caught inside this pass rather than separately.
 
 **2. Every mock re-run, phase by phase.** `Mock_Reruns/` on branch

@@ -19,6 +19,9 @@ were written while the phase was fresh. This one measures what survived.
 - **Expected answer in the comment, written before the run.** Every test line
   ends with `// expected`. Phase 01's Q10 bug survived a full pass because the
   console was bare numbers.
+- **Test the helpers too.** A helper with no failing case is a test that passes
+  against nothing — Phase 07's `createCycleList` could only build cyclic lists,
+  so a `hasCycle` that always returned true would have passed.
 - `swapAt`, `min()` and `max()` are fine; everything else stays manual. No
   force unwraps, `let` over `var`, complexity stated with the reason.
 
@@ -67,8 +70,10 @@ print()
 Shared types and helpers (`ListNode`, `TreeNode`, frequency maps, graph
 builders) go in a `// MARK: - Helpers` block at the top of the phase file.
 Phase 03 carries `getCharsFrequencyMap`, `getNumbersFrequencyMap`,
-`signature`, `getWords` and `isAlphanumeric`; Phases 07–09 carry the node types
-and builders. Phases 01, 02, 04–06 need none.
+`signature`, `getWords` and `isAlphanumeric`; Phase 07 carries `LisNode`,
+`RandomListNode`, `createList`, `printList`, `printRandomLis`,
+`createCycleList`, `createRandomList` and `kthNode`; Phases 08–09 carry the
+node types and builders. Phases 01, 02, 04–06 need none.
 
 **Test count:** Easy 4 · Medium 4–5 · Hard 5–7. Always 1–2 meaningful edge
 cases. Nothing artificial or repetitive.
@@ -87,13 +92,13 @@ Clean first pass = solutions correct before review, counted blind.
 | 04 Sliding Window | Q30–Q38 | 9 / 9 | 6 / 9 | ✅ |
 | 05 Binary Search | Q39–Q47 | 9 / 9 | 9 / 9 | ✅ |
 | 06 Stack & Queue | Q48–Q56 | 9 / 9 | 9 / 9 | ✅ |
-| 07 Linked List | Q57–Q65 | 0 / 9 | — | 🔄 |
-| 08 Trees & BST | Q66–Q74 | 0 / 9 | — | ⏳ |
+| 07 Linked List | Q57–Q65 | 9 / 9 | 5 / 9 | ✅ |
+| 08 Trees & BST | Q66–Q74 | 0 / 9 | — | 🔄 |
 | 09 Advanced Patterns | Q75–Q85 | 0 / 11 | — | ⏳ |
 
-**56 / 85 rewritten · 45 / 56 clean first pass (80%)**
+**65 / 85 rewritten · 50 / 65 clean first pass (77%)**
 
-By phase: 80% · 56% · 80% · 67% · 100% · 100%
+By phase: 80% · 56% · 80% · 67% · 100% · 100% · 56%
 
 ---
 
@@ -153,6 +158,24 @@ added `inputStack` to itself instead of `outPutStack` — and one iOS-specific
 issue in Q55: `prev` and `next` were both strong, so adjacent nodes retained
 each other and the list leaked on deallocation. `weak var prev` fixes it.
 LeetCode never sees that; a senior iOS interviewer will ask.
+
+**Phase 07 — ordering, again (4)**
+
+| # | Problem | What broke |
+|---|---------|------------|
+| Q58 | Merge Two Sorted Lists | Tail attached `first?.next` instead of `first`, dropping the last node |
+| Q61 | Add Two Numbers | `carryOver = 0` inside the loop, wiping the carry before it was used |
+| Q62 | Remove Nth From End | `for _ in 0...n` advanced the gap to n+1, removing the wrong node |
+| Q64 | Reorder List | `firstNode.next = secondNode.next` instead of `secondNode` — read a pointer already reassigned |
+
+Plus three helper bugs: `kthNode` rejected k=1 and returned the head instead of
+nil on overrun; `createCycleList` could not build an acyclic list, so both Q59
+tests were cyclic and a `hasCycle` that always returned true would have passed;
+`printRandomLis` never advanced and looped forever.
+
+The phase broke the streak at 56% — the same rate as Phase 02, and the same
+class of error logged in the original Phase 07 revision. Q64 was the identical
+line both times. Pointer work is the one area where repetition has not stuck.
 
 ---
 
@@ -246,21 +269,21 @@ LeetCode never sees that; a senior iOS interviewer will ask.
 | `Q55_LC146_LRU_Cache` | 🟡 Medium | ✅ |
 | `Q56_LC496_Next_Greater_Element_I` | 🟢 Easy | ✅ |
 
-### 07 Linked List — Q57–Q65 🔄
+### 07 Linked List — Q57–Q65 ✅
 
 | File | Level | Done |
 |------|-------|:----:|
-| `Q57_LC206_Reverse_Linked_List` | 🟢 Easy | ⬜ |
-| `Q58_LC021_Merge_Two_Sorted_Lists` | 🟢 Easy | ⬜ |
-| `Q59_LC141_Linked_List_Cycle` | 🟢 Easy | ⬜ |
-| `Q60_LC876_Middle_Of_Linked_List` | 🟢 Easy | ⬜ |
-| `Q61_LC002_Add_Two_Numbers` | 🟡 Medium | ⬜ |
-| `Q62_LC019_Remove_Nth_Node_From_End` | 🟡 Medium | ⬜ |
-| `Q63_LC138_Copy_List_With_Random_Pointer` | 🟡 Medium | ⬜ |
-| `Q64_LC143_Reorder_List` | 🟡 Medium | ⬜ |
-| `Q65_LC025_Reverse_Nodes_In_K_Group` | 🔴 Hard | ⬜ |
+| `Q57_LC206_Reverse_Linked_List` | 🟢 Easy | ✅ |
+| `Q58_LC021_Merge_Two_Sorted_Lists` | 🟢 Easy | ✅ |
+| `Q59_LC141_Linked_List_Cycle` | 🟢 Easy | ✅ |
+| `Q60_LC876_Middle_Of_Linked_List` | 🟢 Easy | ✅ |
+| `Q61_LC002_Add_Two_Numbers` | 🟡 Medium | ✅ |
+| `Q62_LC019_Remove_Nth_Node_From_End` | 🟡 Medium | ✅ |
+| `Q63_LC138_Copy_List_With_Random_Pointer` | 🟡 Medium | ✅ |
+| `Q64_LC143_Reorder_List` | 🟡 Medium | ✅ |
+| `Q65_LC025_Reverse_Nodes_In_K_Group` | 🔴 Hard | ✅ |
 
-### 08 Trees & BST — Q66–Q74
+### 08 Trees & BST — Q66–Q74 🔄
 
 | File | Level | Done |
 |------|-------|:----:|
@@ -296,23 +319,25 @@ LeetCode never sees that; a senior iOS interviewer will ask.
 
 ## 🎯 Next
 
-**Phase 07 — Linked List, Q57–Q65. In progress.**
+**Phase 08 — Trees & BST, Q66–Q74. In progress.**
 
-Two perfect phases in a row. The clean rate has climbed from 68% after
-Phase 02 to 80% now, and the last eighteen problems came back with no
-algorithmic misses at all. The early misses were concentrated in the phases
-that had gone longest without practice.
+Phase 07 broke the two-phase streak, and it broke it in the way the records
+predicted. Four misses, all ordering, and Q64 Reorder List failed on the
+identical line it failed on in the original revision. Three helper bugs on top
+of that, one of which meant Q59 was passing against a test that could not fail.
 
-Phase 07 is the real test of that. On the original revision it had the most
-second passes of any phase — four problems plus two helpers — and every one
-was an **ordering** error: reading a pointer after something had already
-changed it. Q62 Remove Nth From End, Q63 Copy Random Pointer, Q64 Reorder List
-and Q65 K-Group Reverse all missed that way last time. The question to ask at
-every assignment: *has anything already changed this pointer?*
+So the picture now: five phases of algorithmic recall are solid, and pointer
+work is not. Whatever happens in Phase 08, Phase 07 is the one to come back to
+before the mock re-runs.
 
-The phase file needs a Helpers block — `ListNode`, a list builder and a list
-printer — and `createCycle` for Q59, which last time silently dropped the
-cycle node so the test passed against nothing.
+Phase 08's own record says **boundary**: Q70 Validate BST dropped the equality
+on duplicates, Q73 Kth Smallest never stopped the traversal, Q74 Max Path Sum
+seeded at 0 instead of `Int.min`. The question to ask at every base case: *what
+does this need to do at the boundary — empty, equal, negative, or
+already-found?*
+
+The phase file needs a Helpers block: `TreeNode`, `buildTree` and `printTree`.
+Given Phase 07, test the builder before trusting any result it produces.
 
 ---
 
@@ -343,4 +368,4 @@ get rewritten.
 
 Branch: `full_revision`.
 
-Mock re-runs live in `Mock_Reruns/` on branch `mock_reruns`.c
+Mock re-runs live in `Mock_Reruns/` on branch `mock_reruns`.
