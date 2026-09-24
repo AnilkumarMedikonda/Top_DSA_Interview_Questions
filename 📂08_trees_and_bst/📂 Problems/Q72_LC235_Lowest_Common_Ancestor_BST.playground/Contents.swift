@@ -134,11 +134,7 @@ func buildTree(_ values: [Int?]) -> TreeNode? {
 // MARK: - Solution
 //==============================================================
 
-func lowestCommonAncestor(
-    _ treeNode: TreeNode?,
-    _ p: Int,
-    _ q: Int
-) -> TreeNode? {
+func lowestCommonAncestor( _ treeNode: TreeNode?, _ p: Int, _ q: Int) -> TreeNode? {
 
     var current: TreeNode? = treeNode
 
