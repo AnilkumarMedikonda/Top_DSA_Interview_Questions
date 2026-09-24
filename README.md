@@ -30,9 +30,9 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Mock Sessions Passed:** **9 / 12**
 
-**Full Revision:** **65 / 85** rewritten · 50 / 65 clean first pass (77%)
+**Full Revision:** **74 / 85** rewritten · 57 / 74 clean first pass (77%)
 
-**Current Focus:** Full revision pass — Phase 08, Q66–Q74
+**Current Focus:** Full revision pass — Phase 09, Q75–Q85 (last phase)
 
 ---
 
@@ -525,12 +525,6 @@ Three phases of revision data now read: Phase 07 **ordering**, Phase 08
 
 ---
 
-# 🔁 Full Revision — In Progress
-
-Second pass over all 85, rewritten blind from an empty file, oldest phase
-first. One playground per phase, problems stacked as blocks. Full rules and
-per-problem checklist in `Full_Revision/README.md`.
-
 | Phase | Questions | Rewritten | Clean first pass |
 |-------|-----------|----------:|-----------------:|
 | 01 Arrays | Q01–Q10 | 10 / 10 | 8 / 10 |
@@ -540,9 +534,10 @@ per-problem checklist in `Full_Revision/README.md`.
 | 05 Binary Search | Q39–Q47 | 9 / 9 | 9 / 9 |
 | 06 Stack & Queue | Q48–Q56 | 9 / 9 | 9 / 9 |
 | 07 Linked List | Q57–Q65 | 9 / 9 | 5 / 9 |
-| 08 Trees & BST | Q66–Q74 | in progress | — |
+| 08 Trees & BST | Q66–Q74 | 9 / 9 | 7 / 9 |
+| 09 Advanced Patterns | Q75–Q85 | in progress | — |
 
-**65 / 85 · 50 / 65 clean (77%)**
+**74 / 85 · 57 / 74 clean (77%)**
 
 Phases 01–02 missed on **index mechanics** — Kadane's reset comparison, prefix
 `result[i]` vs `result[i-1]`, swap-before-increment, `k % n` and its reverse
@@ -560,26 +555,32 @@ line both times. Three helper bugs on top of the four problems, including a
 `createCycleList` that could not build an acyclic list, so Q59 was passing
 against a test that could not fail.
 
+Phase 08 recovered to 78%, on **boundary**, exactly as its record predicted:
+Q73 Kth Smallest returned from the frame without stopping the traversal, and
+Q74 Max Path Sum seeded at 0 instead of `Int.min`. Both were repeats — Q73's
+missing stop is now logged three times. Q70, the third miss from the original
+revision, did not come back.
+
 Phase 06's review also caught one iOS-specific issue: Q55 LRU Cache held both
 `prev` and `next` strongly, so neighbouring nodes retained each other and the
 list leaked on deallocation. `weak var prev` fixes it.
 
-The right algorithm was picked 65 out of 65 times.
+The right algorithm was picked 74 out of 74 times.
 
-Five phases of algorithmic recall are solid. Pointer work is not — twice now on
-the same material. Phase 07 is the one to come back to before the mock re-runs,
-rather than waiting for Mock 07 to surface it a third time.
+Twelve of the seventeen misses in this pass were repeats of something already
+written down in the miss table. The algorithms are not the problem; the
+specific lines that break once tend to break again. Reading the table before
+starting a phase would have caught most of them.
 
 Branch: `full_revision`.
-
 ---
 
 # 🔜 What Comes Next
 
 In order:
 
-**1. Full revision pass** — in progress, Phase 08 next. Weak areas from the
-mocks are being caught inside this pass rather than separately.
+**1. Full revision pass** — in progress, Phase 09 is the last. Weak areas from
+the mocks are being caught inside this pass rather than separately.
 
 **2. Every mock re-run, phase by phase.** `Mock_Reruns/` on branch
 `mock_reruns`.

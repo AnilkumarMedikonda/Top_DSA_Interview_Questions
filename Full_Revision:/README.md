@@ -19,9 +19,10 @@ were written while the phase was fresh. This one measures what survived.
 - **Expected answer in the comment, written before the run.** Every test line
   ends with `// expected`. Phase 01's Q10 bug survived a full pass because the
   console was bare numbers.
-- **Test the helpers too.** A helper with no failing case is a test that passes
-  against nothing — Phase 07's `createCycleList` could only build cyclic lists,
-  so a `hasCycle` that always returned true would have passed.
+- **Test the helpers too, and print in the format the comments claim.** A
+  helper with no failing case is a test that passes against nothing — Phase
+  07's `createCycleList` could only build cyclic lists. Phase 08's `printTree`
+  walked preorder while every expected comment was written in level order.
 - `swapAt`, `min()` and `max()` are fine; everything else stays manual. No
   force unwraps, `let` over `var`, complexity stated with the reason.
 
@@ -72,8 +73,10 @@ builders) go in a `// MARK: - Helpers` block at the top of the phase file.
 Phase 03 carries `getCharsFrequencyMap`, `getNumbersFrequencyMap`,
 `signature`, `getWords` and `isAlphanumeric`; Phase 07 carries `LisNode`,
 `RandomListNode`, `createList`, `printList`, `printRandomLis`,
-`createCycleList`, `createRandomList` and `kthNode`; Phases 08–09 carry the
-node types and builders. Phases 01, 02, 04–06 need none.
+`createCycleList`, `createRandomList` and `kthNode`; Phase 08 carries
+`TreeNode`, `buildTree` and `printLevelOrder`, with a Helper Check block that
+verifies the builder before any problem relies on it; Phase 09 carries the
+graph and heap builders. Phases 01, 02, 04–06 need none.
 
 **Test count:** Easy 4 · Medium 4–5 · Hard 5–7. Always 1–2 meaningful edge
 cases. Nothing artificial or repetitive.
@@ -93,12 +96,12 @@ Clean first pass = solutions correct before review, counted blind.
 | 05 Binary Search | Q39–Q47 | 9 / 9 | 9 / 9 | ✅ |
 | 06 Stack & Queue | Q48–Q56 | 9 / 9 | 9 / 9 | ✅ |
 | 07 Linked List | Q57–Q65 | 9 / 9 | 5 / 9 | ✅ |
-| 08 Trees & BST | Q66–Q74 | 0 / 9 | — | 🔄 |
-| 09 Advanced Patterns | Q75–Q85 | 0 / 11 | — | ⏳ |
+| 08 Trees & BST | Q66–Q74 | 9 / 9 | 7 / 9 | ✅ |
+| 09 Advanced Patterns | Q75–Q85 | 0 / 11 | — | 🔄 |
 
-**65 / 85 rewritten · 50 / 65 clean first pass (77%)**
+**74 / 85 rewritten · 57 / 74 clean first pass (77%)**
 
-By phase: 80% · 56% · 80% · 67% · 100% · 100% · 56%
+By phase: 80% · 56% · 80% · 67% · 100% · 100% · 56% · 78%
 
 ---
 
@@ -176,6 +179,21 @@ tests were cyclic and a `hasCycle` that always returned true would have passed;
 The phase broke the streak at 56% — the same rate as Phase 02, and the same
 class of error logged in the original Phase 07 revision. Q64 was the identical
 line both times. Pointer work is the one area where repetition has not stuck.
+
+**Phase 08 — boundary, as predicted (2)**
+
+| # | Problem | What broke |
+|---|---------|------------|
+| Q73 | Kth Smallest | `return` on `k == 0` exited the frame but not the traversal — the parent still recursed right, so `k` kept decrementing. Right answer, full O(n) walk |
+| Q74 | Max Path Sum | Seeded at 0 instead of `Int.min`; `[-3]` returned 0, and no path sums to zero |
+
+Both were repeats: Q73's missing stop is now logged three times, Q74's zero
+seed twice. Q70 Validate BST — the third miss from the original revision — did
+not come back, so that one is fixed for good.
+
+The helper miss this phase was a format lie: `printTree` walked preorder while
+every expected comment was written in level order, so the output and the
+comment never described the same thing. Replaced with `printLevelOrder`.
 
 ---
 
@@ -283,21 +301,21 @@ line both times. Pointer work is the one area where repetition has not stuck.
 | `Q64_LC143_Reorder_List` | 🟡 Medium | ✅ |
 | `Q65_LC025_Reverse_Nodes_In_K_Group` | 🔴 Hard | ✅ |
 
-### 08 Trees & BST — Q66–Q74 🔄
+### 08 Trees & BST — Q66–Q74 ✅
 
 | File | Level | Done |
 |------|-------|:----:|
-| `Q66_LC104_Maximum_Depth_Of_Binary_Tree` | 🟢 Easy | ⬜ |
-| `Q67_LC100_Same_Tree` | 🟢 Easy | ⬜ |
-| `Q68_LC226_Invert_Binary_Tree` | 🟢 Easy | ⬜ |
-| `Q69_LC102_Binary_Tree_Level_Order_Traversal` | 🟡 Medium | ⬜ |
-| `Q70_LC098_Validate_Binary_Search_Tree` | 🟡 Medium | ⬜ |
-| `Q71_LC543_Diameter_Of_Binary_Tree` | 🟢 Easy | ⬜ |
-| `Q72_LC235_Lowest_Common_Ancestor_Of_A_BST` | 🟡 Medium | ⬜ |
-| `Q73_LC230_Kth_Smallest_Element_In_A_BST` | 🟡 Medium | ⬜ |
-| `Q74_LC124_Binary_Tree_Maximum_Path_Sum` | 🔴 Hard | ⬜ |
+| `Q66_LC104_Maximum_Depth_Of_Binary_Tree` | 🟢 Easy | ✅ |
+| `Q67_LC100_Same_Tree` | 🟢 Easy | ✅ |
+| `Q68_LC226_Invert_Binary_Tree` | 🟢 Easy | ✅ |
+| `Q69_LC102_Binary_Tree_Level_Order_Traversal` | 🟡 Medium | ✅ |
+| `Q70_LC098_Validate_Binary_Search_Tree` | 🟡 Medium | ✅ |
+| `Q71_LC543_Diameter_Of_Binary_Tree` | 🟢 Easy | ✅ |
+| `Q72_LC235_Lowest_Common_Ancestor_Of_A_BST` | 🟡 Medium | ✅ |
+| `Q73_LC230_Kth_Smallest_Element_In_A_BST` | 🟡 Medium | ✅ |
+| `Q74_LC124_Binary_Tree_Maximum_Path_Sum` | 🔴 Hard | ✅ |
 
-### 09 Advanced Patterns — Q75–Q85
+### 09 Advanced Patterns — Q75–Q85 🔄
 
 | File | Level | Done |
 |------|-------|:----:|
@@ -319,25 +337,27 @@ line both times. Pointer work is the one area where repetition has not stuck.
 
 ## 🎯 Next
 
-**Phase 08 — Trees & BST, Q66–Q74. In progress.**
+**Phase 09 — Advanced Patterns, Q75–Q85. Last phase, eleven problems.**
 
-Phase 07 broke the two-phase streak, and it broke it in the way the records
-predicted. Four misses, all ordering, and Q64 Reorder List failed on the
-identical line it failed on in the original revision. Three helper bugs on top
-of that, one of which meant Q59 was passing against a test that could not fail.
+Phase 08 recovered to 78%, and both misses were repeats of misses already
+logged for that phase — Q73's missing stop for the third time, Q74's zero seed
+for the second. Q70 was the one that stuck.
 
-So the picture now: five phases of algorithmic recall are solid, and pointer
-work is not. Whatever happens in Phase 08, Phase 07 is the one to come back to
-before the mock re-runs.
+That is the pattern across the whole pass: the algorithms are not the problem,
+and the specific lines that broke once tend to break again. Twelve of the
+seventeen misses in this pass were repeats of something already written down.
+Reading the miss table before starting a phase would have caught most of them.
 
-Phase 08's own record says **boundary**: Q70 Validate BST dropped the equality
-on duplicates, Q73 Kth Smallest never stopped the traversal, Q74 Max Path Sum
-seeded at 0 instead of `Int.min`. The question to ask at every base case: *what
-does this need to do at the boundary — empty, equal, negative, or
-already-found?*
+Phase 09's record says **mechanism** — the misses produced right answers with
+wrong reasoning. Q84 House Robber had `prev1` and `prev2` swapped, and the two
+swaps cancelled, so every test passed while the code described robbing adjacent
+houses. Q75's `remove()` lost its empty guard and no test called it that way.
+Trace, do not just run.
 
-The phase file needs a Helpers block: `TreeNode`, `buildTree` and `printTree`.
-Given Phase 07, test the builder before trusting any result it produces.
+Two hards: Q76 Merge K Sorted Lists and Q80 Word Ladder. Q82–Q85 are on the
+sketch-the-naive-first list. The phase file needs a Helpers block — heap, grid
+neighbours, adjacency list from edge pairs, indegree array — and Q76 needs
+`ListNode` alongside the graph types.
 
 ---
 
