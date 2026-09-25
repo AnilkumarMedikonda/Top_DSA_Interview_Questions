@@ -30,9 +30,9 @@ This repository is built for **Senior iOS Engineer interview preparation**, focu
 
 **Mock Sessions Passed:** **9 / 12**
 
-**Full Revision:** **74 / 85** rewritten · 57 / 74 clean first pass (77%)
+**Full Revision:** **85 / 85** rewritten · 68 / 85 clean first pass (80%) — complete
 
-**Current Focus:** Full revision pass — Phase 09, Q75–Q85 (last phase)
+**Current Focus:** iOS — Swift internals, iOS concepts, system design (separate repo)
 
 ---
 
@@ -577,17 +577,19 @@ Branch: `full_revision`.
 
 # 🔜 What Comes Next
 
-In order:
+**Next 10 days — iOS.** Swift internals, iOS concepts and system design, in a
+separate repository. DSA is at 80% clean recall across 85 problems; the axis
+that decides a senior iOS offer is the one that has had no time yet.
 
-**1. Full revision pass** — in progress, Phase 09 is the last. Weak areas from
-the mocks are being caught inside this pass rather than separately.
+**Then — job search starts.** Applications and interviews run in parallel with
+revision, not after it. Revision keeps the recall warm while the process runs:
 
-**2. Every mock re-run, phase by phase.** `Mock_Reruns/` on branch
-`mock_reruns`.
+- Mock re-runs, phase by phase — `Mock_Reruns/` on branch `mock_reruns`
+- Pointer work and two-pointer drilling — the two phases that came back 5 of 9
+- Sorting algorithms — `Sorting_Algorithms/` on branch `sorting_algorithms`
 
-**3. Sorting algorithms.** Merge, quick and heap sort — `Sorting_Algorithms/`
-at the repo root, branch `sorting_algorithms`. Assembled from pieces already in
-the repo.
+Revision repeats on a cycle after that.
+
 
 ---
 

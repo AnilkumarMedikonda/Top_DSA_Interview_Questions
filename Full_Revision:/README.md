@@ -1,207 +1,27 @@
 # 📂 Full Revision — Q01 to Q85
 
-Second pass over the whole repo. Every problem rewritten blind from an empty
-file, one by one, oldest phase first.
+**Complete.** Every problem rewritten blind from an empty file, one by one,
+oldest phase first.
 
 This is separate from the `Phase_0X_Revision` files inside each phase — those
-were written while the phase was fresh. This one measures what survived.
+were written while the phase was fresh. This one measured what survived.
 
 ---
 
-## 📏 Rules
+## 📊 Result
 
-- **Optimal only.** Brute force named out loud, not written.
-- **Blind.** Empty file, no peeking until the tests run.
-- **Build before calling it done.** Two of Mock 09's three failures were
-  compiler errors.
-- **Check the trace, not just the output.** Phase 09's misses were wrong
-  computations producing right answers.
-- **Expected answer in the comment, written before the run.** Every test line
-  ends with `// expected`. Phase 01's Q10 bug survived a full pass because the
-  console was bare numbers.
-- **Test the helpers too, and print in the format the comments claim.** A
-  helper with no failing case is a test that passes against nothing — Phase
-  07's `createCycleList` could only build cyclic lists. Phase 08's `printTree`
-  walked preorder while every expected comment was written in level order.
-- `swapAt`, `min()` and `max()` are fine; everything else stays manual. No
-  force unwraps, `let` over `var`, complexity stated with the reason.
+**85 / 85 rewritten · 68 / 85 clean first pass (80%)**
 
-Exception: **Q82–Q85** — sketch the naive version first. There the optimal is a
-collapse of it, not a faster alternative. (Q13 and Q32 done: both written
-directly, no naive sketch needed.)
+**The right algorithm was picked 85 out of 85 times.** Every miss was
+mechanical. Roughly two-thirds were repeats of a miss already written down.
 
 ---
 
-## 📐 File Format
+## 📋 Problems
 
-One playground per phase. Problems stacked as blocks inside the single file,
-in Q order.
+🟢 Easy · 🟡 Medium · 🔴 Hard
 
-```swift
-//==============================================================
-// MARK: - Q01. Two Sum
-// Difficulty: Easy
-// LeetCode: LC001
-//==============================================================
-//
-// Problem:
-// <statement, wrapped>
-//
-// Example:
-// Input: ...
-// Output: ...
-//
-// Time: O(n)
-// Space: O(n)
-//
-//==============================================================
-
-print("\n==============================================================")
-print("Q01 - Two Sum")
-print("==============================================================")
-
-// Solution
-
-// Test cases
-print("Input: ... -> \(call)")  // expected
-
-print()
-```
-
-Shared types and helpers (`ListNode`, `TreeNode`, frequency maps, graph
-builders) go in a `// MARK: - Helpers` block at the top of the phase file.
-Phase 03 carries `getCharsFrequencyMap`, `getNumbersFrequencyMap`,
-`signature`, `getWords` and `isAlphanumeric`; Phase 07 carries `LisNode`,
-`RandomListNode`, `createList`, `printList`, `printRandomLis`,
-`createCycleList`, `createRandomList` and `kthNode`; Phase 08 carries
-`TreeNode`, `buildTree` and `printLevelOrder`, with a Helper Check block that
-verifies the builder before any problem relies on it; Phase 09 carries the
-graph and heap builders. Phases 01, 02, 04–06 need none.
-
-**Test count:** Easy 4 · Medium 4–5 · Hard 5–7. Always 1–2 meaningful edge
-cases. Nothing artificial or repetitive.
-
----
-
-## 📊 Progress
-
-Clean first pass = solutions correct before review, counted blind.
-
-| Phase | Questions | Rewritten | Clean first pass | Status |
-|-------|-----------|----------:|-----------------:|:------:|
-| 01 Arrays | Q01–Q10 | 10 / 10 | 8 / 10 | ✅ |
-| 02 Two Pointers | Q11–Q19 | 9 / 9 | 5 / 9 | ✅ |
-| 03 Strings & Hashing | Q20–Q29 | 10 / 10 | 8 / 10 | ✅ |
-| 04 Sliding Window | Q30–Q38 | 9 / 9 | 6 / 9 | ✅ |
-| 05 Binary Search | Q39–Q47 | 9 / 9 | 9 / 9 | ✅ |
-| 06 Stack & Queue | Q48–Q56 | 9 / 9 | 9 / 9 | ✅ |
-| 07 Linked List | Q57–Q65 | 9 / 9 | 5 / 9 | ✅ |
-| 08 Trees & BST | Q66–Q74 | 9 / 9 | 7 / 9 | ✅ |
-| 09 Advanced Patterns | Q75–Q85 | 0 / 11 | — | 🔄 |
-
-**74 / 85 rewritten · 57 / 74 clean first pass (77%)**
-
-By phase: 80% · 56% · 80% · 67% · 100% · 100% · 56% · 78%
-
----
-
-## 🔍 Misses So Far
-
-Every miss has been mechanical, never a forgotten algorithm. The class shifts
-by phase.
-
-**Phases 01–02 — index mechanics (6)**
-
-| # | Problem | What broke |
-|---|---------|------------|
-| Q04 | Maximum Subarray | Kadane reset compared `nums[i] > currentSum`, not `currentSum + nums[i]` |
-| Q10 | Product Except Self | Prefix loop read `result[i]` instead of `result[i-1]` |
-| Q12 | 3Sum | `left <= right` let one element be used twice |
-| Q15 | Sort Colors | Incremented `low`/`mid` before the swap |
-| Q17 | Rotate Array | `count / k` instead of `k % count`; then off-by-one reverse bounds |
-| Q18 | Merge Intervals | Seeded `result` from the unsorted array |
-
-**Phase 03 — guard clauses (2)**
-
-| # | Problem | What broke |
-|---|---------|------------|
-| Q26 | Ransom Note | Exhausted count nil-ed the entry instead of returning false |
-| Q23 | Longest Common Prefix | `words.count > 1` returned `""` for a single-word array |
-
-Both Phase 03 misses were on the two easiest problems in the set. Q21, Q25,
-Q27 and Q28 — the four with real structure — came back clean.
-
-**Phase 04 — counters and sentinels (3)**
-
-| # | Problem | What broke |
-|---|---------|------------|
-| Q30 | Longest Substring | `Int.min` sentinel returned -1 on empty input |
-| Q34 | Find All Anagrams | Window sized by `patternMap.count` (distinct) instead of `p.count` (length) |
-| Q36 | Fruit Into Baskets | `uniquTypes -= 1` on every shrink step, not only when a type hit zero |
-
-Q36 is the same shape as Q26 in Phase 03 — a counter changed on the wrong side
-of the zero-check. Twice across two phases: worth one extra glance at every
-decrement-and-prune. Both hards, Q32 and Q38, came back clean.
-
-**Phase 05 — none**
-
-All nine correct on the first attempt, including the Hard. The review caught
-only hygiene: Q43's loop locals shadowing the outer `row`/`colum`, and
-complexity headers on the answer-space problems stating the log over n instead
-of over the search range.
-
-**Phase 06 — none**
-
-All nine correct on the first attempt. Q48's missing `else` from the original
-revision did not come back, and Q55 LRU Cache — the longest implementation in
-the set — evicted from both the list and the dictionary on the first pass.
-
-The review caught one bug outside LeetCode's required API — Q53's `count`
-added `inputStack` to itself instead of `outPutStack` — and one iOS-specific
-issue in Q55: `prev` and `next` were both strong, so adjacent nodes retained
-each other and the list leaked on deallocation. `weak var prev` fixes it.
-LeetCode never sees that; a senior iOS interviewer will ask.
-
-**Phase 07 — ordering, again (4)**
-
-| # | Problem | What broke |
-|---|---------|------------|
-| Q58 | Merge Two Sorted Lists | Tail attached `first?.next` instead of `first`, dropping the last node |
-| Q61 | Add Two Numbers | `carryOver = 0` inside the loop, wiping the carry before it was used |
-| Q62 | Remove Nth From End | `for _ in 0...n` advanced the gap to n+1, removing the wrong node |
-| Q64 | Reorder List | `firstNode.next = secondNode.next` instead of `secondNode` — read a pointer already reassigned |
-
-Plus three helper bugs: `kthNode` rejected k=1 and returned the head instead of
-nil on overrun; `createCycleList` could not build an acyclic list, so both Q59
-tests were cyclic and a `hasCycle` that always returned true would have passed;
-`printRandomLis` never advanced and looped forever.
-
-The phase broke the streak at 56% — the same rate as Phase 02, and the same
-class of error logged in the original Phase 07 revision. Q64 was the identical
-line both times. Pointer work is the one area where repetition has not stuck.
-
-**Phase 08 — boundary, as predicted (2)**
-
-| # | Problem | What broke |
-|---|---------|------------|
-| Q73 | Kth Smallest | `return` on `k == 0` exited the frame but not the traversal — the parent still recursed right, so `k` kept decrementing. Right answer, full O(n) walk |
-| Q74 | Max Path Sum | Seeded at 0 instead of `Int.min`; `[-3]` returned 0, and no path sums to zero |
-
-Both were repeats: Q73's missing stop is now logged three times, Q74's zero
-seed twice. Q70 Validate BST — the third miss from the original revision — did
-not come back, so that one is fixed for good.
-
-The helper miss this phase was a format lie: `printTree` walked preorder while
-every expected comment was written in level order, so the output and the
-comment never described the same thing. Replaced with `printLevelOrder`.
-
----
-
-## 📋 Question List
-
-⬜ as you rewrite → ✅. 🟢 Easy · 🟡 Medium · 🔴 Hard
-
-### 01 Arrays — Q01–Q10 ✅
+### 01 Arrays — Q01–Q10
 
 | File | Level | Done |
 |------|-------|:----:|
@@ -216,7 +36,7 @@ comment never described the same thing. Replaced with `printLevelOrder`.
 | `Q09_LC268_Missing_Number` | 🟢 Easy | ✅ |
 | `Q10_LC238_Product_Of_Array_Except_Self` | 🟡 Medium | ✅ |
 
-### 02 Two Pointers — Q11–Q19 ✅
+### 02 Two Pointers — Q11–Q19
 
 | File | Level | Done |
 |------|-------|:----:|
@@ -230,7 +50,7 @@ comment never described the same thing. Replaced with `printLevelOrder`.
 | `Q18_LC056_Merge_Intervals` | 🟡 Medium | ✅ |
 | `Q19_LC041_First_Missing_Positive` | 🔴 Hard | ✅ |
 
-### 03 Strings & Hashing — Q20–Q29 ✅
+### 03 Strings & Hashing — Q20–Q29
 
 | File | Level | Done |
 |------|-------|:----:|
@@ -245,7 +65,7 @@ comment never described the same thing. Replaced with `printLevelOrder`.
 | `Q28_LC290_Word_Pattern` | 🟢 Easy | ✅ |
 | `Q29_LC387_First_Unique_Character_In_A_String` | 🟢 Easy | ✅ |
 
-### 04 Sliding Window — Q30–Q38 ✅
+### 04 Sliding Window — Q30–Q38
 
 | File | Level | Done |
 |------|-------|:----:|
@@ -259,7 +79,7 @@ comment never described the same thing. Replaced with `printLevelOrder`.
 | `Q37_LC209_Minimum_Size_Subarray_Sum` | 🟡 Medium | ✅ |
 | `Q38_LC239_Sliding_Window_Maximum` | 🔴 Hard | ✅ |
 
-### 05 Binary Search — Q39–Q47 ✅
+### 05 Binary Search — Q39–Q47
 
 | File | Level | Done |
 |------|-------|:----:|
@@ -273,7 +93,7 @@ comment never described the same thing. Replaced with `printLevelOrder`.
 | `Q46_LC1011_Capacity_To_Ship_Packages_Within_D_Days` | 🟡 Medium | ✅ |
 | `Q47_LC410_Split_Array_Largest_Sum` | 🔴 Hard | ✅ |
 
-### 06 Stack & Queue — Q48–Q56 ✅
+### 06 Stack & Queue — Q48–Q56
 
 | File | Level | Done |
 |------|-------|:----:|
@@ -287,7 +107,7 @@ comment never described the same thing. Replaced with `printLevelOrder`.
 | `Q55_LC146_LRU_Cache` | 🟡 Medium | ✅ |
 | `Q56_LC496_Next_Greater_Element_I` | 🟢 Easy | ✅ |
 
-### 07 Linked List — Q57–Q65 ✅
+### 07 Linked List — Q57–Q65
 
 | File | Level | Done |
 |------|-------|:----:|
@@ -301,7 +121,7 @@ comment never described the same thing. Replaced with `printLevelOrder`.
 | `Q64_LC143_Reorder_List` | 🟡 Medium | ✅ |
 | `Q65_LC025_Reverse_Nodes_In_K_Group` | 🔴 Hard | ✅ |
 
-### 08 Trees & BST — Q66–Q74 ✅
+### 08 Trees & BST — Q66–Q74
 
 | File | Level | Done |
 |------|-------|:----:|
@@ -315,49 +135,62 @@ comment never described the same thing. Replaced with `printLevelOrder`.
 | `Q73_LC230_Kth_Smallest_Element_In_A_BST` | 🟡 Medium | ✅ |
 | `Q74_LC124_Binary_Tree_Maximum_Path_Sum` | 🔴 Hard | ✅ |
 
-### 09 Advanced Patterns — Q75–Q85 🔄
+### 09 Advanced Patterns — Q75–Q85
 
 | File | Level | Done |
 |------|-------|:----:|
-| `Q75_LC215_Kth_Largest_Element_In_An_Array` | 🟡 Medium | ⬜ |
-| `Q76_LC023_Merge_K_Sorted_Lists` | 🔴 Hard | ⬜ |
-| `Q77_LC200_Number_Of_Islands` | 🟡 Medium | ⬜ |
-| `Q78_LC994_Rotting_Oranges` | 🟡 Medium | ⬜ |
-| `Q79_LC207_Course_Schedule` | 🟡 Medium | ⬜ |
-| `Q80_LC127_Word_Ladder` | 🔴 Hard | ⬜ |
-| `Q81_LC684_Redundant_Connection` | 🟡 Medium | ⬜ |
-| `Q82_LC078_Subsets` | 🟡 Medium | ⬜ |
-| `Q83_LC039_Combination_Sum` | 🟡 Medium | ⬜ |
-| `Q84_LC198_House_Robber` | 🟡 Medium | ⬜ |
-| `Q85_LC300_Longest_Increasing_Subsequence` | 🟡 Medium | ⬜ |
+| `Q75_LC215_Kth_Largest_Element_In_An_Array` | 🟡 Medium | ✅ |
+| `Q76_LC023_Merge_K_Sorted_Lists` | 🔴 Hard | ✅ |
+| `Q77_LC200_Number_Of_Islands` | 🟡 Medium | ✅ |
+| `Q78_LC994_Rotting_Oranges` | 🟡 Medium | ✅ |
+| `Q79_LC207_Course_Schedule` | 🟡 Medium | ✅ |
+| `Q80_LC127_Word_Ladder` | 🔴 Hard | ✅ |
+| `Q81_LC684_Redundant_Connection` | 🟡 Medium | ✅ |
+| `Q82_LC078_Subsets` | 🟡 Medium | ✅ |
+| `Q83_LC039_Combination_Sum` | 🟡 Medium | ✅ |
+| `Q84_LC198_House_Robber` | 🟡 Medium | ✅ |
+| `Q85_LC300_Longest_Increasing_Subsequence` | 🟡 Medium | ✅ |
 
 **Totals: 🟢 29 Easy · 🟡 48 Medium · 🔴 8 Hard**
 
 ---
 
-## 🎯 Next
+## 🎯 What This Says
 
-**Phase 09 — Advanced Patterns, Q75–Q85. Last phase, eleven problems.**
+Pattern recognition is solid — 85/85 is the number that matters, and it is the
+slow thing to build. What is not solid:
 
-Phase 08 recovered to 78%, and both misses were repeats of misses already
-logged for that phase — Q73's missing stop for the third time, Q74's zero seed
-for the second. Q70 was the one that stuck.
+**Pointer work.** Phase 07 came back 5 of 9, twice now on the same material and
+the same error class both times. This is the one to drill before the mock
+re-runs rather than waiting for Mock 07 to surface it a third time.
 
-That is the pattern across the whole pass: the algorithms are not the problem,
-and the specific lines that broke once tend to break again. Twelve of the
-seventeen misses in this pass were repeats of something already written down.
-Reading the miss table before starting a phase would have caught most of them.
+**Two Pointers.** Also 5 of 9. Six index-arithmetic misses across Phases 01–02.
 
-Phase 09's record says **mechanism** — the misses produced right answers with
-wrong reasoning. Q84 House Robber had `prev1` and `prev2` swapped, and the two
-swaps cancelled, so every test passed while the code described robbing adjacent
-houses. Q75's `remove()` lost its empty guard and no test called it that way.
-Trace, do not just run.
+**Binary Search and Stack & Queue were perfect** — 9 of 9 each, including both
+Hards.
 
-Two hards: Q76 Merge K Sorted Lists and Q80 Word Ladder. Q82–Q85 are on the
-sketch-the-naive-first list. The phase file needs a Helpers block — heap, grid
-neighbours, adjacency list from edge pairs, indegree array — and Q76 needs
-`ListNode` alongside the graph types.
+**Helpers broke in three phases and no test caught any of them.** Solutions get
+scrutiny; helpers get trusted.
+
+**One iOS-specific issue, outside LeetCode's scope.** Q55 LRU Cache held both
+`prev` and `next` strongly, so adjacent nodes retained each other and the list
+leaked on deallocation. `weak var prev` fixes it. A senior iOS interviewer will
+ask about this; LeetCode never will.
+
+---
+
+## 📏 Rules Used
+
+- **Optimal only.** Brute force named out loud, not written.
+- **Blind.** Empty file, no peeking until the tests run.
+- **Build before calling it done.**
+- **Check the trace, not just the output.**
+- **Expected answer in the comment, written before the run.**
+- **Test the helpers too, and print in the format the comments claim.**
+- `swapAt`, `min()` and `max()` fine; everything else manual. No force
+  unwraps, `let` over `var`, complexity stated with the reason.
+- **Test count:** Easy 4 · Medium 4–5 · Hard 5–7, always 1–2 meaningful edge
+  cases.
 
 ---
 
@@ -379,12 +212,11 @@ Full_Revision/
 └── 09_Advanced_Patterns_Q75_Q85.playground
 ```
 
-One playground per phase, Q-range in the name, matching the `Mock_Sessions`
-convention. All problems for a phase live in the single file, so the whole
-phase runs in one go.
-
-No `Patterns/` or `Prerequisites` here — those were learning aids and do not
-get rewritten.
+One playground per phase, all problems in a single file so the whole phase runs
+in one go. Shared types go in a `// MARK: - Helpers` block at the top: Phase 03
+frequency maps and word splitting, Phase 07 `ListNode` and list builders,
+Phase 08 `TreeNode` with a Helper Check block, Phase 09 two min heaps and the
+graph builders.
 
 Branch: `full_revision`.
 
