@@ -154,3 +154,4 @@ print(ladderLength("hot", "dog", ["hot", "dog"]))
 
 print(ladderLength("hit", "hig", ["hig"]))
 // 2
+print(ladderLength("hot", "hot", ["hot"]))
